@@ -1,0 +1,587 @@
+<!-- SunCalc Script by: Vladimir Agafonkin -->
+<!-- UI by: Alex Terranova -->
+<!-- Date: 24/4/2018 -->
+<!-- Feel free to modify this file "suncalc.html" -->
+
+<!-- HOW TO ADD A NEW CITY BELOW-->
+
+<!-- To add/modify a City Simply go down to "CUSTOMIZE" comment section -->
+<!-- Replace (value=="") with the name of the new city -->
+<!-- Replace Longitude "la" with the new Longitude -->
+<!-- Replace Latitude "lo" with new Latitude -->
+<!-- Replace Offset "off" with the UTC timezone Offset -->
+<!-- Replace src = "RES/flag.png" with the new flag image -->
+
+<!-- Thank you -->
+
+<html>
+
+<head>
+<title>SunCalcUI</title>
+<script src="RES/js/suncalc.js">
+</script>
+</head>
+
+<!-- CSS Style Starts -->
+<style>
+    #footer {
+        background: #fff;
+        color: #000;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-top: 50px;
+    }
+    #footercontent {
+
+        width: 490px;
+        margin: 0 auto;
+        padding-top: 20px;
+        padding-bottom: 100px;
+        background: #fff;
+        color: #000;
+        overflow: hidden;
+
+    }
+    #footercontent p {
+        font-family: Roboto;
+        font-size: 14px;
+    }
+    #title {
+
+        font-family: Trajan;
+        font-size: 64px;
+    }
+    #uititle {
+
+        font-family: Trajan;
+        font-size: 32px;
+        margin: 0 auto;
+        text-align:center;
+        color: #fff;
+    }
+    #case {
+
+        width: 460px;
+    }
+
+    #item1 {
+
+        float: left;
+    }
+
+    #item2 {
+
+        float: left;
+    }
+    body {
+        background-image: url("RES/BG.jpg");
+        background-repeat: repeat;
+    }
+    input[type="text"] {
+
+    width: 35px;
+    }
+
+    @font-face {
+    font-family: 'Archivo';
+    src: url('RES/fonts/ArchivoNarrow-Regular.eot'); /* IE9 Compat Modes */
+    src: url('RES/fonts/ArchivoNarrow-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('RES/fonts/ArchivoNarrow-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('RES/fonts/ArchivoNarrow-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('RES/fonts/ArchivoNarrow-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+       font-size: 100%;
+    }
+    @font-face {
+    font-family: 'Trajan';
+    src: url('RES/fonts/Trajan_Pro_Regular.eot'); /* IE9 Compat Modes */
+    src: url('RES/fonts/Trajan_Pro_Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('RES/fonts/Trajan_Pro_Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('RES/fonts/Trajan_Pro_Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('RES/fonts/Trajan_Pro_Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+       font-size: 100%;
+    }
+    @font-face {
+    font-family: 'Roboto';
+    src: url('RES/fonts/Roboto-Medium.eot'); /* IE9 Compat Modes */
+    src: url('RES/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('RES/fonts/Roboto-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+       url('RES/fonts/Roboto-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+       url('RES/fonts/Roboto-Medium.ttf')  format('truetype'); /* Safari, Android, iOS */
+       font-size: 100%;
+    }
+    
+    #about {
+    padding-top: 20px;
+    margin-top: 20px;
+    }
+
+    #suncalcouter {
+    width: 490px;
+    background: #000;
+    border: 6px solid #000;
+    overflow: hidden;
+    margin: 0 auto;
+    font-family: Archivo;
+    }
+
+    #suncalc1 {
+    width: 490px;
+    float: left;
+    background: #000;
+    }
+
+    #suncalc2 {
+    width: 240px;
+    float: right;
+    background: #000;
+    }   
+
+    #suncalcbox {
+    width: 490px;
+	color: #000;
+    padding-bottom: 20px;
+    }
+
+	#suncalcbox td {
+	padding: 10px;
+    width: 490px;
+    height: 32px;
+    vertical-align: middle;
+    line-height: 32px;
+	}
+
+    #suncalcbox img {
+    vertical-align: middle;
+    padding: 0;
+    align-items: center
+    }
+
+	#suncalcbox th {
+	color: #000;
+	}
+	
+	#suncalcbox table {
+	font-size: 16px;
+	color: #000;
+	}
+	
+	#suncalcbox tr:nth-child(odd) {
+    background: #eee;
+	}
+
+	#suncalcbox tr:nth-child(even) {
+    background: #ccc;
+	}
+    </style>
+<!-- CSS Style Ends -->
+
+<!-- Javascript Starts -->
+<script>
+function jsFunction(value)
+{   
+    var yearit;
+    var monthit;
+    var dateit;
+    var today = new Date();
+
+/**************************************** CUSTOMIZE CITIES ******************************/
+        if (value == 'Custom')
+        {
+        
+        var lala = parseFloat(document.getElementById("long").value);
+        var lolo = parseFloat(document.getElementById("latt").value);
+        var offoff = parseFloat(document.getElementById("offset").value);
+        lo = lolo;
+        la = lala;
+        off = offoff;
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('offv').innerHTML = off;
+
+        yearit = parseFloat(document.getElementById("year2").value);
+        dateit = parseFloat(document.getElementById("day2").value);
+        monthit = parseFloat(document.getElementById("month2").value - 1);
+        
+        var monthfull = monthit + 1;
+        document.getElementById('titledate').innerHTML = monthfull + "/" + dateit + "/" + yearit;
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById("flag").src = "RES/flags/CUflag.png";
+        }
+        if (value == 'Ibiza')
+        {
+        
+        lo = 39;
+        la = 1.4;
+        off = 2;
+        yearit = parseFloat(today.getFullYear());
+        monthit = parseFloat(today.getMonth());
+        dateit = parseFloat(today.getDate());
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        var monthfull = monthit + 1;
+        document.getElementById('titledate').innerHTML = monthfull + "/" + dateit + "/" + yearit;
+        document.getElementById('offv').innerHTML = off;
+
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = dateit;
+        document.getElementById('month2').value = monthit+1;
+        document.getElementById('year2').value = yearit;
+        document.getElementById("flag").src = "RES/flags/ESflag.png";
+        }
+        if (value == 'Quito')
+        {
+        
+        lo = 0.1;
+        la = -78;
+        off = -5;
+        yearit = parseFloat(today.getFullYear());
+        monthit = parseFloat(today.getMonth());
+        dateit = parseFloat(today.getDate());
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        var monthfull = monthit + 1;
+        document.getElementById('titledate').innerHTML = monthfull + "/" + dateit + "/" + yearit;
+        document.getElementById('offv').innerHTML = off;
+
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = dateit;
+        document.getElementById('month2').value = monthit+1;
+        document.getElementById('year2').value = yearit;
+        document.getElementById("flag").src = "RES/flags/ECflag.png";
+        }
+        if (value == 'Boston')
+        
+        {
+        lo = 42;
+        la = -71;
+        off = -4;
+        yearit = parseFloat(today.getFullYear());
+        monthit = parseFloat(today.getMonth());
+        dateit = parseFloat(today.getDate());
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        var monthfull = monthit + 1;
+        document.getElementById('titledate').innerHTML = monthfull + "/" + dateit + "/" + yearit;
+        document.getElementById('offv').innerHTML = off;
+
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = dateit;
+        document.getElementById('month2').value = monthit+1;
+        document.getElementById('year2').value = yearit;
+        document.getElementById("flag").src = "RES/flags/USflag.png";
+        }
+/**************************************** CUSTOMIZE CITIES END ******************************/
+        function sunrise() {
+
+            var times = SunCalc.getTimes(new Date(yearit,monthit,dateit), lo, la);
+
+            var minutes = checkTime(times.sunrise.getMinutes());
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.sunrise.getTime()+(times.sunrise.getTimezoneOffset() * 60000);
+            nd = new Date(utc+(3600000*off));
+
+            var sunriseStr = nd.getHours() + ':' + minutes;
+
+            document.getElementById('sunrise').innerHTML = sunriseStr;
+           
+
+            }
+
+            sunrise()
+
+            function solarnoon() {
+
+            var times = SunCalc.getTimes(new Date(yearit,monthit,dateit), lo, la);
+
+            var minutes = checkTime(times.solarNoon.getMinutes());
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.solarNoon.getTime()+(times.solarNoon.getTimezoneOffset() * 60000);
+            nd = new Date(utc+(3600000*off));
+
+            var solarNoon = nd.getHours() + ':' + minutes;
+            document.getElementById('solarnoon').innerHTML = solarNoon;
+
+           /* var t = setTimeout(function() {
+            solarnoon()
+            }, 500);*/
+
+            }
+
+            solarnoon()
+
+            function sunset() {
+
+            var times = SunCalc.getTimes(new Date(yearit,monthit,dateit), lo, la);
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+            var myminutes = checkTime(times.sunset.getMinutes());
+
+            utc = times.sunset.getTime()+(times.sunset.getTimezoneOffset() * 60000);
+            nd = new Date(utc+(3600000*off));
+
+            var sunsetStr = nd.getHours() + ':' + myminutes;
+            document.getElementById('sunset').innerHTML = sunsetStr;
+  
+            }
+
+            sunset()
+
+            function moonrise() {
+           
+            var mtimes = SunCalc.getMoonTimes(new Date(yearit,monthit,dateit), lo, la);
+     
+            var minutes = checkTime(mtimes.rise.getMinutes());
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+
+            utc = mtimes.rise.getTime()+(mtimes.rise.getTimezoneOffset() * 60000);
+            nd = new Date(utc+(3600000*off));
+
+            var moonriseStr = nd.getHours() + ':' + minutes;
+
+            document.getElementById('moonrise').innerHTML = moonriseStr;
+     
+            }
+
+            moonrise()
+
+            function moonset() {
+ 
+             var mtimes = SunCalc.getMoonTimes(new Date(yearit,monthit,dateit), 0.1, -78);
+    
+             
+             var minutes = checkTime(mtimes.set.getMinutes());
+
+             function checkTime(i) {
+             if (i < 10) {
+             i = "0" + i
+             };
+             return i;
+             }
+
+            utc = mtimes.set.getTime()+(mtimes.set.getTimezoneOffset() * 60000);
+            nd = new Date(utc+(3600000*off));
+
+            var moonsetStr = nd.getHours() + ':' + minutes;
+
+             document.getElementById('moonset').innerHTML = moonsetStr;
+            /* var v = setTimeout(function() {
+            moonset()
+            }, 500);*/
+            }
+
+            moonset()
+         
+
+
+            function moonphase() {
+
+            var phase = SunCalc.getMoonIllumination(new Date(yearit,monthit,dateit)).phase;
+			
+			var actual;
+			
+			if (phase > 0 && phase < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase > 0.12 && phase < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waxing_crescent";		
+			}
+			if (phase > 0.25 && phase < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase > 0.37 && phase < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase > 0.50 && phase < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase > 0.62 && phase < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase > 0.75 && phase < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase > 0.87 && phase < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+            document.getElementById('moonphase').innerHTML = actual;
+ 
+            }
+
+            moonphase()
+       
+            function calcTime(city, offset) {
+
+            d = new Date();
+
+            utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc + (3600000*off));
+
+            return nd.toLocaleString();
+
+            }
+
+
+          
+
+}
+</script>
+
+<!-- Javascript Ends -->
+<!-- Body Starts -->
+
+<body onload="jsFunction('Boston');">
+<div id="suncalcouter">
+<div id="uititle">SunCalcUI</div>
+<img src="RES/SunCalcLogoMini.png">
+<div id="suncalc1">
+     <div id="suncalcbox">
+		  <table>
+         
+     <tr>     <td>City:
+<select id ="ddl" name="ddl" onchange="jsFunction(this.value);">
+  <option value="Boston">Boston, USA</option>
+  <option value="Custom">Custom City</option>
+  <option value="Quito">Quito, Ecuador</option>
+  <option value="Ibiza">Ibiza, Spain</option>
+
+</select><img id="flag" align="right" height="32px" width="52px"></img>
+          </td>
+          </tr>
+
+<tr>
+<td>
+
+    
+                Long:
+                <input type="text" id="long" width="1" maxlength="5">
+                Lat:
+                <input type="text" id="latt" width="1" maxlength="5">
+                D:
+                <input type="text" id="day2" width="1" maxlength="2">
+                M:
+                <input type="text" id="month2" width="1" maxlength="2">
+                Y:
+                <input type="text" id="year2" width="1" maxlength="4">
+                Offset:
+                <input type="text" id="offset" width="1" maxlength="3">
+                <button id="custom" onclick="jsFunction('Custom');" align="right">update</button>  
+    
+</td>
+
+</tr>
+
+		  <tr>
+		  <td>Date<div id="titledate" style="float: right;"></div></td>
+		  </tr>
+		  <tr>
+		  <td>Sunrise<div id="sunrise" style="float: right;"></div></td>
+		  </tr>
+		  <tr>
+		  <td>Sunset<div id="sunset" style="float: right;"></div></td>
+		  </tr>
+		  <tr>
+		  <td>Solarnoon<div id="solarnoon" style="float: right;"></div></td>
+		  </tr>
+		  <tr>
+		  <td>Moonrise<div id="moonrise" style="float: right;"></div></td>
+		  </tr>
+		  <tr>
+		  <td>Moonset<div id="moonset" style="float: right;"></div></td>
+		  </tr>
+		  <tr>
+		  <td>Moonphase<img id="phase" align="right" width="32px" height="32px"></img></td>
+          </tr>
+          <tr>
+          <td>Offset<div id="offv" style="float: right;"></div></td>
+          </tr>
+          <tr>
+          <td>Latitude<div id="latitude" style="float: right;"></div></td>
+          </tr>
+          <tr>
+          <td>Longitude<div id="longitude" style="float: right;"></div></td>
+          </tr>
+		  </table>
+           </div>
+        </div>
+        <div id="about">
+<font color="#ffffff">SunCalc by: <i>Vladimir Agafonkin</i><br>SunCalcUI by: 
+<i>Alex Terranova</i>
+</font></div>
+</div>
+<div id="footer">
+<div id="footercontent">
+    <center>
+    <div id="title">SunCalcUI</div></center><br><br>
+<p>
+SunCalc by: <i>Vladimir Agafonkin</i><br>
+SunCalcUI by: <i>Alex Terranova</i><br><br>
+
+To download this app please click <a href="Release.zip">here</a><br><Br>
+Feel free to modify this file "suncalcui.html" <br><br>
+
+HOW TO ADD A NEW CITY BELOW<br><br>
+
+&bull;&nbsp;To add/modify a City-> Simply go down to "CUSTOMIZE" comment section in the file "suncalcui.html"<br>
+&bull;&nbsp;Replace (value=="") with the name of the new city <br>
+&bull;&nbsp;Replace Longitude "la" with the new Longitude <br>
+&bull;&nbsp;Replace Latitude "lo" with new Latitude <br>
+&bull;&nbsp;Replace Offset "off" with the UTC timezone Offset for the new location<br>
+&bull;&nbsp;Replace src = "RES/flags/flag.png" with the new flag image <br><br>
+
+Thank you!   <br>
+</p>
+</div>
+</div>
+</body>
+<!-- Body Ends -->
+</html>
