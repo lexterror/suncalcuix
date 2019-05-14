@@ -10,7 +10,7 @@ I only added 3 cities and the options to select any other location from around t
 
 You can add as many cities as you like. 
 
-<img src="https://i.imgur.com/MEIB0Dm.png">
+<img src="https://i.imgur.com/cE8wTU4.png">
 
 
 
