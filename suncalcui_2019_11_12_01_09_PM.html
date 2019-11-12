@@ -1,0 +1,3685 @@
+<!-- SunCalc Script by: Vladimir Agafonkin -->
+<!-- UI by: Alex Terranova -->
+<!-- Date: 24/4/2018 -->
+<!-- Feel free to modify this file "suncalc.html" -->
+
+<!-- HOW TO ADD A NEW CITY BELOW-->
+
+<!-- To add/modify a City Simply go down to "CUSTOMIZE" comment section -->
+<!-- Replace (value=="") with the name of the new city -->
+<!-- Replace Longitude "la" with the new Longitude -->
+<!-- Replace Latitude "lo" with new Latitude -->
+<!-- Replace Offset "off" with the UTC timezone Offset -->
+<!-- Replace src = "RES/flag.png" with the new flag image -->
+
+<!-- Thank you -->
+
+<html>
+
+<head>
+<title>SunCalcUI</title>
+<script src="RES/js/suncalc.js">
+</script>
+</head>
+
+<!-- CSS Style Starts -->
+<style>
+@font-face {
+
+            font-family: 'alchemy';
+
+            src: url('RES/fonts/alchemy-symbols.eot');
+
+            /* IE9 Compat Modes */
+
+            src: url('RES/fonts/alchemy-symbols?#iefix') format('embedded-opentype'),
+                /* IE6-IE8 */
+
+                url('RES/fonts/alchemy-symbols.woff2') format('woff2'),
+                /* Super Modern Browsers */
+
+                url('RES/fonts/alchemy-symbols.woff') format('woff'),
+                /* Pretty Modern Browsers */
+
+                url('RES/fonts/alchemy-symbols.ttf') format('truetype');
+
+            /* Safari, Android, iOS */
+
+        } 
+    #suncalc1 input[type="text"] {
+	background: #fff;
+	color: #000;
+	font-family: Archivo !important;
+    width: 35px;
+	border-radius: 5px;
+    }
+    .eor {
+		width: 100px !important;
+		float:right !important;
+		text-align: right;
+		margin-right: 0;
+	}
+	
+    
+
+	#suncalc1 select {
+	background: #fff !important;
+	color: #000 !important;	
+	}
+
+
+    #footer {
+        background: #fff;
+        color: #000;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-top: 50px;
+    }
+    #footercontent {
+
+        width: 490px;
+        margin: 0 auto;
+        padding-top: 20px;
+        padding-bottom: 100px;
+        background: #fff;
+        color: #000;
+        overflow: hidden;
+
+    }
+    #footercontent p {
+        font-family: Roboto;
+        font-size: 14px;
+    }
+    #title {
+
+        font-family: Trajan;
+        font-size: 64px;
+    }
+    #uititle {
+
+        font-family: Trajan;
+        font-size: 32px;
+        margin: 0 auto;
+        color: #fff;
+    }
+    #case {
+
+        width: 460px;
+    }
+/*
+    #item1 {
+
+        float: left;
+    }
+
+    #item2 {
+
+        float: left;
+    }*/
+    body {
+        background-image: url("RES/BG.jpg");
+        background-repeat: repeat;
+        
+    }
+    input[type="text"] {
+
+    width: 35px;
+    }
+
+    @font-face {
+    font-family: 'Archivo';
+    src: url('RES/fonts/ArchivoNarrow-Regular.eot'); /* IE9 Compat Modes */
+    src: url('RES/fonts/ArchivoNarrow-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('RES/fonts/ArchivoNarrow-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('RES/fonts/ArchivoNarrow-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('RES/fonts/ArchivoNarrow-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+       font-size: 100%;
+    }
+    @font-face {
+    font-family: 'Trajan';
+    src: url('RES/fonts/Trajan_Pro_Regular.eot'); /* IE9 Compat Modes */
+    src: url('RES/fonts/Trajan_Pro_Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('RES/fonts/Trajan_Pro_Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('RES/fonts/Trajan_Pro_Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('RES/fonts/Trajan_Pro_Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+       font-size: 100%;
+    }
+    @font-face {
+    font-family: 'Roboto';
+    src: url('RES/fonts/Roboto-Medium.eot'); /* IE9 Compat Modes */
+    src: url('RES/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('RES/fonts/Roboto-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+       url('RES/fonts/Roboto-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+       url('RES/fonts/Roboto-Medium.ttf')  format('truetype'); /* Safari, Android, iOS */
+       font-size: 100%;
+    }
+    
+    #about {
+    padding-top: 20px;
+    margin-top: 20px;
+    }
+
+    #suncalcouter {
+    width: 900px;
+    background: #000;
+    border: 6px solid #000;
+    overflow: hidden;
+    margin: 0 auto;
+    font-family: Archivo;
+
+    }   
+    #suncalcouter {
+    width: 900px;
+    background: #000;
+    font-family: Archivo;
+    }
+
+    #suncalc1 {
+    width: 900px !important;
+    background: #000;
+	font-size: 16px;
+	font-family: Archivo !important;
+	color: #000;
+
+    }
+
+    #suncalc2 {
+    width: 240px;
+    float: right;
+    background: #000;
+    }   
+	#suncalcbox table {
+	width: 900px !Important;
+	}
+
+    #suncalcbox {
+    width: 900px !important;
+	color: #000;
+    }
+
+	#suncalcbox td {
+	padding-bottom: 2px;
+	padding-top: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+    width: 900px;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 0;
+
+	}
+
+    #suncalcbox img {
+    vertical-align: middle;
+    padding: 0;
+    }
+
+	#suncalcbox th {
+	color: #000;
+	}
+	
+	#suncalcbox table {
+	font-size: 16px;
+	color: #000 !important;
+
+	}
+	
+	#suncalcbox tr:nth-child(odd) {
+    background: #e8f0f8;
+	}
+
+	#suncalcbox tr:nth-child(even) {
+    background: #bad3ea;
+	}
+    </style>
+<!-- CSS Style Ends -->
+
+<!-- Javascript Starts -->
+
+
+<script>
+
+
+        function clean(node) {
+            for (var n = 0; n < node.childNodes.length; n++) {
+                var child = node.childNodes[n];
+                if
+                    (
+                    child.nodeType === 8
+                    ||
+                    (child.nodeType === 3 && !/\S/.test(child.nodeValue))
+                ) {
+                    node.removeChild(child);
+                    n--;
+                }
+                else if (child.nodeType === 1) {
+                    clean(child);
+                }
+            }
+        }
+
+clean(document.body);
+
+
+
+
+function prevweek() {
+
+ var yearit;
+    var monthit;
+    var dateit;
+    var today = new Date();
+	
+	var yearit2;
+	var monthit2;
+	var dateit2;
+	var today2 = new Date();
+	
+	var yearit3;
+	var monthit3;
+	var dateit3;
+	var today3 = new Date();
+	
+	var yearit4;
+	var monthit4;
+	var dateit4;
+	var today4 = new Date();
+
+	var yearit5;
+	var monthit5;
+	var dateit5;
+	var today5 = new Date();
+	
+	var yearit6;
+	var monthit6;
+	var dateit6;
+	var today6 = new Date();
+	
+	var yearit7;
+	var monthit7;
+	var dateit7;
+	var today7 = new Date();
+	
+	
+	var d0;
+	var nexday0;
+	var d;
+	var nextday1;
+		var d2;
+	var nextday2;
+		var d3;
+	var nextday3;
+		var d4;
+	var nextday4;
+		var d5;
+	var nextday5;
+		var d6;
+	var nextday6;
+	
+		var lala = parseFloat(document.getElementById("long").value);
+        var lolo = parseFloat(document.getElementById("latt").value);
+        var offoff = parseFloat(document.getElementById("offset").value);
+        lo = lolo;
+        la = lala;
+        off = offoff;
+
+
+		d0 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday0 = new Date();
+	    nextday0.setMonth(d0.getMonth() - 1);
+		nextday0.setDate(d0.getDate() - 7);
+		nextday0.setYear(d0.getFullYear());
+		d = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday1 = new Date();
+		nextday1.setMonth(d.getMonth() - 1);
+		nextday1.setYear(d.getFullYear());
+		nextday1.setDate(d.getDate()- 6);
+		d2 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday2 = new Date();
+		nextday2.setMonth(d2.getMonth() - 1);
+		nextday2.setYear(d2.getFullYear());
+		nextday2.setDate(d2.getDate() - 5);     
+		d3 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));	 
+		nextday3 = new Date();
+		nextday3.setMonth(d3.getMonth() - 1);
+		nextday3.setYear(d3.getFullYear());
+		nextday3.setDate(d3.getDate() - 4);
+		d4 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday4 = new Date();
+		nextday4.setMonth(d4.getMonth() - 1);
+		nextday4.setYear(d4.getFullYear());
+		nextday4.setDate(d4.getDate() - 3);
+		d5 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday5 = new Date();
+		nextday5.setMonth(d5.getMonth() - 1);
+		nextday5.setYear(d5.getFullYear());
+		nextday5.setDate(d5.getDate() - 2);
+		d6 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday6 = new Date();
+		nextday6.setMonth(d6.getMonth() - 1);
+		nextday6.setYear(d6.getFullYear());
+		nextday6.setDate(d6.getDate() - 1);	
+		
+		
+		
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('latitude2').innerHTML = lo;
+        document.getElementById('longitude2').innerHTML = la;
+        document.getElementById('latitude3').innerHTML = lo;
+        document.getElementById('longitude3').innerHTML = la;
+        document.getElementById('latitude4').innerHTML = lo;
+        document.getElementById('longitude4').innerHTML = la;
+        document.getElementById('latitude5').innerHTML = lo;
+        document.getElementById('longitude5').innerHTML = la;
+        document.getElementById('latitude6').innerHTML = lo;
+        document.getElementById('longitude6').innerHTML = la;
+        document.getElementById('latitude7').innerHTML = lo;
+        document.getElementById('longitude7').innerHTML = la;
+        var monthfull = monthit + 1;
+		var monthfull2 = monthit + 1;
+		var monthfull3 = monthit + 1;
+		var monthfull4 = monthit + 1;
+		var monthfull5 = monthit + 1;
+		var monthfull6 = monthit + 1;
+		var monthfull7 = monthit + 1;
+        document.getElementById('titledate').innerHTML = nextday0.toLocaleDateString('en-US');
+		document.getElementById('titledate2').innerHTML = nextday1.toLocaleDateString('en-US');
+		document.getElementById('titledate3').innerHTML = nextday2.toLocaleDateString('en-US');
+		document.getElementById('titledate4').innerHTML = nextday3.toLocaleDateString('en-US');
+		document.getElementById('titledate5').innerHTML = nextday4.toLocaleDateString('en-US');
+		document.getElementById('titledate6').innerHTML = nextday5.toLocaleDateString('en-US');
+		document.getElementById('titledate7').innerHTML = nextday6.toLocaleDateString('en-US');
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById('offv2').innerHTML = off;
+        document.getElementById('offv3').innerHTML = off;
+        document.getElementById('offv4').innerHTML = off;
+        document.getElementById('offv5').innerHTML = off;
+        document.getElementById('offv6').innerHTML = off;
+        document.getElementById('offv7').innerHTML = off;
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = nextday0.getDate();
+        document.getElementById('month2').value = ((nextday0.getMonth()) + 1);
+        document.getElementById('year2').value = nextday0.getFullYear();
+		document.getElementById("flag").style.backgroundImage = 'url("graphiteblue.png")';
+
+
+  function sunrise() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+
+
+
+            var minutes = checkTime(times.sunrise.getMinutes());
+			var minutes2 = checkTime(times2.sunrise.getMinutes());
+			var minutes3 = checkTime(times3.sunrise.getMinutes());
+			var minutes4 = checkTime(times4.sunrise.getMinutes());
+			var minutes5 = checkTime(times5.sunrise.getMinutes());
+			var minutes6 = checkTime(times6.sunrise.getMinutes());
+			var minutes7 = checkTime(times7.sunrise.getMinutes());
+			
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.sunrise.getTime()+(times.sunrise.getTimezoneOffset() * 60000);
+			utc2 = times2.sunrise.getTime()+(times2.sunrise.getTimezoneOffset() * 60000);
+			utc3 = times3.sunrise.getTime()+(times3.sunrise.getTimezoneOffset() * 60000);
+			utc4 = times4.sunrise.getTime()+(times4.sunrise.getTimezoneOffset() * 60000);
+			utc5 = times5.sunrise.getTime()+(times5.sunrise.getTimezoneOffset() * 60000);
+			utc6 = times6.sunrise.getTime()+(times6.sunrise.getTimezoneOffset() * 60000);
+			utc7 = times7.sunrise.getTime()+(times7.sunrise.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc+(3600000*off));
+			nd2 = new Date(utc2+(3600000*off));
+            nd3 = new Date(utc3+(3600000*off));
+			nd4 = new Date(utc4+(3600000*off));
+            nd5 = new Date(utc5+(3600000*off));
+			nd6 = new Date(utc6+(3600000*off));
+            nd7 = new Date(utc7+(3600000*off));
+
+
+            var sunriseStr = nd.getHours() + ':' + minutes;
+		    var sunriseStr2 = nd2.getHours() + ':' + minutes2;
+            var sunriseStr3 = nd3.getHours() + ':' + minutes3;
+		    var sunriseStr4 = nd4.getHours() + ':' + minutes4;
+            var sunriseStr5 = nd5.getHours() + ':' + minutes5;
+		    var sunriseStr6 = nd6.getHours() + ':' + minutes6;
+            var sunriseStr7 = nd7.getHours() + ':' + minutes7;
+	
+
+            document.getElementById('sunrise').innerHTML = sunriseStr;
+			document.getElementById('sunrise2').innerHTML = sunriseStr2;
+            document.getElementById('sunrise3').innerHTML = sunriseStr3;
+			document.getElementById('sunrise4').innerHTML = sunriseStr4;
+            document.getElementById('sunrise5').innerHTML = sunriseStr5;
+			document.getElementById('sunrise6').innerHTML = sunriseStr6;
+            document.getElementById('sunrise7').innerHTML = sunriseStr7;
+
+
+            }
+
+            sunrise()
+
+            function solarnoon() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+			
+
+            var minutes = checkTime(times.solarNoon.getMinutes());
+			var minutes2 = checkTime(times2.solarNoon.getMinutes());
+			var minutes3 = checkTime(times3.solarNoon.getMinutes());
+			var minutes4 = checkTime(times4.solarNoon.getMinutes());
+			var minutes5 = checkTime(times5.solarNoon.getMinutes());
+			var minutes6 = checkTime(times6.solarNoon.getMinutes());
+			var minutes7 = checkTime(times7.solarNoon.getMinutes());
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.solarNoon.getTime()+(times.solarNoon.getTimezoneOffset() * 60000);
+			utc2 = times2.solarNoon.getTime()+(times2.solarNoon.getTimezoneOffset() * 60000);
+			utc3 = times3.solarNoon.getTime()+(times3.solarNoon.getTimezoneOffset() * 60000);
+			utc4 = times4.solarNoon.getTime()+(times4.solarNoon.getTimezoneOffset() * 60000);
+			utc5 = times5.solarNoon.getTime()+(times5.solarNoon.getTimezoneOffset() * 60000);
+			utc6 = times6.solarNoon.getTime()+(times6.solarNoon.getTimezoneOffset() * 60000);
+			utc7 = times7.solarNoon.getTime()+(times7.solarNoon.getTimezoneOffset() * 60000);
+			
+			
+            nd = new Date(utc+(3600000*off));
+			nd2 = new Date(utc2+(3600000*off));
+			nd3 = new Date(utc3+(3600000*off));
+			nd4 = new Date(utc4+(3600000*off));
+			nd5 = new Date(utc5+(3600000*off));
+			nd6 = new Date(utc6+(3600000*off));
+			nd7 = new Date(utc7+(3600000*off));
+
+            var solarNoon = nd.getHours() + ':' + minutes;
+			var solarNoon2 = nd2.getHours() + ':' + minutes2;
+			var solarNoon3 = nd3.getHours() + ':' + minutes3;
+			var solarNoon4 = nd4.getHours() + ':' + minutes4;
+			var solarNoon5 = nd5.getHours() + ':' + minutes5;
+			var solarNoon6 = nd6.getHours() + ':' + minutes6;
+			var solarNoon7 = nd7.getHours() + ':' + minutes7;
+			
+            document.getElementById('solarnoon').innerHTML = solarNoon;
+			document.getElementById('solarnoon2').innerHTML = solarNoon2;
+			document.getElementById('solarnoon3').innerHTML = solarNoon3;
+			document.getElementById('solarnoon4').innerHTML = solarNoon4;
+			document.getElementById('solarnoon5').innerHTML = solarNoon5;
+			document.getElementById('solarnoon6').innerHTML = solarNoon6;
+			document.getElementById('solarnoon7').innerHTML = solarNoon7;
+
+     
+            }
+
+            solarnoon()
+
+            function sunset() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+            var myminutes = checkTime(times.sunset.getMinutes());
+			var myminutes2 = checkTime(times2.sunset.getMinutes());
+			var myminutes3 = checkTime(times3.sunset.getMinutes());
+			var myminutes4 = checkTime(times4.sunset.getMinutes());
+			var myminutes5 = checkTime(times5.sunset.getMinutes());
+			var myminutes6 = checkTime(times6.sunset.getMinutes());
+			var myminutes7 = checkTime(times7.sunset.getMinutes());
+
+            utc = times.sunset.getTime()+(times.sunset.getTimezoneOffset() * 60000);
+			utc2 = times2.sunset.getTime()+(times2.sunset.getTimezoneOffset() * 60000);
+			utc3 = times3.sunset.getTime()+(times3.sunset.getTimezoneOffset() * 60000);
+			utc4 = times4.sunset.getTime()+(times4.sunset.getTimezoneOffset() * 60000);
+			utc5 = times5.sunset.getTime()+(times5.sunset.getTimezoneOffset() * 60000);
+			utc6 = times6.sunset.getTime()+(times6.sunset.getTimezoneOffset() * 60000);
+			utc7 = times7.sunset.getTime()+(times7.sunset.getTimezoneOffset() * 60000);
+			
+            nd = new Date(utc+(3600000*off));
+            nd2 = new Date(utc2+(3600000*off));
+			nd3 = new Date(utc3+(3600000*off));
+            nd4 = new Date(utc4+(3600000*off));					
+            nd5 = new Date(utc5+(3600000*off));
+            nd6 = new Date(utc6+(3600000*off));
+            nd7 = new Date(utc7+(3600000*off));
+			
+			
+            var sunsetStr = nd.getHours() + ':' + myminutes;
+			var sunsetStr2 = nd2.getHours() + ':' + myminutes2;
+			var sunsetStr3 = nd3.getHours() + ':' + myminutes3;
+			var sunsetStr4 = nd4.getHours() + ':' + myminutes4;
+			var sunsetStr5 = nd5.getHours() + ':' + myminutes5;
+			var sunsetStr6 = nd6.getHours() + ':' + myminutes6;
+			var sunsetStr7 = nd7.getHours() + ':' + myminutes7;
+			
+            document.getElementById('sunset').innerHTML = sunsetStr;
+			document.getElementById('sunset2').innerHTML = sunsetStr2;
+			document.getElementById('sunset3').innerHTML = sunsetStr3;
+			document.getElementById('sunset4').innerHTML = sunsetStr4;
+			document.getElementById('sunset5').innerHTML = sunsetStr5;
+			document.getElementById('sunset6').innerHTML = sunsetStr6;
+			document.getElementById('sunset7').innerHTML = sunsetStr7;
+  
+            }
+
+            sunset()
+
+
+
+
+            function moonphase() {
+
+            var phase = SunCalc.getMoonIllumination(new Date(nextday0)).phase;
+			var phase2 = SunCalc.getMoonIllumination(new Date(nextday1)).phase;
+			var phase3 = SunCalc.getMoonIllumination(new Date(nextday2)).phase;
+			var phase4 = SunCalc.getMoonIllumination(new Date(nextday3)).phase;
+			var phase5 = SunCalc.getMoonIllumination(new Date(nextday4)).phase;
+			var phase6 = SunCalc.getMoonIllumination(new Date(nextday5)).phase;
+			var phase7 = SunCalc.getMoonIllumination(new Date(nextday6)).phase;
+			
+			var actual;
+
+
+			if (phase > 0 && phase < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase > 0.12 && phase < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase > 0.25 && phase < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase > 0.37 && phase < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase > 0.50 && phase < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase > 0.62 && phase < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase > 0.75 && phase < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase > 0.87 && phase < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+
+if (phase2 > 0 && phase2 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase2").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase2 > 0.12 && phase2 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase2").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase2 > 0.25 && phase2 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase2").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase2 > 0.37 && phase2 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase2").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase2 > 0.50 && phase2 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase2").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase2 > 0.62 && phase2 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase2").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase2 > 0.75 && phase2 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase2").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase2 > 0.87 && phase2 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase2").src = "RES/moonphases/waning_crescent.png";		
+			}
+			
+			
+if (phase3 > 0 && phase3 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase3").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase3 > 0.12 && phase3 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase3").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase3 > 0.25 && phase3 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase3").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase3 > 0.37 && phase3 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase3").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase3 > 0.50 && phase3 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase3").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase3 > 0.62 && phase3 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase3").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase3 > 0.75 && phase3 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase3").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase3 > 0.87 && phase3 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase3").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase4 > 0 && phase4 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase4").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase4 > 0.12 && phase4 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase4").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase4 > 0.25 && phase4 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase4").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase4 > 0.37 && phase4 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase4").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase4 > 0.50 && phase4 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase4").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase4 > 0.62 && phase4 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase4").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase4 > 0.75 && phase4 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase4").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase4 > 0.87 && phase4 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase4").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase5 > 0 && phase5 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase5").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase5 > 0.12 && phase5 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase5").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase5 > 0.25 && phase5 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase5").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase5 > 0.37 && phase5 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase5").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase5 > 0.50 && phase5 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase5").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase5 > 0.62 && phase5 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase5").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase5 > 0.75 && phase5 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase5").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase5 > 0.87 && phase5 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase5").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase6 > 0 && phase6 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase6").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase6 > 0.12 && phase6 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase6").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase6 > 0.25 && phase6 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase6").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase6 > 0.37 && phase6 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase6").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase6 > 0.50 && phase6 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase6").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase6 > 0.62 && phase6 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase6").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase6 > 0.75 && phase6 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase6").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase6 > 0.87 && phase6 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase6").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase7 > 0 && phase7 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase7").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase7 > 0.12 && phase7 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase7").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase7 > 0.25 && phase7 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase7").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase7 > 0.37 && phase7 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase7").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase7 > 0.50 && phase7 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase7").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase7 > 0.62 && phase7 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase7").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase7 > 0.75 && phase7 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase7").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase7 > 0.87 && phase7 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase7").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+ 
+            }			
+
+            moonphase()
+
+
+
+            function moonrise() {
+           
+            var mtimes = SunCalc.getMoonTimes(new Date(nextday0), lo, la);
+            var mtimes2 = SunCalc.getMoonTimes(new Date(nextday1), lo, la);
+            var mtimes3 = SunCalc.getMoonTimes(new Date(nextday2), lo, la);
+            var mtimes4 = SunCalc.getMoonTimes(new Date(nextday3), lo, la);
+            var mtimes5 = SunCalc.getMoonTimes(new Date(nextday4), lo, la);
+            var mtimes6 = SunCalc.getMoonTimes(new Date(nextday5), lo, la);
+            var mtimes7 = SunCalc.getMoonTimes(new Date(nextday6), lo, la);
+     
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+			
+            var checkundef1 = mtimes.rise;
+			var checkundef2 = mtimes2.rise; 
+			var checkundef3 = mtimes3.rise;	
+            var checkundef4 = mtimes4.rise;
+			var checkundef5 = mtimes5.rise; 
+			var checkundef6 = mtimes6.rise;
+            var checkundef7 = mtimes7.rise;
+			
+			if (checkundef1 === undefined)
+			{
+				
+			document.getElementById('moonrise').innerHTML = "--";
+			
+			}
+			if (checkundef1 !== undefined)
+			{
+			var minutes = checkTime(mtimes.rise.getMinutes());
+			utc = mtimes.rise.getTime()+(mtimes.rise.getTimezoneOffset() * 60000);
+		    nd = new Date(utc+(3600000*off));
+			var moonriseStr = nd.getHours() + ':' + minutes;
+			document.getElementById('moonrise').innerHTML = moonriseStr;
+			
+			}
+			
+			if (checkundef2 === undefined)
+			{
+			document.getElementById('moonrise2').innerHTML = '--';
+			}
+			if (checkundef2 !== undefined)
+			{
+			var minutes2 = checkTime(mtimes.rise.getMinutes());
+			utc2 = mtimes2.rise.getTime()+(mtimes2.rise.getTimezoneOffset() * 60000);
+			nd2 = new Date(utc2+(3600000*off));
+			var moonriseStr2 = nd2.getHours() + ':' + minutes2;
+			document.getElementById('moonrise2').innerHTML = moonriseStr2;			
+			
+			}
+			
+			if (checkundef3 === undefined)
+			{
+			document.getElementById('moonrise3').innerHTML =  '--';
+			
+			}
+			if (checkundef3 !== undefined)
+			{
+		    var minutes3 = checkTime(mtimes.rise.getMinutes());
+			utc3 = mtimes3.rise.getTime()+(mtimes3.rise.getTimezoneOffset() * 60000);
+			nd3 = new Date(utc3+(3600000*off));
+			var moonriseStr3 = nd3.getHours() + ':' + minutes3;
+			document.getElementById('moonrise3').innerHTML = moonriseStr3;			
+			
+			}
+		
+			if (checkundef4 === undefined)
+			{
+			document.getElementById('moonrise4').innerHTML =  '--';
+			
+			}
+			if (checkundef4 !== undefined)
+			{
+			var minutes4 = checkTime(mtimes.rise.getMinutes());
+			utc4 = mtimes4.rise.getTime()+(mtimes4.rise.getTimezoneOffset() * 60000);
+			nd4 = new Date(utc4+(3600000*off));
+			var moonriseStr4 = nd4.getHours() + ':' + minutes4;
+			document.getElementById('moonrise4').innerHTML = moonriseStr4;			
+			
+			}
+		
+			if (checkundef5 === undefined)
+			{
+			
+			document.getElementById('moonrise5').innerHTML =  '--';
+			}
+			if (checkundef5 !== undefined)
+			{
+			var minutes5 = checkTime(mtimes.rise.getMinutes());
+			utc5 = mtimes5.rise.getTime()+(mtimes5.rise.getTimezoneOffset() * 60000);
+			nd5 = new Date(utc5+(3600000*off));
+			var moonriseStr5 = nd5.getHours() + ':' + minutes5;
+			document.getElementById('moonrise5').innerHTML = moonriseStr5;		
+			
+			}
+		
+			if (checkundef6 === undefined)
+			{
+			document.getElementById('moonrise6').innerHTML =  '--';
+			}
+			if (checkundef6 !== undefined)
+			{
+			var minutes6 = checkTime(mtimes.rise.getMinutes());
+			utc6 = mtimes6.rise.getTime()+(mtimes6.rise.getTimezoneOffset() * 60000);
+			nd6 = new Date(utc6+(3600000*off));
+			var moonriseStr6 = nd6.getHours() + ':' + minutes6;
+			document.getElementById('moonrise6').innerHTML = moonriseStr6;			
+			
+			}
+		
+			if (checkundef7 === undefined)
+			{
+			document.getElementById('moonrise7').innerHTML =  '--';
+			
+			}
+			if (checkundef7 !== undefined)
+			{
+			var minutes7 = checkTime(mtimes.rise.getMinutes());
+			utc7 = mtimes7.rise.getTime()+(mtimes7.rise.getTimezoneOffset() * 60000);
+			nd7 = new Date(utc7+(3600000*off));
+			var moonriseStr7 = nd7.getHours() + ':' + minutes7;
+            document.getElementById('moonrise7').innerHTML = moonriseStr7;			
+			
+			}
+
+            
+			
+			
+			
+			
+	
+			
+			
+
+			 
+     
+            }
+
+            moonrise()
+
+            function moonset() {
+ 
+             var mtimes = SunCalc.getMoonTimes(new Date(nextday0), lo, la);
+			 var mtimes2 = SunCalc.getMoonTimes(new Date(nextday1), lo, la);
+			 var mtimes3 = SunCalc.getMoonTimes(new Date(nextday2), lo, la);
+			 var mtimes4 = SunCalc.getMoonTimes(new Date(nextday3), lo, la);
+			 var mtimes5 = SunCalc.getMoonTimes(new Date(nextday4), lo, la);
+			 var mtimes6 = SunCalc.getMoonTimes(new Date(nextday5), lo, la);
+			 var mtimes7 = SunCalc.getMoonTimes(new Date(nextday6), lo, la);
+
+			function checkTime(i) {
+             if (i < 10) {
+             i = "0" + i
+             };
+             return i;
+             }
+ 
+            var checkundef1 = mtimes.set;
+			var checkundef2 = mtimes2.set; 
+			var checkundef3 = mtimes3.set;	
+            var checkundef4 = mtimes4.set;
+			var checkundef5 = mtimes5.set; 
+			var checkundef6 = mtimes6.set;
+            var checkundef7 = mtimes7.set;
+ 
+ 
+			if (checkundef1 === undefined)
+			{
+			document.getElementById('moonset').innerHTML =  '--';
+			
+			}
+			if (checkundef1 !== undefined)
+			{
+             var minutes = checkTime(mtimes.set.getMinutes());
+			 utc = mtimes.set.getTime()+(mtimes.set.getTimezoneOffset() * 60000);
+			 nd = new Date(utc+(3600000*off));
+			 var moonsetStr = nd.getHours() + ':' + minutes;
+			 document.getElementById('moonset').innerHTML = moonsetStr;
+			}
+			 
+			if (checkundef2 === undefined)
+			{
+			document.getElementById('moonset2').innerHTML =  '--';
+			
+			}
+			if (checkundef2 !== undefined)
+			{			 
+			 var minutes2 = checkTime(mtimes2.set.getMinutes());
+			 utc2 = mtimes2.set.getTime()+(mtimes2.set.getTimezoneOffset() * 60000);
+			 nd2 = new Date(utc2+(3600000*off));
+			 var moonsetStr2 = nd2.getHours() + ':' + minutes2;
+			 document.getElementById('moonset2').innerHTML = moonsetStr2;
+			 }
+			 
+			 
+			 
+			if (checkundef3 === undefined)
+			{
+			document.getElementById('moonset3').innerHTML =  '--';
+			
+			}
+			if (checkundef3 !== undefined)
+			{			 
+			 var minutes3 = checkTime(mtimes3.set.getMinutes());
+			 utc3 = mtimes3.set.getTime()+(mtimes3.set.getTimezoneOffset() * 60000);
+			 nd3 = new Date(utc3+(3600000*off));
+			 var moonsetStr3 = nd3.getHours() + ':' + minutes3;
+			 document.getElementById('moonset3').innerHTML = moonsetStr3;
+			}
+			
+
+
+			if (checkundef4 === undefined)
+			{
+			document.getElementById('moonset4').innerHTML =  '--';
+			
+			}
+			if (checkundef4 !== undefined)
+			{			
+			 var minutes4 = checkTime(mtimes4.set.getMinutes());
+			 utc4 = mtimes4.set.getTime()+(mtimes4.set.getTimezoneOffset() * 60000);
+			 nd4 = new Date(utc4+(3600000*off));
+			 var moonsetStr4 = nd4.getHours() + ':' + minutes4;
+			 document.getElementById('moonset4').innerHTML = moonsetStr4;
+			}
+			if (checkundef5 === undefined)
+			{
+			document.getElementById('moonset5').innerHTML =  '--';
+			
+			}
+			if (checkundef5 !== undefined)
+			{			 
+			 var minutes5 = checkTime(mtimes5.set.getMinutes());
+			 utc5 = mtimes5.set.getTime()+(mtimes5.set.getTimezoneOffset() * 60000);
+			 nd5 = new Date(utc5+(3600000*off));
+			 var moonsetStr5 = nd5.getHours() + ':' + minutes5;
+			 document.getElementById('moonset5').innerHTML = moonsetStr5;
+			}
+			
+			
+			if (checkundef6 === undefined)
+			{
+			document.getElementById('moonset6').innerHTML =  '--';
+			
+			}
+			if (checkundef6 !== undefined)
+			{			
+			 var minutes6 = checkTime(mtimes6.set.getMinutes());
+			 utc6 = mtimes6.set.getTime()+(mtimes6.set.getTimezoneOffset() * 60000);
+			 nd6 = new Date(utc6+(3600000*off));
+			 var moonsetStr6 = nd6.getHours() + ':' + minutes6;
+			 document.getElementById('moonset6').innerHTML = moonsetStr6;
+			}
+
+			if (checkundef7 === undefined)
+			{
+			document.getElementById('moonset7').innerHTML =  '--';
+			
+			}
+			if (checkundef7 !== undefined)
+			{
+			 var minutes7 = checkTime(mtimes7.set.getMinutes());
+			 utc7 = mtimes7.set.getTime()+(mtimes7.set.getTimezoneOffset() * 60000);
+			 nd7 = new Date(utc7+(3600000*off));
+			 var moonsetStr7 = nd7.getHours() + ':' + minutes7;
+             document.getElementById('moonset7').innerHTML = moonsetStr7;
+			}
+			
+			
+			
+			
+			
+			
+            
+			
+			
+			
+			
+			
+			
+
+            
+			
+			
+			
+			
+			
+			
+
+             
+			
+			 
+			 
+			 
+			
+			 
+
+            }
+
+            moonset()
+         
+
+
+       
+            function calcTime(city, offset) {
+
+            d = new Date();
+
+            utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc + (3600000*off));
+
+            return nd.toLocaleString();
+
+            }
+
+
+
+
+};
+
+
+function nextweek() {
+
+
+
+ var yearit;
+    var monthit;
+    var dateit;
+    var today = new Date();
+	
+	var yearit2;
+	var monthit2;
+	var dateit2;
+	var today2 = new Date();
+	
+	var yearit3;
+	var monthit3;
+	var dateit3;
+	var today3 = new Date();
+	
+	var yearit4;
+	var monthit4;
+	var dateit4;
+	var today4 = new Date();
+
+	var yearit5;
+	var monthit5;
+	var dateit5;
+	var today5 = new Date();
+	
+	var yearit6;
+	var monthit6;
+	var dateit6;
+	var today6 = new Date();
+	
+	var yearit7;
+	var monthit7;
+	var dateit7;
+	var today7 = new Date();
+	
+	
+	var d0;
+	var nexday0;
+	var d;
+	var nextday1;
+		var d2;
+	var nextday2;
+		var d3;
+	var nextday3;
+		var d4;
+	var nextday4;
+		var d5;
+	var nextday5;
+		var d6;
+	var nextday6;
+	
+	
+		var lala = parseFloat(document.getElementById("long").value);
+        var lolo = parseFloat(document.getElementById("latt").value);
+        var offoff = parseFloat(document.getElementById("offset").value);
+        lo = lolo;
+        la = lala;
+        off = offoff;
+
+
+		d0 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday0 = new Date();
+	    nextday0.setMonth(d0.getMonth() - 1);
+		nextday0.setDate(d0.getDate() + 7);
+		nextday0.setYear(d0.getFullYear());
+		d = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday1 = new Date();
+		nextday1.setMonth(d.getMonth() - 1);
+		nextday1.setYear(d.getFullYear());
+		nextday1.setDate(d.getDate()+8);
+		d2 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday2 = new Date();
+		nextday2.setMonth(d2.getMonth() - 1);
+		nextday2.setYear(d2.getFullYear());
+		nextday2.setDate(d2.getDate()+9);     
+		d3 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));	 
+		nextday3 = new Date();
+		nextday3.setMonth(d3.getMonth() - 1);
+		nextday3.setYear(d3.getFullYear());
+		nextday3.setDate(d3.getDate()+10);
+		d4 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday4 = new Date();
+		nextday4.setMonth(d4.getMonth() - 1);
+		nextday4.setYear(d4.getFullYear());
+		nextday4.setDate(d4.getDate()+11);
+		d5 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday5 = new Date();
+		nextday5.setMonth(d5.getMonth() - 1);
+		nextday5.setYear(d5.getFullYear());
+		nextday5.setDate(d5.getDate()+12);
+		d6 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday6 = new Date();
+		nextday6.setMonth(d6.getMonth() - 1);
+		nextday6.setYear(d6.getFullYear());
+		nextday6.setDate(d6.getDate()+13);	
+		
+		
+		
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('latitude2').innerHTML = lo;
+        document.getElementById('longitude2').innerHTML = la;
+        document.getElementById('latitude3').innerHTML = lo;
+        document.getElementById('longitude3').innerHTML = la;
+        document.getElementById('latitude4').innerHTML = lo;
+        document.getElementById('longitude4').innerHTML = la;
+        document.getElementById('latitude5').innerHTML = lo;
+        document.getElementById('longitude5').innerHTML = la;
+        document.getElementById('latitude6').innerHTML = lo;
+        document.getElementById('longitude6').innerHTML = la;
+        document.getElementById('latitude7').innerHTML = lo;
+        document.getElementById('longitude7').innerHTML = la;
+        var monthfull = monthit + 1;
+		var monthfull2 = monthit + 1;
+		var monthfull3 = monthit + 1;
+		var monthfull4 = monthit + 1;
+		var monthfull5 = monthit + 1;
+		var monthfull6 = monthit + 1;
+		var monthfull7 = monthit + 1;
+        document.getElementById('titledate').innerHTML = nextday0.toLocaleDateString('en-US');
+		document.getElementById('titledate2').innerHTML = nextday1.toLocaleDateString('en-US');
+		document.getElementById('titledate3').innerHTML = nextday2.toLocaleDateString('en-US');
+		document.getElementById('titledate4').innerHTML = nextday3.toLocaleDateString('en-US');
+		document.getElementById('titledate5').innerHTML = nextday4.toLocaleDateString('en-US');
+		document.getElementById('titledate6').innerHTML = nextday5.toLocaleDateString('en-US');
+		document.getElementById('titledate7').innerHTML = nextday6.toLocaleDateString('en-US');
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById('offv2').innerHTML = off;
+        document.getElementById('offv3').innerHTML = off;
+        document.getElementById('offv4').innerHTML = off;
+        document.getElementById('offv5').innerHTML = off;
+        document.getElementById('offv6').innerHTML = off;
+        document.getElementById('offv7').innerHTML = off;
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = nextday0.getDate();
+        document.getElementById('month2').value = ((nextday0.getMonth()) + 1);
+        document.getElementById('year2').value = nextday0.getFullYear();
+		document.getElementById("flag").style.backgroundImage = 'url("graphiteblue.png")';	
+
+
+
+			function moonrise() {
+           
+		   
+			var mtimes = SunCalc.getMoonTimes(new Date(nextday0), lo, la);
+            var mtimes2 = SunCalc.getMoonTimes(new Date(nextday1), lo, la);
+            var mtimes3 = SunCalc.getMoonTimes(new Date(nextday2), lo, la);
+            var mtimes4 = SunCalc.getMoonTimes(new Date(nextday3), lo, la);
+            var mtimes5 = SunCalc.getMoonTimes(new Date(nextday4), lo, la);
+            var mtimes6 = SunCalc.getMoonTimes(new Date(nextday5), lo, la);
+            var mtimes7 = SunCalc.getMoonTimes(new Date(nextday6), lo, la);
+     
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+			
+            var checkundef1 = mtimes.rise;
+			var checkundef2 = mtimes2.rise; 
+			var checkundef3 = mtimes3.rise;	
+            var checkundef4 = mtimes4.rise;
+			var checkundef5 = mtimes5.rise; 
+			var checkundef6 = mtimes6.rise;
+            var checkundef7 = mtimes7.rise;
+			
+			if (checkundef1 === undefined)
+			{
+				
+			document.getElementById('moonrise').innerHTML = "--";
+			
+			}
+			if (checkundef1 !== undefined)
+			{
+			var minutes = checkTime(mtimes.rise.getMinutes());
+			utc = mtimes.rise.getTime()+(mtimes.rise.getTimezoneOffset() * 60000);
+		    nd = new Date(utc+(3600000*off));
+			var moonriseStr = nd.getHours() + ':' + minutes;
+			document.getElementById('moonrise').innerHTML = moonriseStr;
+			
+			}
+			
+			if (checkundef2 === undefined)
+			{
+			document.getElementById('moonrise2').innerHTML = '--';
+			}
+			if (checkundef2 !== undefined)
+			{
+			var minutes2 = checkTime(mtimes.rise.getMinutes());
+			utc2 = mtimes2.rise.getTime()+(mtimes2.rise.getTimezoneOffset() * 60000);
+			nd2 = new Date(utc2+(3600000*off));
+			var moonriseStr2 = nd2.getHours() + ':' + minutes2;
+			document.getElementById('moonrise2').innerHTML = moonriseStr2;			
+			
+			}
+			
+			if (checkundef3 === undefined)
+			{
+			document.getElementById('moonrise3').innerHTML =  '--';
+			
+			}
+			if (checkundef3 !== undefined)
+			{
+		    var minutes3 = checkTime(mtimes.rise.getMinutes());
+			utc3 = mtimes3.rise.getTime()+(mtimes3.rise.getTimezoneOffset() * 60000);
+			nd3 = new Date(utc3+(3600000*off));
+			var moonriseStr3 = nd3.getHours() + ':' + minutes3;
+			document.getElementById('moonrise3').innerHTML = moonriseStr3;			
+			
+			}
+		
+			if (checkundef4 === undefined)
+			{
+			document.getElementById('moonrise4').innerHTML =  '--';
+			
+			}
+			if (checkundef4 !== undefined)
+			{
+			var minutes4 = checkTime(mtimes.rise.getMinutes());
+			utc4 = mtimes4.rise.getTime()+(mtimes4.rise.getTimezoneOffset() * 60000);
+			nd4 = new Date(utc4+(3600000*off));
+			var moonriseStr4 = nd4.getHours() + ':' + minutes4;
+			document.getElementById('moonrise4').innerHTML = moonriseStr4;			
+			
+			}
+		
+			if (checkundef5 === undefined)
+			{
+			
+			document.getElementById('moonrise5').innerHTML =  '--';
+			}
+			if (checkundef5 !== undefined)
+			{
+			var minutes5 = checkTime(mtimes.rise.getMinutes());
+			utc5 = mtimes5.rise.getTime()+(mtimes5.rise.getTimezoneOffset() * 60000);
+			nd5 = new Date(utc5+(3600000*off));
+			var moonriseStr5 = nd5.getHours() + ':' + minutes5;
+			document.getElementById('moonrise5').innerHTML = moonriseStr5;		
+			
+			}
+		
+			if (checkundef6 === undefined)
+			{
+			document.getElementById('moonrise6').innerHTML =  '--';
+			}
+			if (checkundef6 !== undefined)
+			{
+			var minutes6 = checkTime(mtimes.rise.getMinutes());
+			utc6 = mtimes6.rise.getTime()+(mtimes6.rise.getTimezoneOffset() * 60000);
+			nd6 = new Date(utc6+(3600000*off));
+			var moonriseStr6 = nd6.getHours() + ':' + minutes6;
+			document.getElementById('moonrise6').innerHTML = moonriseStr6;			
+			
+			}
+		
+			if (checkundef7 === undefined)
+			{
+			document.getElementById('moonrise7').innerHTML =  '--';
+			
+			}
+			if (checkundef7 !== undefined)
+			{
+			var minutes7 = checkTime(mtimes.rise.getMinutes());
+			utc7 = mtimes7.rise.getTime()+(mtimes7.rise.getTimezoneOffset() * 60000);
+			nd7 = new Date(utc7+(3600000*off));
+			var moonriseStr7 = nd7.getHours() + ':' + minutes7;
+            document.getElementById('moonrise7').innerHTML = moonriseStr7;			
+			
+			}
+
+            
+			
+			
+			
+			
+	
+			
+			
+
+			
+			
+			
+
+			
+
+			
+			
+
+			
+			
+
+			
+			
+
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+
+            
+			
+			
+			
+			
+			
+						   
+		   
+			
+            }
+
+		    moonrise();
+
+            function moonset() {
+ 
+			 var mtimes = SunCalc.getMoonTimes(new Date(nextday0), lo, la);
+			 var mtimes2 = SunCalc.getMoonTimes(new Date(nextday1), lo, la);
+			 var mtimes3 = SunCalc.getMoonTimes(new Date(nextday2), lo, la);
+			 var mtimes4 = SunCalc.getMoonTimes(new Date(nextday3), lo, la);
+			 var mtimes5 = SunCalc.getMoonTimes(new Date(nextday4), lo, la);
+			 var mtimes6 = SunCalc.getMoonTimes(new Date(nextday5), lo, la);
+			 var mtimes7 = SunCalc.getMoonTimes(new Date(nextday6), lo, la);
+
+			function checkTime(i) {
+             if (i < 10) {
+             i = "0" + i
+             };
+             return i;
+             }
+ 
+            var checkundef1 = mtimes.set;
+			var checkundef2 = mtimes2.set; 
+			var checkundef3 = mtimes3.set;	
+            var checkundef4 = mtimes4.set;
+			var checkundef5 = mtimes5.set; 
+			var checkundef6 = mtimes6.set;
+            var checkundef7 = mtimes7.set;
+ 
+ 
+			if (checkundef1 === undefined)
+			{
+			document.getElementById('moonset').innerHTML =  '--';
+			
+			}
+			if (checkundef1 !== undefined)
+			{
+             var minutes = checkTime(mtimes.set.getMinutes());
+			 utc = mtimes.set.getTime()+(mtimes.set.getTimezoneOffset() * 60000);
+			 nd = new Date(utc+(3600000*off));
+			 var moonsetStr = nd.getHours() + ':' + minutes;
+			 document.getElementById('moonset').innerHTML = moonsetStr;
+			}
+			 
+			if (checkundef2 === undefined)
+			{
+			document.getElementById('moonset2').innerHTML =  '--';
+			
+			}
+			if (checkundef2 !== undefined)
+			{			 
+			 var minutes2 = checkTime(mtimes2.set.getMinutes());
+			 utc2 = mtimes2.set.getTime()+(mtimes2.set.getTimezoneOffset() * 60000);
+			 nd2 = new Date(utc2+(3600000*off));
+			 var moonsetStr2 = nd2.getHours() + ':' + minutes2;
+			 document.getElementById('moonset2').innerHTML = moonsetStr2;
+			 }
+			 
+			 
+			 
+			if (checkundef3 === undefined)
+			{
+			document.getElementById('moonset3').innerHTML =  '--';
+			
+			}
+			if (checkundef3 !== undefined)
+			{			 
+			 var minutes3 = checkTime(mtimes3.set.getMinutes());
+			 utc3 = mtimes3.set.getTime()+(mtimes3.set.getTimezoneOffset() * 60000);
+			 nd3 = new Date(utc3+(3600000*off));
+			 var moonsetStr3 = nd3.getHours() + ':' + minutes3;
+			 document.getElementById('moonset3').innerHTML = moonsetStr3;
+			}
+			
+
+
+			if (checkundef4 === undefined)
+			{
+			document.getElementById('moonset4').innerHTML =  '--';
+			
+			}
+			if (checkundef4 !== undefined)
+			{			
+			 var minutes4 = checkTime(mtimes4.set.getMinutes());
+			 utc4 = mtimes4.set.getTime()+(mtimes4.set.getTimezoneOffset() * 60000);
+			 nd4 = new Date(utc4+(3600000*off));
+			 var moonsetStr4 = nd4.getHours() + ':' + minutes4;
+			 document.getElementById('moonset4').innerHTML = moonsetStr4;
+			}
+			if (checkundef5 === undefined)
+			{
+			document.getElementById('moonset5').innerHTML =  '--';
+			
+			}
+			if (checkundef5 !== undefined)
+			{			 
+			 var minutes5 = checkTime(mtimes5.set.getMinutes());
+			 utc5 = mtimes5.set.getTime()+(mtimes5.set.getTimezoneOffset() * 60000);
+			 nd5 = new Date(utc5+(3600000*off));
+			 var moonsetStr5 = nd5.getHours() + ':' + minutes5;
+			 document.getElementById('moonset5').innerHTML = moonsetStr5;
+			}
+			
+			
+			if (checkundef6 === undefined)
+			{
+			document.getElementById('moonset6').innerHTML =  '--';
+			
+			}
+			if (checkundef6 !== undefined)
+			{			
+			 var minutes6 = checkTime(mtimes6.set.getMinutes());
+			 utc6 = mtimes6.set.getTime()+(mtimes6.set.getTimezoneOffset() * 60000);
+			 nd6 = new Date(utc6+(3600000*off));
+			 var moonsetStr6 = nd6.getHours() + ':' + minutes6;
+			 document.getElementById('moonset6').innerHTML = moonsetStr6;
+			}
+
+			if (checkundef7 === undefined)
+			{
+			document.getElementById('moonset7').innerHTML =  '--';
+			
+			}
+			if (checkundef7 !== undefined)
+			{
+			 var minutes7 = checkTime(mtimes7.set.getMinutes());
+			 utc7 = mtimes7.set.getTime()+(mtimes7.set.getTimezoneOffset() * 60000);
+			 nd7 = new Date(utc7+(3600000*off));
+			 var moonsetStr7 = nd7.getHours() + ':' + minutes7;
+             document.getElementById('moonset7').innerHTML = moonsetStr7;
+			}
+			
+			
+			
+			
+			
+			 
+	
+            }
+
+            moonset();
+			
+
+
+  function sunrise() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+
+
+
+            var minutes = checkTime(times.sunrise.getMinutes());
+			var minutes2 = checkTime(times2.sunrise.getMinutes());
+			var minutes3 = checkTime(times3.sunrise.getMinutes());
+			var minutes4 = checkTime(times4.sunrise.getMinutes());
+			var minutes5 = checkTime(times5.sunrise.getMinutes());
+			var minutes6 = checkTime(times6.sunrise.getMinutes());
+			var minutes7 = checkTime(times7.sunrise.getMinutes());
+			
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.sunrise.getTime()+(times.sunrise.getTimezoneOffset() * 60000);
+			utc2 = times2.sunrise.getTime()+(times2.sunrise.getTimezoneOffset() * 60000);
+			utc3 = times3.sunrise.getTime()+(times3.sunrise.getTimezoneOffset() * 60000);
+			utc4 = times4.sunrise.getTime()+(times4.sunrise.getTimezoneOffset() * 60000);
+			utc5 = times5.sunrise.getTime()+(times5.sunrise.getTimezoneOffset() * 60000);
+			utc6 = times6.sunrise.getTime()+(times6.sunrise.getTimezoneOffset() * 60000);
+			utc7 = times7.sunrise.getTime()+(times7.sunrise.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc+(3600000*off));
+			nd2 = new Date(utc2+(3600000*off));
+            nd3 = new Date(utc3+(3600000*off));
+			nd4 = new Date(utc4+(3600000*off));
+            nd5 = new Date(utc5+(3600000*off));
+			nd6 = new Date(utc6+(3600000*off));
+            nd7 = new Date(utc7+(3600000*off));
+
+
+            var sunriseStr = nd.getHours() + ':' + minutes;
+		    var sunriseStr2 = nd2.getHours() + ':' + minutes2;
+            var sunriseStr3 = nd3.getHours() + ':' + minutes3;
+		    var sunriseStr4 = nd4.getHours() + ':' + minutes4;
+            var sunriseStr5 = nd5.getHours() + ':' + minutes5;
+		    var sunriseStr6 = nd6.getHours() + ':' + minutes6;
+            var sunriseStr7 = nd7.getHours() + ':' + minutes7;
+	
+
+            document.getElementById('sunrise').innerHTML = sunriseStr;
+			document.getElementById('sunrise2').innerHTML = sunriseStr2;
+            document.getElementById('sunrise3').innerHTML = sunriseStr3;
+			document.getElementById('sunrise4').innerHTML = sunriseStr4;
+            document.getElementById('sunrise5').innerHTML = sunriseStr5;
+			document.getElementById('sunrise6').innerHTML = sunriseStr6;
+            document.getElementById('sunrise7').innerHTML = sunriseStr7;
+
+
+            }
+
+            sunrise();
+
+            function solarnoon() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+			
+
+            var minutes = checkTime(times.solarNoon.getMinutes());
+			var minutes2 = checkTime(times2.solarNoon.getMinutes());
+			var minutes3 = checkTime(times3.solarNoon.getMinutes());
+			var minutes4 = checkTime(times4.solarNoon.getMinutes());
+			var minutes5 = checkTime(times5.solarNoon.getMinutes());
+			var minutes6 = checkTime(times6.solarNoon.getMinutes());
+			var minutes7 = checkTime(times7.solarNoon.getMinutes());
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.solarNoon.getTime()+(times.solarNoon.getTimezoneOffset() * 60000);
+			utc2 = times2.solarNoon.getTime()+(times2.solarNoon.getTimezoneOffset() * 60000);
+			utc3 = times3.solarNoon.getTime()+(times3.solarNoon.getTimezoneOffset() * 60000);
+			utc4 = times4.solarNoon.getTime()+(times4.solarNoon.getTimezoneOffset() * 60000);
+			utc5 = times5.solarNoon.getTime()+(times5.solarNoon.getTimezoneOffset() * 60000);
+			utc6 = times6.solarNoon.getTime()+(times6.solarNoon.getTimezoneOffset() * 60000);
+			utc7 = times7.solarNoon.getTime()+(times7.solarNoon.getTimezoneOffset() * 60000);
+			
+			
+            nd = new Date(utc+(3600000*off));
+			nd2 = new Date(utc2+(3600000*off));
+			nd3 = new Date(utc3+(3600000*off));
+			nd4 = new Date(utc4+(3600000*off));
+			nd5 = new Date(utc5+(3600000*off));
+			nd6 = new Date(utc6+(3600000*off));
+			nd7 = new Date(utc7+(3600000*off));
+
+            var solarNoon = nd.getHours() + ':' + minutes;
+			var solarNoon2 = nd2.getHours() + ':' + minutes2;
+			var solarNoon3 = nd3.getHours() + ':' + minutes3;
+			var solarNoon4 = nd4.getHours() + ':' + minutes4;
+			var solarNoon5 = nd5.getHours() + ':' + minutes5;
+			var solarNoon6 = nd6.getHours() + ':' + minutes6;
+			var solarNoon7 = nd7.getHours() + ':' + minutes7;
+			
+            document.getElementById('solarnoon').innerHTML = solarNoon;
+			document.getElementById('solarnoon2').innerHTML = solarNoon2;
+			document.getElementById('solarnoon3').innerHTML = solarNoon3;
+			document.getElementById('solarnoon4').innerHTML = solarNoon4;
+			document.getElementById('solarnoon5').innerHTML = solarNoon5;
+			document.getElementById('solarnoon6').innerHTML = solarNoon6;
+			document.getElementById('solarnoon7').innerHTML = solarNoon7;
+
+   
+
+            }
+
+            solarnoon();
+
+            function sunset() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+            var myminutes = checkTime(times.sunset.getMinutes());
+			var myminutes2 = checkTime(times2.sunset.getMinutes());
+			var myminutes3 = checkTime(times3.sunset.getMinutes());
+			var myminutes4 = checkTime(times4.sunset.getMinutes());
+			var myminutes5 = checkTime(times5.sunset.getMinutes());
+			var myminutes6 = checkTime(times6.sunset.getMinutes());
+			var myminutes7 = checkTime(times7.sunset.getMinutes());
+
+            utc = times.sunset.getTime()+(times.sunset.getTimezoneOffset() * 60000);
+			utc2 = times2.sunset.getTime()+(times2.sunset.getTimezoneOffset() * 60000);
+			utc3 = times3.sunset.getTime()+(times3.sunset.getTimezoneOffset() * 60000);
+			utc4 = times4.sunset.getTime()+(times4.sunset.getTimezoneOffset() * 60000);
+			utc5 = times5.sunset.getTime()+(times5.sunset.getTimezoneOffset() * 60000);
+			utc6 = times6.sunset.getTime()+(times6.sunset.getTimezoneOffset() * 60000);
+			utc7 = times7.sunset.getTime()+(times7.sunset.getTimezoneOffset() * 60000);
+			
+            nd = new Date(utc+(3600000*off));
+            nd2 = new Date(utc2+(3600000*off));
+			nd3 = new Date(utc3+(3600000*off));
+            nd4 = new Date(utc4+(3600000*off));					
+            nd5 = new Date(utc5+(3600000*off));
+            nd6 = new Date(utc6+(3600000*off));
+            nd7 = new Date(utc7+(3600000*off));
+			
+			
+            var sunsetStr = nd.getHours() + ':' + myminutes;
+			var sunsetStr2 = nd2.getHours() + ':' + myminutes2;
+			var sunsetStr3 = nd3.getHours() + ':' + myminutes3;
+			var sunsetStr4 = nd4.getHours() + ':' + myminutes4;
+			var sunsetStr5 = nd5.getHours() + ':' + myminutes5;
+			var sunsetStr6 = nd6.getHours() + ':' + myminutes6;
+			var sunsetStr7 = nd7.getHours() + ':' + myminutes7;
+			
+            document.getElementById('sunset').innerHTML = sunsetStr;
+			document.getElementById('sunset2').innerHTML = sunsetStr2;
+			document.getElementById('sunset3').innerHTML = sunsetStr3;
+			document.getElementById('sunset4').innerHTML = sunsetStr4;
+			document.getElementById('sunset5').innerHTML = sunsetStr5;
+			document.getElementById('sunset6').innerHTML = sunsetStr6;
+			document.getElementById('sunset7').innerHTML = sunsetStr7;
+  
+            }
+
+            sunset();
+
+         function moonphase() {
+
+            var phase = SunCalc.getMoonIllumination(new Date(nextday0)).phase;
+			var phase2 = SunCalc.getMoonIllumination(new Date(nextday1)).phase;
+			var phase3 = SunCalc.getMoonIllumination(new Date(nextday2)).phase;
+			var phase4 = SunCalc.getMoonIllumination(new Date(nextday3)).phase;
+			var phase5 = SunCalc.getMoonIllumination(new Date(nextday4)).phase;
+			var phase6 = SunCalc.getMoonIllumination(new Date(nextday5)).phase;
+			var phase7 = SunCalc.getMoonIllumination(new Date(nextday6)).phase;
+			
+			var actual;
+			
+			if (phase > 0 && phase < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase > 0.12 && phase < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase > 0.25 && phase < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase > 0.37 && phase < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase > 0.50 && phase < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase > 0.62 && phase < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase > 0.75 && phase < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase > 0.87 && phase < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+
+if (phase2 > 0 && phase2 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase2").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase2 > 0.12 && phase2 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase2").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase2 > 0.25 && phase2 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase2").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase2 > 0.37 && phase2 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase2").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase2 > 0.50 && phase2 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase2").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase2 > 0.62 && phase2 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase2").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase2 > 0.75 && phase2 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase2").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase2 > 0.87 && phase2 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase2").src = "RES/moonphases/waning_crescent.png";		
+			}
+			
+			
+if (phase3 > 0 && phase3 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase3").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase3 > 0.12 && phase3 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase3").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase3 > 0.25 && phase3 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase3").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase3 > 0.37 && phase3 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase3").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase3 > 0.50 && phase3 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase3").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase3 > 0.62 && phase3 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase3").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase3 > 0.75 && phase3 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase3").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase3 > 0.87 && phase3 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase3").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase4 > 0 && phase4 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase4").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase4 > 0.12 && phase4 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase4").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase4 > 0.25 && phase4 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase4").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase4 > 0.37 && phase4 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase4").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase4 > 0.50 && phase4 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase4").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase4 > 0.62 && phase4 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase4").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase4 > 0.75 && phase4 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase4").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase4 > 0.87 && phase4 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase4").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase5 > 0 && phase5 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase5").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase5 > 0.12 && phase5 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase5").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase5 > 0.25 && phase5 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase5").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase5 > 0.37 && phase5 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase5").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase5 > 0.50 && phase5 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase5").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase5 > 0.62 && phase5 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase5").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase5 > 0.75 && phase5 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase5").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase5 > 0.87 && phase5 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase5").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase6 > 0 && phase6 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase6").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase6 > 0.12 && phase6 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase6").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase6 > 0.25 && phase6 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase6").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase6 > 0.37 && phase6 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase6").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase6 > 0.50 && phase6 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase6").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase6 > 0.62 && phase6 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase6").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase6 > 0.75 && phase6 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase6").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase6 > 0.87 && phase6 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase6").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase7 > 0 && phase7 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase7").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase7 > 0.12 && phase7 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase7").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase7 > 0.25 && phase7 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase7").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase7 > 0.37 && phase7 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase7").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase7 > 0.50 && phase7 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase7").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase7 > 0.62 && phase7 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase7").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase7 > 0.75 && phase7 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase7").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase7 > 0.87 && phase7 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase7").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+ 
+            }
+
+            moonphase();
+			
+			
+
+
+
+          
+
+
+   
+       
+            function calcTime(city, offset) {
+
+            d = new Date();
+
+            utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc + (3600000*off));
+
+            return nd.toLocaleString();
+
+            }
+
+			
+
+};
+
+
+
+function jsFunction(value)
+{   
+    var yearit;
+    var monthit;
+    var dateit;
+    var today = new Date();
+	
+	var yearit2;
+	var monthit2;
+	var dateit2;
+	var today2 = new Date();
+	
+	var yearit3;
+	var monthit3;
+	var dateit3;
+	var today3 = new Date();
+	
+	var yearit4;
+	var monthit4;
+	var dateit4;
+	var today4 = new Date();
+
+	var yearit5;
+	var monthit5;
+	var dateit5;
+	var today5 = new Date();
+	
+	var yearit6;
+	var monthit6;
+	var dateit6;
+	var today6 = new Date();
+	
+	var yearit7;
+	var monthit7;
+	var dateit7;
+	var today7 = new Date();
+	
+	
+	var d0;
+	var nexday0;
+	var d;
+	var nextday1;
+		var d2;
+	var nextday2;
+		var d3;
+	var nextday3;
+		var d4;
+	var nextday4;
+		var d5;
+	var nextday5;
+		var d6;
+	var nextday6;
+	
+
+/**************************************** CUSTOMIZE CITIES ******************************/
+        if (value == 'Custom')
+        {
+        
+        var lala = parseFloat(document.getElementById("long").value);
+        var lolo = parseFloat(document.getElementById("latt").value);
+        var offoff = parseFloat(document.getElementById("offset").value);
+        lo = lolo;
+        la = lala;
+        off = offoff;
+
+
+		d0 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday0 = new Date();
+	    nextday0.setMonth(d0.getMonth() - 1);
+		nextday0.setDate(d0.getDate());
+		nextday0.setYear(d0.getFullYear());
+		d = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday1 = new Date();
+		nextday1.setMonth(d.getMonth() - 1);
+		nextday1.setYear(d.getFullYear());
+		nextday1.setDate(d.getDate()+1);
+		d2 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday2 = new Date();
+		nextday2.setMonth(d2.getMonth() - 1);
+		nextday2.setYear(d2.getFullYear());
+		nextday2.setDate(d2.getDate()+2);     
+		d3 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));	 
+		nextday3 = new Date();
+		nextday3.setMonth(d3.getMonth() - 1);
+		nextday3.setYear(d3.getFullYear());
+		nextday3.setDate(d3.getDate()+3);
+		d4 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday4 = new Date();
+		nextday4.setMonth(d4.getMonth() - 1);
+		nextday4.setYear(d4.getFullYear());
+		nextday4.setDate(d4.getDate()+4);
+		d5 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday5 = new Date();
+		nextday5.setMonth(d5.getMonth() - 1);
+		nextday5.setYear(d5.getFullYear());
+		nextday5.setDate(d5.getDate()+5);
+		d6 = new Date(parseFloat(document.getElementById("year2").value),parseFloat(document.getElementById("month2").value),parseFloat(document.getElementById("day2").value));
+	    nextday6 = new Date();
+		nextday6.setMonth(d6.getMonth() - 1);
+		nextday6.setYear(d6.getFullYear());
+		nextday6.setDate(d6.getDate()+6);	
+		
+		
+		
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('latitude2').innerHTML = lo;
+        document.getElementById('longitude2').innerHTML = la;
+        document.getElementById('latitude3').innerHTML = lo;
+        document.getElementById('longitude3').innerHTML = la;
+        document.getElementById('latitude4').innerHTML = lo;
+        document.getElementById('longitude4').innerHTML = la;
+        document.getElementById('latitude5').innerHTML = lo;
+        document.getElementById('longitude5').innerHTML = la;
+        document.getElementById('latitude6').innerHTML = lo;
+        document.getElementById('longitude6').innerHTML = la;
+        document.getElementById('latitude7').innerHTML = lo;
+        document.getElementById('longitude7').innerHTML = la;
+        var monthfull = monthit + 1;
+		var monthfull2 = monthit + 1;
+		var monthfull3 = monthit + 1;
+		var monthfull4 = monthit + 1;
+		var monthfull5 = monthit + 1;
+		var monthfull6 = monthit + 1;
+		var monthfull7 = monthit + 1;
+        document.getElementById('titledate').innerHTML = nextday0.toLocaleDateString('en-US');
+		document.getElementById('titledate2').innerHTML = nextday1.toLocaleDateString('en-US');
+		document.getElementById('titledate3').innerHTML = nextday2.toLocaleDateString('en-US');
+		document.getElementById('titledate4').innerHTML = nextday3.toLocaleDateString('en-US');
+		document.getElementById('titledate5').innerHTML = nextday4.toLocaleDateString('en-US');
+		document.getElementById('titledate6').innerHTML = nextday5.toLocaleDateString('en-US');
+		document.getElementById('titledate7').innerHTML = nextday6.toLocaleDateString('en-US');
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById('offv2').innerHTML = off;
+        document.getElementById('offv3').innerHTML = off;
+        document.getElementById('offv4').innerHTML = off;
+        document.getElementById('offv5').innerHTML = off;
+        document.getElementById('offv6').innerHTML = off;
+        document.getElementById('offv7').innerHTML = off;
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = nextday0.getDate();
+        document.getElementById('month2').value = ((nextday0.getMonth()) + 1);
+        document.getElementById('year2').value = nextday0.getFullYear();
+    document.getElementById("flag").style.backgroundImage = 'url("graphiteblue.png")';		
+		
+		
+		
+		
+		
+		
+		
+        }
+		
+		
+		
+        if (value == 'Ibiza')
+        {
+        
+        lo = 39;
+        la = 1.4;
+        off = 2;
+
+
+
+		d0 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday0 = new Date();
+		nextday0.setDate(d0.getDate());
+		d = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday1 = new Date();
+		nextday1.setDate(d.getDate() + 1);		
+		d2 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday2 = new Date();
+		nextday2.setDate(d2.getDate() + 2);			
+		d3 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday3 = new Date();
+		nextday3.setDate(d3.getDate() + 3);	
+		d4 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday4 = new Date();
+		nextday4.setDate(d4.getDate() + 4);	
+		d5 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday5 = new Date();
+		nextday5.setDate(d5.getDate() + 5);
+		d6 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday6 = new Date();
+		nextday6.setDate(d6.getDate() + 6);			
+		
+		
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('latitude2').innerHTML = lo;
+        document.getElementById('longitude2').innerHTML = la;
+        document.getElementById('latitude3').innerHTML = lo;
+        document.getElementById('longitude3').innerHTML = la;
+        document.getElementById('latitude4').innerHTML = lo;
+        document.getElementById('longitude4').innerHTML = la;
+        document.getElementById('latitude5').innerHTML = lo;
+        document.getElementById('longitude5').innerHTML = la;
+        document.getElementById('latitude6').innerHTML = lo;
+        document.getElementById('longitude6').innerHTML = la;
+        document.getElementById('latitude7').innerHTML = lo;
+        document.getElementById('longitude7').innerHTML = la;
+        var monthfull = monthit + 1;
+		var monthfull2 = monthit + 1;
+		var monthfull3 = monthit + 1;
+		var monthfull4 = monthit + 1;
+		var monthfull5 = monthit + 1;
+		var monthfull6 = monthit + 1;
+		var monthfull7 = monthit + 1;
+        document.getElementById('titledate').innerHTML = nextday0.toLocaleDateString('en-US');
+		document.getElementById('titledate2').innerHTML = nextday1.toLocaleDateString('en-US');
+		document.getElementById('titledate3').innerHTML = nextday2.toLocaleDateString('en-US');
+		document.getElementById('titledate4').innerHTML = nextday3.toLocaleDateString('en-US');
+		document.getElementById('titledate5').innerHTML = nextday4.toLocaleDateString('en-US');
+		document.getElementById('titledate6').innerHTML = nextday5.toLocaleDateString('en-US');
+		document.getElementById('titledate7').innerHTML = nextday6.toLocaleDateString('en-US');
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById('offv2').innerHTML = off;
+        document.getElementById('offv3').innerHTML = off;
+        document.getElementById('offv4').innerHTML = off;
+        document.getElementById('offv5').innerHTML = off;
+        document.getElementById('offv6').innerHTML = off;
+        document.getElementById('offv7').innerHTML = off;
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = nextday0.getDate();
+        document.getElementById('month2').value = ((nextday0.getMonth()) + 1);
+        document.getElementById('year2').value = nextday0.getFullYear();
+        document.getElementById("flag").style.backgroundImage = 'url("graphiteblue.png")';
+        }
+        if (value == 'Quito')
+        {
+        
+        lo = 0.1;
+        la = -78;
+        off = -5;
+
+		d0 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday0 = new Date();
+		nextday0.setDate(d0.getDate());
+		d = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday1 = new Date();
+		nextday1.setDate(d.getDate() + 1);		
+		d2 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday2 = new Date();
+		nextday2.setDate(d2.getDate() + 2);			
+		d3 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday3 = new Date();
+		nextday3.setDate(d3.getDate() + 3);	
+		d4 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday4 = new Date();
+		nextday4.setDate(d4.getDate() + 4);	
+		d5 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday5 = new Date();
+		nextday5.setDate(d5.getDate() + 5);
+		d6 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday6 = new Date();
+		nextday6.setDate(d6.getDate() + 6);			
+		
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('latitude2').innerHTML = lo;
+        document.getElementById('longitude2').innerHTML = la;
+        document.getElementById('latitude3').innerHTML = lo;
+        document.getElementById('longitude3').innerHTML = la;
+        document.getElementById('latitude4').innerHTML = lo;
+        document.getElementById('longitude4').innerHTML = la;
+        document.getElementById('latitude5').innerHTML = lo;
+        document.getElementById('longitude5').innerHTML = la;
+        document.getElementById('latitude6').innerHTML = lo;
+        document.getElementById('longitude6').innerHTML = la;
+        document.getElementById('latitude7').innerHTML = lo;
+        document.getElementById('longitude7').innerHTML = la;
+        var monthfull = monthit + 1;
+		var monthfull2 = monthit + 1;
+		var monthfull3 = monthit + 1;
+		var monthfull4 = monthit + 1;
+		var monthfull5 = monthit + 1;
+		var monthfull6 = monthit + 1;
+		var monthfull7 = monthit + 1;
+        document.getElementById('titledate').innerHTML = nextday0.toLocaleDateString('en-US');
+		document.getElementById('titledate2').innerHTML = nextday1.toLocaleDateString('en-US');
+		document.getElementById('titledate3').innerHTML = nextday2.toLocaleDateString('en-US');
+		document.getElementById('titledate4').innerHTML = nextday3.toLocaleDateString('en-US');
+		document.getElementById('titledate5').innerHTML = nextday4.toLocaleDateString('en-US');
+		document.getElementById('titledate6').innerHTML = nextday5.toLocaleDateString('en-US');
+		document.getElementById('titledate7').innerHTML = nextday6.toLocaleDateString('en-US');
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById('offv2').innerHTML = off;
+        document.getElementById('offv3').innerHTML = off;
+        document.getElementById('offv4').innerHTML = off;
+        document.getElementById('offv5').innerHTML = off;
+        document.getElementById('offv6').innerHTML = off;
+        document.getElementById('offv7').innerHTML = off;
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = nextday0.getDate();
+        document.getElementById('month2').value = ((nextday0.getMonth()) + 1);
+        document.getElementById('year2').value = nextday0.getFullYear();
+        document.getElementById("flag").style.backgroundImage = 'url("graphiteblue.png")';
+        }
+        if (value == 'Boston')
+        
+        {
+        lo = 42;
+        la = -71;
+        off = -4;
+
+		d0 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday0 = new Date();
+		nextday0.setDate(d0.getDate());
+		d = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday1 = new Date();
+		nextday1.setDate(d.getDate() + 1);		
+		d2 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday2 = new Date();
+		nextday2.setDate(d2.getDate() + 2);			
+		d3 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday3 = new Date();
+		nextday3.setDate(d3.getDate() + 3);	
+		d4 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday4 = new Date();
+		nextday4.setDate(d4.getDate() + 4);	
+		d5 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday5 = new Date();
+		nextday5.setDate(d5.getDate() + 5);
+		d6 = new Date(parseFloat(today.getFullYear()),parseFloat(today.getMonth()),parseFloat(today.getDate()));
+	    nextday6 = new Date();
+		nextday6.setDate(d6.getDate() + 6);			
+		
+        document.getElementById('latitude').innerHTML = lo;
+        document.getElementById('longitude').innerHTML = la;
+        document.getElementById('latitude2').innerHTML = lo;
+        document.getElementById('longitude2').innerHTML = la;
+        document.getElementById('latitude3').innerHTML = lo;
+        document.getElementById('longitude3').innerHTML = la;
+        document.getElementById('latitude4').innerHTML = lo;
+        document.getElementById('longitude4').innerHTML = la;
+        document.getElementById('latitude5').innerHTML = lo;
+        document.getElementById('longitude5').innerHTML = la;
+        document.getElementById('latitude6').innerHTML = lo;
+        document.getElementById('longitude6').innerHTML = la;
+        document.getElementById('latitude7').innerHTML = lo;
+        document.getElementById('longitude7').innerHTML = la;
+        var monthfull = monthit + 1;
+		var monthfull2 = monthit + 1;
+		var monthfull3 = monthit + 1;
+		var monthfull4 = monthit + 1;
+		var monthfull5 = monthit + 1;
+		var monthfull6 = monthit + 1;
+		var monthfull7 = monthit + 1;
+        document.getElementById('titledate').innerHTML = nextday0.toLocaleDateString('en-US');
+		document.getElementById('titledate2').innerHTML = nextday1.toLocaleDateString('en-US');
+		document.getElementById('titledate3').innerHTML = nextday2.toLocaleDateString('en-US');
+		document.getElementById('titledate4').innerHTML = nextday3.toLocaleDateString('en-US');
+		document.getElementById('titledate5').innerHTML = nextday4.toLocaleDateString('en-US');
+		document.getElementById('titledate6').innerHTML = nextday5.toLocaleDateString('en-US');
+		document.getElementById('titledate7').innerHTML = nextday6.toLocaleDateString('en-US');
+        document.getElementById('offv').innerHTML = off;
+        document.getElementById('offv2').innerHTML = off;
+        document.getElementById('offv3').innerHTML = off;
+        document.getElementById('offv4').innerHTML = off;
+        document.getElementById('offv5').innerHTML = off;
+        document.getElementById('offv6').innerHTML = off;
+        document.getElementById('offv7').innerHTML = off;
+        document.getElementById('long').value = la;
+        document.getElementById('latt').value = lo;
+        document.getElementById('offset').value = off;
+        document.getElementById('day2').value = nextday0.getDate();
+        document.getElementById('month2').value = ((nextday0.getMonth()) + 1);
+        document.getElementById('year2').value = nextday0.getFullYear();
+        document.getElementById("flag").style.backgroundImage = 'url("graphiteblue.png")';
+		
+		
+  	
+        }
+/**************************************** CUSTOMIZE CITIES END ******************************/
+        function sunrise() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+
+
+
+            var minutes = checkTime(times.sunrise.getMinutes());
+			var minutes2 = checkTime(times2.sunrise.getMinutes());
+			var minutes3 = checkTime(times3.sunrise.getMinutes());
+			var minutes4 = checkTime(times4.sunrise.getMinutes());
+			var minutes5 = checkTime(times5.sunrise.getMinutes());
+			var minutes6 = checkTime(times6.sunrise.getMinutes());
+			var minutes7 = checkTime(times7.sunrise.getMinutes());
+			
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.sunrise.getTime()+(times.sunrise.getTimezoneOffset() * 60000);
+			utc2 = times2.sunrise.getTime()+(times2.sunrise.getTimezoneOffset() * 60000);
+			utc3 = times3.sunrise.getTime()+(times3.sunrise.getTimezoneOffset() * 60000);
+			utc4 = times4.sunrise.getTime()+(times4.sunrise.getTimezoneOffset() * 60000);
+			utc5 = times5.sunrise.getTime()+(times5.sunrise.getTimezoneOffset() * 60000);
+			utc6 = times6.sunrise.getTime()+(times6.sunrise.getTimezoneOffset() * 60000);
+			utc7 = times7.sunrise.getTime()+(times7.sunrise.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc+(3600000*off));
+			nd2 = new Date(utc2+(3600000*off));
+            nd3 = new Date(utc3+(3600000*off));
+			nd4 = new Date(utc4+(3600000*off));
+            nd5 = new Date(utc5+(3600000*off));
+			nd6 = new Date(utc6+(3600000*off));
+            nd7 = new Date(utc7+(3600000*off));
+
+
+            var sunriseStr = nd.getHours() + ':' + minutes;
+		    var sunriseStr2 = nd2.getHours() + ':' + minutes2;
+            var sunriseStr3 = nd3.getHours() + ':' + minutes3;
+		    var sunriseStr4 = nd4.getHours() + ':' + minutes4;
+            var sunriseStr5 = nd5.getHours() + ':' + minutes5;
+		    var sunriseStr6 = nd6.getHours() + ':' + minutes6;
+            var sunriseStr7 = nd7.getHours() + ':' + minutes7;
+	
+
+            document.getElementById('sunrise').innerHTML = sunriseStr;
+			document.getElementById('sunrise2').innerHTML = sunriseStr2;
+            document.getElementById('sunrise3').innerHTML = sunriseStr3;
+			document.getElementById('sunrise4').innerHTML = sunriseStr4;
+            document.getElementById('sunrise5').innerHTML = sunriseStr5;
+			document.getElementById('sunrise6').innerHTML = sunriseStr6;
+            document.getElementById('sunrise7').innerHTML = sunriseStr7;
+
+
+            }
+
+            sunrise()
+
+            function solarnoon() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+			
+
+            var minutes = checkTime(times.solarNoon.getMinutes());
+			var minutes2 = checkTime(times2.solarNoon.getMinutes());
+			var minutes3 = checkTime(times3.solarNoon.getMinutes());
+			var minutes4 = checkTime(times4.solarNoon.getMinutes());
+			var minutes5 = checkTime(times5.solarNoon.getMinutes());
+			var minutes6 = checkTime(times6.solarNoon.getMinutes());
+			var minutes7 = checkTime(times7.solarNoon.getMinutes());
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }
+
+            utc = times.solarNoon.getTime()+(times.solarNoon.getTimezoneOffset() * 60000);
+			utc2 = times2.solarNoon.getTime()+(times2.solarNoon.getTimezoneOffset() * 60000);
+			utc3 = times3.solarNoon.getTime()+(times3.solarNoon.getTimezoneOffset() * 60000);
+			utc4 = times4.solarNoon.getTime()+(times4.solarNoon.getTimezoneOffset() * 60000);
+			utc5 = times5.solarNoon.getTime()+(times5.solarNoon.getTimezoneOffset() * 60000);
+			utc6 = times6.solarNoon.getTime()+(times6.solarNoon.getTimezoneOffset() * 60000);
+			utc7 = times7.solarNoon.getTime()+(times7.solarNoon.getTimezoneOffset() * 60000);
+			
+			
+            nd = new Date(utc+(3600000*off));
+			nd2 = new Date(utc2+(3600000*off));
+			nd3 = new Date(utc3+(3600000*off));
+			nd4 = new Date(utc4+(3600000*off));
+			nd5 = new Date(utc5+(3600000*off));
+			nd6 = new Date(utc6+(3600000*off));
+			nd7 = new Date(utc7+(3600000*off));
+
+            var solarNoon = nd.getHours() + ':' + minutes;
+			var solarNoon2 = nd2.getHours() + ':' + minutes2;
+			var solarNoon3 = nd3.getHours() + ':' + minutes3;
+			var solarNoon4 = nd4.getHours() + ':' + minutes4;
+			var solarNoon5 = nd5.getHours() + ':' + minutes5;
+			var solarNoon6 = nd6.getHours() + ':' + minutes6;
+			var solarNoon7 = nd7.getHours() + ':' + minutes7;
+			
+            document.getElementById('solarnoon').innerHTML = solarNoon;
+			document.getElementById('solarnoon2').innerHTML = solarNoon2;
+			document.getElementById('solarnoon3').innerHTML = solarNoon3;
+			document.getElementById('solarnoon4').innerHTML = solarNoon4;
+			document.getElementById('solarnoon5').innerHTML = solarNoon5;
+			document.getElementById('solarnoon6').innerHTML = solarNoon6;
+			document.getElementById('solarnoon7').innerHTML = solarNoon7;
+
+           /* var t = setTimeout(function() {
+            solarnoon()
+            }, 500);*/
+
+            }
+
+            solarnoon()
+
+            function sunset() {
+
+            var times = SunCalc.getTimes(new Date(nextday0), lo, la);
+			var times2 = SunCalc.getTimes(new Date(nextday1), lo, la);
+			var times3 = SunCalc.getTimes(new Date(nextday2), lo, la);
+			var times4 = SunCalc.getTimes(new Date(nextday3), lo, la);
+			var times5 = SunCalc.getTimes(new Date(nextday4), lo, la);
+			var times6 = SunCalc.getTimes(new Date(nextday5), lo, la);
+			var times7 = SunCalc.getTimes(new Date(nextday6), lo, la);
+
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+            var myminutes = checkTime(times.sunset.getMinutes());
+			var myminutes2 = checkTime(times2.sunset.getMinutes());
+			var myminutes3 = checkTime(times3.sunset.getMinutes());
+			var myminutes4 = checkTime(times4.sunset.getMinutes());
+			var myminutes5 = checkTime(times5.sunset.getMinutes());
+			var myminutes6 = checkTime(times6.sunset.getMinutes());
+			var myminutes7 = checkTime(times7.sunset.getMinutes());
+
+            utc = times.sunset.getTime()+(times.sunset.getTimezoneOffset() * 60000);
+			utc2 = times2.sunset.getTime()+(times2.sunset.getTimezoneOffset() * 60000);
+			utc3 = times3.sunset.getTime()+(times3.sunset.getTimezoneOffset() * 60000);
+			utc4 = times4.sunset.getTime()+(times4.sunset.getTimezoneOffset() * 60000);
+			utc5 = times5.sunset.getTime()+(times5.sunset.getTimezoneOffset() * 60000);
+			utc6 = times6.sunset.getTime()+(times6.sunset.getTimezoneOffset() * 60000);
+			utc7 = times7.sunset.getTime()+(times7.sunset.getTimezoneOffset() * 60000);
+			
+            nd = new Date(utc+(3600000*off));
+            nd2 = new Date(utc2+(3600000*off));
+			nd3 = new Date(utc3+(3600000*off));
+            nd4 = new Date(utc4+(3600000*off));					
+            nd5 = new Date(utc5+(3600000*off));
+            nd6 = new Date(utc6+(3600000*off));
+            nd7 = new Date(utc7+(3600000*off));
+			
+			
+            var sunsetStr = nd.getHours() + ':' + myminutes;
+			var sunsetStr2 = nd2.getHours() + ':' + myminutes2;
+			var sunsetStr3 = nd3.getHours() + ':' + myminutes3;
+			var sunsetStr4 = nd4.getHours() + ':' + myminutes4;
+			var sunsetStr5 = nd5.getHours() + ':' + myminutes5;
+			var sunsetStr6 = nd6.getHours() + ':' + myminutes6;
+			var sunsetStr7 = nd7.getHours() + ':' + myminutes7;
+			
+            document.getElementById('sunset').innerHTML = sunsetStr;
+			document.getElementById('sunset2').innerHTML = sunsetStr2;
+			document.getElementById('sunset3').innerHTML = sunsetStr3;
+			document.getElementById('sunset4').innerHTML = sunsetStr4;
+			document.getElementById('sunset5').innerHTML = sunsetStr5;
+			document.getElementById('sunset6').innerHTML = sunsetStr6;
+			document.getElementById('sunset7').innerHTML = sunsetStr7;
+  
+            }
+
+            sunset()
+
+            function moonrise() {
+           
+ var mtimes = SunCalc.getMoonTimes(new Date(nextday0), lo, la);
+            var mtimes2 = SunCalc.getMoonTimes(new Date(nextday1), lo, la);
+            var mtimes3 = SunCalc.getMoonTimes(new Date(nextday2), lo, la);
+            var mtimes4 = SunCalc.getMoonTimes(new Date(nextday3), lo, la);
+            var mtimes5 = SunCalc.getMoonTimes(new Date(nextday4), lo, la);
+            var mtimes6 = SunCalc.getMoonTimes(new Date(nextday5), lo, la);
+            var mtimes7 = SunCalc.getMoonTimes(new Date(nextday6), lo, la);
+     
+            function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i
+            };
+            return i;
+            }    
+			
+            var checkundef1 = mtimes.rise;
+			var checkundef2 = mtimes2.rise; 
+			var checkundef3 = mtimes3.rise;	
+            var checkundef4 = mtimes4.rise;
+			var checkundef5 = mtimes5.rise; 
+			var checkundef6 = mtimes6.rise;
+            var checkundef7 = mtimes7.rise;
+			
+			if (checkundef1 === undefined)
+			{
+				
+			document.getElementById('moonrise').innerHTML = "--";
+			
+			}
+			if (checkundef1 !== undefined)
+			{
+			var minutes = checkTime(mtimes.rise.getMinutes());
+			utc = mtimes.rise.getTime()+(mtimes.rise.getTimezoneOffset() * 60000);
+		    nd = new Date(utc+(3600000*off));
+			var moonriseStr = nd.getHours() + ':' + minutes;
+			document.getElementById('moonrise').innerHTML = moonriseStr;
+			
+			}
+			
+			if (checkundef2 === undefined)
+			{
+			document.getElementById('moonrise2').innerHTML = '--';
+			}
+			if (checkundef2 !== undefined)
+			{
+			var minutes2 = checkTime(mtimes.rise.getMinutes());
+			utc2 = mtimes2.rise.getTime()+(mtimes2.rise.getTimezoneOffset() * 60000);
+			nd2 = new Date(utc2+(3600000*off));
+			var moonriseStr2 = nd2.getHours() + ':' + minutes2;
+			document.getElementById('moonrise2').innerHTML = moonriseStr2;			
+			
+			}
+			
+			if (checkundef3 === undefined)
+			{
+			document.getElementById('moonrise3').innerHTML =  '--';
+			
+			}
+			if (checkundef3 !== undefined)
+			{
+		    var minutes3 = checkTime(mtimes.rise.getMinutes());
+			utc3 = mtimes3.rise.getTime()+(mtimes3.rise.getTimezoneOffset() * 60000);
+			nd3 = new Date(utc3+(3600000*off));
+			var moonriseStr3 = nd3.getHours() + ':' + minutes3;
+			document.getElementById('moonrise3').innerHTML = moonriseStr3;			
+			
+			}
+		
+			if (checkundef4 === undefined)
+			{
+			document.getElementById('moonrise4').innerHTML =  '--';
+			
+			}
+			if (checkundef4 !== undefined)
+			{
+			var minutes4 = checkTime(mtimes.rise.getMinutes());
+			utc4 = mtimes4.rise.getTime()+(mtimes4.rise.getTimezoneOffset() * 60000);
+			nd4 = new Date(utc4+(3600000*off));
+			var moonriseStr4 = nd4.getHours() + ':' + minutes4;
+			document.getElementById('moonrise4').innerHTML = moonriseStr4;			
+			
+			}
+		
+			if (checkundef5 === undefined)
+			{
+			
+			document.getElementById('moonrise5').innerHTML =  '--';
+			}
+			if (checkundef5 !== undefined)
+			{
+			var minutes5 = checkTime(mtimes.rise.getMinutes());
+			utc5 = mtimes5.rise.getTime()+(mtimes5.rise.getTimezoneOffset() * 60000);
+			nd5 = new Date(utc5+(3600000*off));
+			var moonriseStr5 = nd5.getHours() + ':' + minutes5;
+			document.getElementById('moonrise5').innerHTML = moonriseStr5;		
+			
+			}
+		
+			if (checkundef6 === undefined)
+			{
+			document.getElementById('moonrise6').innerHTML =  '--';
+			}
+			if (checkundef6 !== undefined)
+			{
+			var minutes6 = checkTime(mtimes.rise.getMinutes());
+			utc6 = mtimes6.rise.getTime()+(mtimes6.rise.getTimezoneOffset() * 60000);
+			nd6 = new Date(utc6+(3600000*off));
+			var moonriseStr6 = nd6.getHours() + ':' + minutes6;
+			document.getElementById('moonrise6').innerHTML = moonriseStr6;			
+			
+			}
+		
+			if (checkundef7 === undefined)
+			{
+			document.getElementById('moonrise7').innerHTML =  '--';
+			
+			}
+			if (checkundef7 !== undefined)
+			{
+			var minutes7 = checkTime(mtimes.rise.getMinutes());
+			utc7 = mtimes7.rise.getTime()+(mtimes7.rise.getTimezoneOffset() * 60000);
+			nd7 = new Date(utc7+(3600000*off));
+			var moonriseStr7 = nd7.getHours() + ':' + minutes7;
+            document.getElementById('moonrise7').innerHTML = moonriseStr7;			
+			
+			}
+
+            
+			
+			
+			
+			
+	
+			
+			
+
+				
+     
+            }
+
+            moonrise()
+
+            function moonset() {
+ 
+
+			 var mtimes = SunCalc.getMoonTimes(new Date(nextday0), lo, la);
+			 var mtimes2 = SunCalc.getMoonTimes(new Date(nextday1), lo, la);
+			 var mtimes3 = SunCalc.getMoonTimes(new Date(nextday2), lo, la);
+			 var mtimes4 = SunCalc.getMoonTimes(new Date(nextday3), lo, la);
+			 var mtimes5 = SunCalc.getMoonTimes(new Date(nextday4), lo, la);
+			 var mtimes6 = SunCalc.getMoonTimes(new Date(nextday5), lo, la);
+			 var mtimes7 = SunCalc.getMoonTimes(new Date(nextday6), lo, la);
+
+			function checkTime(i) {
+             if (i < 10) {
+             i = "0" + i
+             };
+             return i;
+             }
+ 
+            var checkundef1 = mtimes.set;
+			var checkundef2 = mtimes2.set; 
+			var checkundef3 = mtimes3.set;	
+            var checkundef4 = mtimes4.set;
+			var checkundef5 = mtimes5.set; 
+			var checkundef6 = mtimes6.set;
+            var checkundef7 = mtimes7.set;
+ 
+ 
+			if (checkundef1 === undefined)
+			{
+			document.getElementById('moonset').innerHTML =  '--';
+			
+			}
+			if (checkundef1 !== undefined)
+			{
+             var minutes = checkTime(mtimes.set.getMinutes());
+			 utc = mtimes.set.getTime()+(mtimes.set.getTimezoneOffset() * 60000);
+			 nd = new Date(utc+(3600000*off));
+			 var moonsetStr = nd.getHours() + ':' + minutes;
+			 document.getElementById('moonset').innerHTML = moonsetStr;
+			}
+			 
+			if (checkundef2 === undefined)
+			{
+			document.getElementById('moonset2').innerHTML =  '--';
+			
+			}
+			if (checkundef2 !== undefined)
+			{			 
+			 var minutes2 = checkTime(mtimes2.set.getMinutes());
+			 utc2 = mtimes2.set.getTime()+(mtimes2.set.getTimezoneOffset() * 60000);
+			 nd2 = new Date(utc2+(3600000*off));
+			 var moonsetStr2 = nd2.getHours() + ':' + minutes2;
+			 document.getElementById('moonset2').innerHTML = moonsetStr2;
+			 }
+			 
+			 
+			 
+			if (checkundef3 === undefined)
+			{
+			document.getElementById('moonset3').innerHTML =  '--';
+			
+			}
+			if (checkundef3 !== undefined)
+			{			 
+			 var minutes3 = checkTime(mtimes3.set.getMinutes());
+			 utc3 = mtimes3.set.getTime()+(mtimes3.set.getTimezoneOffset() * 60000);
+			 nd3 = new Date(utc3+(3600000*off));
+			 var moonsetStr3 = nd3.getHours() + ':' + minutes3;
+			 document.getElementById('moonset3').innerHTML = moonsetStr3;
+			}
+			
+
+
+			if (checkundef4 === undefined)
+			{
+			document.getElementById('moonset4').innerHTML =  '--';
+			
+			}
+			if (checkundef4 !== undefined)
+			{			
+			 var minutes4 = checkTime(mtimes4.set.getMinutes());
+			 utc4 = mtimes4.set.getTime()+(mtimes4.set.getTimezoneOffset() * 60000);
+			 nd4 = new Date(utc4+(3600000*off));
+			 var moonsetStr4 = nd4.getHours() + ':' + minutes4;
+			 document.getElementById('moonset4').innerHTML = moonsetStr4;
+			}
+			if (checkundef5 === undefined)
+			{
+			document.getElementById('moonset5').innerHTML =  '--';
+			
+			}
+			if (checkundef5 !== undefined)
+			{			 
+			 var minutes5 = checkTime(mtimes5.set.getMinutes());
+			 utc5 = mtimes5.set.getTime()+(mtimes5.set.getTimezoneOffset() * 60000);
+			 nd5 = new Date(utc5+(3600000*off));
+			 var moonsetStr5 = nd5.getHours() + ':' + minutes5;
+			 document.getElementById('moonset5').innerHTML = moonsetStr5;
+			}
+			
+			
+			if (checkundef6 === undefined)
+			{
+			document.getElementById('moonset6').innerHTML =  '--';
+			
+			}
+			if (checkundef6 !== undefined)
+			{			
+			 var minutes6 = checkTime(mtimes6.set.getMinutes());
+			 utc6 = mtimes6.set.getTime()+(mtimes6.set.getTimezoneOffset() * 60000);
+			 nd6 = new Date(utc6+(3600000*off));
+			 var moonsetStr6 = nd6.getHours() + ':' + minutes6;
+			 document.getElementById('moonset6').innerHTML = moonsetStr6;
+			}
+
+			if (checkundef7 === undefined)
+			{
+			document.getElementById('moonset7').innerHTML =  '--';
+			
+			}
+			if (checkundef7 !== undefined)
+			{
+			 var minutes7 = checkTime(mtimes7.set.getMinutes());
+			 utc7 = mtimes7.set.getTime()+(mtimes7.set.getTimezoneOffset() * 60000);
+			 nd7 = new Date(utc7+(3600000*off));
+			 var moonsetStr7 = nd7.getHours() + ':' + minutes7;
+             document.getElementById('moonset7').innerHTML = moonsetStr7;
+			}
+			
+			
+			
+			
+			
+			
+
+
+
+
+
+           }
+
+            moonset()
+         
+
+
+            function moonphase() {
+
+            var phase = SunCalc.getMoonIllumination(new Date(nextday0)).phase;
+			var phase2 = SunCalc.getMoonIllumination(new Date(nextday1)).phase;
+			var phase3 = SunCalc.getMoonIllumination(new Date(nextday2)).phase;
+			var phase4 = SunCalc.getMoonIllumination(new Date(nextday3)).phase;
+			var phase5 = SunCalc.getMoonIllumination(new Date(nextday4)).phase;
+			var phase6 = SunCalc.getMoonIllumination(new Date(nextday5)).phase;
+			var phase7 = SunCalc.getMoonIllumination(new Date(nextday6)).phase;
+			
+			var actual;
+			
+			if (phase > 0 && phase < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase > 0.12 && phase < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase > 0.25 && phase < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase > 0.37 && phase < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase > 0.50 && phase < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase > 0.62 && phase < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase > 0.75 && phase < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase > 0.87 && phase < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+
+if (phase2 > 0 && phase2 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase2").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase2 > 0.12 && phase2 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase2").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase2 > 0.25 && phase2 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase2").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase2 > 0.37 && phase2 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase2").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase2 > 0.50 && phase2 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase2").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase2 > 0.62 && phase2 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase2").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase2 > 0.75 && phase2 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase2").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase2 > 0.87 && phase2 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase2").src = "RES/moonphases/waning_crescent.png";		
+			}
+			
+			
+if (phase3 > 0 && phase3 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase3").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase3 > 0.12 && phase3 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase3").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase3 > 0.25 && phase3 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase3").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase3 > 0.37 && phase3 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase3").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase3 > 0.50 && phase3 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase3").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase3 > 0.62 && phase3 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase3").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase3 > 0.75 && phase3 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase3").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase3 > 0.87 && phase3 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase3").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase4 > 0 && phase4 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase4").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase4 > 0.12 && phase4 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase4").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase4 > 0.25 && phase4 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase4").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase4 > 0.37 && phase4 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase4").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase4 > 0.50 && phase4 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase4").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase4 > 0.62 && phase4 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase4").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase4 > 0.75 && phase4 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase4").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase4 > 0.87 && phase4 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase4").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase5 > 0 && phase5 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase5").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase5 > 0.12 && phase5 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase5").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase5 > 0.25 && phase5 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase5").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase5 > 0.37 && phase5 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase5").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase5 > 0.50 && phase5 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase5").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase5 > 0.62 && phase5 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase5").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase5 > 0.75 && phase5 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase5").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase5 > 0.87 && phase5 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase5").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase6 > 0 && phase6 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase6").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase6 > 0.12 && phase6 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase6").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase6 > 0.25 && phase6 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase6").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase6 > 0.37 && phase6 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase6").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase6 > 0.50 && phase6 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase6").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase6 > 0.62 && phase6 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase6").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase6 > 0.75 && phase6 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase6").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase6 > 0.87 && phase6 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase6").src = "RES/moonphases/waning_crescent.png";		
+			}
+
+if (phase7 > 0 && phase7 < 0.12)
+			{
+				actual = "New Moon";
+                document.getElementById("phase7").src = "RES/moonphases/new_moon.png";			
+			}
+			if (phase7 > 0.12 && phase7 < 0.25)
+			{
+				actual = "Waxing Crescent";
+                document.getElementById("phase7").src = "RES/moonphases/waxing_crescent.png";		
+			}
+			if (phase7 > 0.25 && phase7 < 0.37)
+			{
+				actual = "First Quarter";	
+                document.getElementById("phase7").src = "RES/moonphases/first_quarter.png";		
+			}
+			if (phase7 > 0.37 && phase7 < 0.50)
+			{
+				actual = "Waxing Gibbous";	
+                document.getElementById("phase7").src = "RES/moonphases/waxing_gibbous.png";		
+			}
+			if (phase7 > 0.50 && phase7 < 0.62)
+			{
+				actual = "Full Moon";
+                document.getElementById("phase7").src = "RES/moonphases/full_moon.png";			
+			}			
+			if (phase7 > 0.62 && phase7 < 0.75)
+			{
+				actual = "Waning Gibbous";
+                document.getElementById("phase7").src = "RES/moonphases/waning_gibbous.png";
+                		
+			}
+			if (phase7 > 0.75 && phase7 < 0.87)
+			{
+				actual = "Last Quarter";
+                document.getElementById("phase7").src = "RES/moonphases/third_quarter.png";		
+			}
+			if (phase7 > 0.87 && phase7 < 1.0)
+			{
+				actual = "Waning Crescent";
+                document.getElementById("phase7").src = "RES/moonphases/waning_crescent.png";		
+			}
+            document.getElementById('moonphase').innerHTML = actual;
+			document.getElementById('moonphase2').innerHTML = actual;
+			document.getElementById('moonphase3').innerHTML = actual;
+			document.getElementById('moonphase4').innerHTML = actual;
+			document.getElementById('moonphase5').innerHTML = actual;
+			document.getElementById('moonphase6').innerHTML = actual;
+			document.getElementById('moonphase7').innerHTML = actual;
+ 
+            }
+
+            moonphase()
+       
+            function calcTime(city, offset) {
+
+            d = new Date();
+
+            utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+            nd = new Date(utc + (3600000*off));
+
+            return nd.toLocaleString();
+
+            }
+
+
+          
+
+}
+</script>	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Javascript Ends -->
+<!-- Body Starts -->
+
+<body onload="jsFunction('Boston');">
+<div id="suncalcouter">
+<div id="uititle">SunCalcUI</div>
+
+
+
+
+
+<div id="suncalc1">
+     <div id="suncalcbox">
+		  <table>
+         
+    
+<tr>
+<td id ="flag" style="margin:0 auto;color: #fff !important;">
+
+    
+                <font color="#000000">Long:</font>
+                <input type="text" id="long" width="1" maxlength="5">
+                <font color="#000000">Lat:</font>
+                <input type="text" id="latt" width="1" maxlength="5">
+                <font color="#000000">D:</font>
+                <input type="text" id="day2" width="1" maxlength="2">
+                <font color="#000000">M:</font>
+                <input type="text" id="month2" width="1" maxlength="2">
+                <font color="#000000">Y:</font>
+                <input type="text" id="year2" width="1" maxlength="4">
+                <font color="#000000">Offset:</font>
+                <input type="text" id="offset" width="1" maxlength="3">
+				
+City:<select id ="ddl" name="ddl" onchange="jsFunction(this.value);" style="width: 150px !important;margin-left: 5px;">
+  <option value="Boston">Boston, USA</option>
+  <option value="Custom">Custom City</option>
+  <option value="Quito">Quito, Ecuador</option>
+  <option value="Ibiza">Ibiza, Spain</option>
+
+</select>				
+
+
+     			
+				
+<button id="custom" onclick="jsFunction('Custom');" align="right" style="float: right;color: #fff;background:#333;">update</button> 
+<button id="custom" onclick="nextweek();" align="right" style="float: right;color: #fff;background:#333;width:50px;">&#8631</button>  
+<button id="custom" onclick="prevweek();" align="right" style="float: right;color: #fff;background:#333;width:50px;">&#8630;</button> 
+
+</td>
+
+</tr>
+
+		  <tr>
+		  <td><span id="fr" style="float:left">Date&nbsp;<font class= "icons" face="Alchemy" color="orange">P</font></span>
+		  <div class="eor" id="titledate7" ></div>
+		  <div  class="eor" id="titledate6" ></div>
+		  <div  class="eor" id="titledate5" ></div>
+		  <div  class="eor" id="titledate4" ></div>
+		  <div  class="eor" id="titledate3" ></div>
+		  <div  class="eor" id="titledate2" ></div>
+		  <div  class="eor" id="titledate" ></div>
+		  </td>
+		  </tr>
+		  <tr>
+		  <td><span id="fr" style="float:left">Sunrise&nbsp;<font class= "icons" face="Alchemy" color="orange">X</font></span>
+		  <div  class="eor" id="sunrise7" ></div>
+		  <div  class="eor" id="sunrise6" ></div>
+		  <div  class="eor" id="sunrise5" ></div>
+		  <div  class="eor" id="sunrise4" ></div>
+		  <div  class="eor" id="sunrise3" ></div>
+		  <div  class="eor" id="sunrise2" ></div>
+		  <div  class="eor" id="sunrise" ></div>
+
+		  </td>
+		  </tr>
+		  <tr>
+		  <td><span id="fr" style="float:left">Sunset&nbsp;<font  class= "icons" face="Alchemy" color="orange">X</font></span>
+		  <div  class="eor" id="sunset7" ></div>
+		  <div class="eor"  id="sunset6" ></div>
+		  <div class="eor"  id="sunset5" ></div>
+		  <div class="eor"  id="sunset4" ></div>
+		  <div class="eor"  id="sunset3" ></div>
+		  <div class="eor"  id="sunset2" ></div>
+		  <div class="eor"  id="sunset" ></div>
+
+		  </td>
+		  </tr>
+		  <tr>
+		  <td><span id="fr" style="float:left">Solarnoon&nbsp;<font  class= "icons"  face="Alchemy" color="orange">X</font></span>
+		  <div  class="eor" id="solarnoon7" ></div>
+		  <div class="eor"  id="solarnoon6" ></div>
+		  <div class="eor"  id="solarnoon5" ></div>
+		  <div class="eor"  id="solarnoon4" ></div>
+		  <div class="eor"  id="solarnoon3" ></div>
+		  <div class="eor"  id="solarnoon2" ></div>
+		  <div class="eor"  id="solarnoon" ></div>
+
+		  </td>
+		  </tr>
+		  <tr>
+		  <td><span id="fr" style="float:left">Moonrise&nbsp;<font  class= "icons"  face="Alchemy" color="orange">&#xe008;</font></span>
+		  <div class="eor"  id="moonrise7" ></div>
+		  <div  class="eor" id="moonrise6" ></div>
+		  <div  class="eor" id="moonrise5" ></div>
+		  <div  class="eor" id="moonrise4" ></div>
+		  <div  class="eor" id="moonrise3" ></div>
+		  <div  class="eor" id="moonrise2" ></div>
+		  <div  class="eor" id="moonrise" ></div>
+	
+		  </td>
+		  </tr>
+		  <tr>
+		  <td><span id="fr" style="float:left">Moonset&nbsp;<font  class= "icons"  face="Alchemy" color="orange">&#xe008;</font></span>
+		  <div class="eor"  id="moonset7" ></div>
+		  <div class="eor"  id="moonset6" ></div>
+		  <div class="eor"  id="moonset5" ></div>
+		  <div class="eor"  id="moonset4" ></div>
+		  <div class="eor"  id="moonset3" ></div>
+		  <div class="eor"  id="moonset2" ></div>
+		  <div class="eor"  id="moonset" ></div>
+
+		  </td>
+		  </tr>
+		  <tr>
+		  <td><span id="fr" style="float:left">Moonphase</span>
+		  <span class="eor"><img id="phase7" align="left" width="32" height="32" style="padding-left: 68px;"></img></span>
+		  <span class="eor"><img id="phase6" align="left" width="32px" height="32px" style="padding-left: 68px;"></img></span>
+		  <span class="eor"><img id="phase5" align="left" width="32px" height="32px" style="padding-left: 68px;"></img></span>
+		  <span class="eor"><img id="phase4" align="left" width="32px" height="32px" style="padding-left: 68px;"></img></span>
+		  <span class="eor"><img id="phase3" align="left" width="32px" height="32px" style="padding-left: 68px;"></img></span>
+		  <span class="eor"><img id="phase2" align="left" width="32px" height="32px" style="padding-left: 68px;"></img></span>
+		  <span class="eor"><img id="phase" align="left" width="32px" height="32px" style="padding-left: 68px;"></img></span>
+		
+		  </td>
+          </tr>
+          <tr>
+          <td><span id="fr" style="float:left">Offset&nbsp;<font  class= "icons"  face="Alchemy" color="orange">1</font></span>
+		  <div  class="eor" id="offv7" ></div>
+		  <div  class="eor" id="offv6" ></div>
+		  <div  class="eor" id="offv5" ></div>
+		  <div  class="eor" id="offv4" ></div>
+		  <div  class="eor" id="offv3" ></div>
+		  <div  class="eor" id="offv2" ></div>
+		  <div  class="eor" id="offv" ></div>
+	
+		  </td>
+          </tr>
+          <tr>
+          <td><span id="fr" style="float:left">Latitude&nbsp;<font  class= "icons" color="orange">&Phi;</font></span>
+		  <div  class="eor" id="latitude7" ></div>
+		  <div  class="eor" id="latitude6" ></div>
+		  <div  class="eor" id="latitude5" ></div>
+		  <div  class="eor" id="latitude4" ></div>
+		  <div  class="eor" id="latitude3" ></div>
+		  <div  class="eor" id="latitude2" ></div>
+		  <div  class="eor" id="latitude" ></div>
+
+		  </td>
+          </tr>
+          <tr>
+          <td><span id="fr" style="float:left">Longitude&nbsp;<font  class= "icons" color="orange">&lambda;</font></span>
+		  <div class="eor"  id="longitude7" ></div>
+		  <div  class="eor" id="longitude6" ></div>
+		  <div  class="eor" id="longitude5" ></div>
+		  <div  class="eor" id="longitude4" ></div>
+		  <div  class="eor" id="longitude3" ></div>
+		  <div  class="eor" id="longitude2" ></div>
+		  <div  class="eor" id="longitude" ></div>
+	
+		  
+		  </td>
+          </tr>
+		  </table>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="about">
+<font color="#ffffff">SunCalc by: <i>Vladimir Agafonkin</i><br>SunCalcUI by: 
+<i>Alex Terranova</i>
+</font></div>
+</div>
+<div id="footer">
+<div id="footercontent">
+    <center>
+    <div id="title">SunCalcUI</div></center><br><br>
+<p>
+SunCalc by: <i>Vladimir Agafonkin</i><br>
+SunCalcUI by: <i>Alex Terranova</i><br><br>
+
+To download this app please click <a href="Release.zip">here</a><br><Br>
+Feel free to modify this file "suncalcui.html" <br><br>
+
+HOW TO ADD A NEW CITY BELOW<br><br>
+
+&bull;&nbsp;To add/modify a City-> Simply go down to "CUSTOMIZE" comment section in the file "suncalcui.html"<br>
+&bull;&nbsp;Replace (value=="") with the name of the new city <br>
+&bull;&nbsp;Replace Longitude "la" with the new Longitude <br>
+&bull;&nbsp;Replace Latitude "lo" with new Latitude <br>
+&bull;&nbsp;Replace Offset "off" with the UTC timezone Offset for the new location<br>
+&bull;&nbsp;Replace src = "RES/flags/flag.png" with the new flag image <br><br>
+
+Thank you!   <br>
+</p>
+</div>
+</div>
+</body>
+<!-- Body Ends -->
+</html>
