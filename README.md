@@ -1,5 +1,7 @@
 # suncalcui
 
+<img src="https://i.imgur.com/qe5pGSx.png">
+
 A simple user interface for "suncalc" written in Javascript/HTML/CSS.
 
 Runs on any web-browser with Javascript enabled.
@@ -10,7 +12,7 @@ I only added 3 cities and the options to select any other location from around t
 
 You can add as many cities as you like. 
 
-<img src="https://i.imgur.com/cE8wTU4.png">
+
 
 
 
