@@ -113,6 +113,7 @@ function setup()
 
   update_clock();
   MySunCalc();
+  myinterval(); 
 
 }
 
@@ -121,6 +122,13 @@ function updateall() {
   update_clock();
   MySunCalc();    
 }
+
+
+
+
+
+
+
 
 function setup_disp()
 { 
@@ -208,41 +216,75 @@ function formatDate(d)
     if(h == 0) h = 12;
     s += lz(h)
     + ":" + lz(d.getMinutes())
-    /*+ ":" + lz(d.getSeconds()) */
+  /*  + ":" + lz(d.getSeconds()) */
     + " " + ap;
   }
   else {
     myboolean = 0;
     s += lz(h)
     + ":" + lz(d.getMinutes())
-    /* + ":" + lz(d.getSeconds()); */
+  /*  + ":" + lz(d.getSeconds()); */
   }
   return s;
 }
 var old_offset = -1;
 var hour = 3600000; // one hour in milliseconds
+var homeloc;
+var sign;
+var homeutc;
+var mytime;
+
 function update_clock() {
   var d = new Date();
+
   offset = d.getTimezoneOffset()/60;
   // add daylight hour if specified
   daylight = (document.getElementById("daylight1").checked)?1:0;
   // set initial TZ to UTC-11
   offset += daylight;
-  d.setTime(d.getTime() - (11 * hour) + offset * hour);
+  d.setTime(d.getTime() - (11 * hour) + offset * hour); 
   // create time zone outputs
   for(i = -11;i <= 12;i++) {
+   var color;
     document.getElementById("v" + (i+11)).innerHTML = formatDate(d);
+
+    mod = (i == -offset)?"lawngreen":"white";
+    
+    if (mod == "lawngreen")
+    {
+            homeloc = locations[i + 11];
+      
+            j = i-11;
+            
+            sign = ((j < 0)?"-":"+");   
+      
+            homeutc = offset;
+
+            document.getElementById("home").innerHTML = homeloc + "<br>UTC" + sign + offset + "<br>";
+
+            document.getElementById("localtime").innerHTML = formatDate(d); 
+    }
+
+
+    
     if(old_offset != offset) {
       /*color=(i == -offset)?"white":"lawngreen";*/
       color=(i == -offset)?"white":"lawngreen";
       document.getElementById("row" + (i+11)).style.color = color;
+
+      
     }
+
+ 
+    
     d.setTime(d.getTime() + hour);
+
+  
+   
   }
   old_offset = offset;
 
-
-  setInterval('update_clock()', 60000);
+/*  setInterval('update_clock()', 1000); */
 }
 
 
@@ -299,7 +341,7 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
     si = "" + Math.abs(j)
     if(si.length < 2) si = "0" + si;
     si = ((j < 0)?"-":"+") + si;
-    mod = (i-11 == -offset)?" style=\"color:lawngreen;\"":"";
+    mod = (i-11 == -offset)?"style=\"color:lawngreen;\"":"white";
         
     function checkTime(x) {
             if (x < 10) {
@@ -445,18 +487,38 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
             }          
             }
             
+            
+         if (mod == "style=\"color:lawngreen;\"")
+         {
+         document.getElementById("mysunrise").innerHTML = LocationSunriseStr;
+         document.getElementById("mysunset").innerHTML = LocationSunsetStr;             
+         }            
+            
+            
+            
+            
+            
          k = LocationSunriseStr + " / " + LocationSunsetStr;
          b = LocationMoonriseStr + " / " + LocationMoonsetStr;
          document.getElementById("c" + i).innerHTML = k;
          document.getElementById("d" + i).innerHTML = b;
+        
+
+         
+
   }    
     
     
-      setInterval('MySunCalc()', 60000);
+
     
     
 };
 
-   
 
+
+function myinterval() {
+  update_clock();
+  MySunCalc();    
+  setInterval('myinterval()', 60000);    
+}
 

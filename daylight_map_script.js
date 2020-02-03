@@ -296,7 +296,7 @@
           this.redrawAll(1, false);
           return $(document).trigger('update-date-time', this.currDate);
         }, 60000);
-      }
+      } 
 
     };
 
@@ -315,9 +315,13 @@
     $('.curr-time').find('span').html(moment(date).format("HH:mm"));
     return $('.curr-date').find('span').text(moment(date).format("DD MMM"));
   };
+  var map;
+  var svg;
 
+
+ 
   $(document).ready(function() {
-    var map, svg;
+
     svg = document.getElementById('daylight-map');
     map = new DaylightMap(svg, new Date());
     map.init();
