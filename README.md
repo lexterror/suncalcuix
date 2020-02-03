@@ -1,16 +1,27 @@
-# suncalcui
+# SunCalcUIX
 
-<img src="https://i.imgur.com/qe5pGSx.png">
+<img src="https://i.imgur.com/crcNZQH.png">
 
-A simple user interface for "suncalc" written in Javascript/HTML/CSS.
+SunCalcUIX has the following features:
 
-Runs on any web-browser with Javascript enabled.
+* World Clock
+* Moon Phase
+* Sunrise/Sunset 
+* Moonrise/Moonset
+* World Daylight Map
+* Calculator
 
-This program allows you to view the sunrise, sunset, solarnoon, moonrise, moonset, and moonphase in a browser.
+# Dependencies (Included)
 
-I only added 3 cities and the options to select any other location from around the world at any time with longitude and latitude.
+* World Clock (https://arachnoid.com/) worldclock.js
+* SunCalc (https://github.com/mourner/suncalc) suncalc.js
+* World Daylight Map (https://github.com/pauljnoble/world-daylight-map) daylight_map_script.js
+* Sinon (https://sinonjs.org/) sinon.js
 
-You can add as many cities as you like. 
+# Other
+* Currently displays and updates the current time for every time zone, moon phase, sunrise, sunset, moonrise, moonset, and daylight map. The calculator feature gives the option to go to any date. If you would like to change the current city for any timezone with it's corresponding longitude and latitude you need to modify (1. The city name) (2. The longitude and latitude values for the city). It can be done by modifying those values in the file "worldclock.js." 
+
+* Thank you! 
 
 
 
