@@ -114,6 +114,7 @@ function setup()
   update_clock();
   MySunCalc();
   myinterval(); 
+  myinterval2();
 
 }
 
@@ -514,11 +515,14 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
     
 };
 
-
+  
+function myinterval2() {
+   MySunCalc(); 
+   setInterval('myinterval2()', 60000*60);    
+}
 
 function myinterval() {
-  update_clock();
-  MySunCalc();    
+  update_clock();  
   setInterval('myinterval()', 60000);    
 }
 
