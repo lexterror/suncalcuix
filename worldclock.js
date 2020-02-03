@@ -260,7 +260,7 @@ function update_clock() {
       
             homeutc = offset;
 
-            document.getElementById("home").innerHTML = homeloc + "<br>UTC" + sign + offset + "<br>";
+            document.getElementById("home").innerHTML = homeloc + "&nbsp;(UTC" + sign + offset + ")<br>";
 
             document.getElementById("localtime").innerHTML = formatDate(d); 
     }

@@ -146,26 +146,50 @@ table {
 <script src="daylight_map_script.js"></script>
 <script src="worldclock.js"></script>
 <div id="moonphase">
-<img id="phase" width="96" height="96" style="z-index: 55555 !important;float:left;padding-right:20px;"></img><span id="home"></span><span id="localtime"></span><br>
-&uarr;&nbsp;<span id="mysunrise"></span>&nbsp;&nbsp;&darr;&nbsp;<span id="mysunset"></span>
+
+
+
+<table id="localtoast" style="float:right">
+<tr><td id="local"><span id="home"></span></td></tr>
+<tr><td id="local"><span id="localtime"></span></td></tr>
+<tr><td>Sunrise <span style="float:right">Sunset</span></td></tr>
+<tr><td id="local"><span id="mysunrise"></span><span id="mysunset" style="float:right;"></span></td></tr>
+<tr><td id="local">Moon Phase</td></tr>
+<tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;border:1px solid #aaa;background:#000;"></img></td></tr>
+</table>
+
+
+
+
 </div>
 
 
 <div id="clock_disp"></div>
 <style>
+#localtoast table {
+    color: #ffffff;
+    border-radius: 5px;
+}
+#localtoast td {
+    height: 14px;
+    padding: 5px !important;
+    width: 180px;
+}
+#localtoast table, #localtoast td, #localtoast th {
+  border: 1px solid #aaa;
+  color: #fff;
+  background-image: url("toast.png");background-repeat: repeat;
+}
+
 #moonphase {
     float: left;
-    width: 360px;
-    margin-top: -180px;
+    margin-top: -260px;
     z-index: 555555 !important;
-    padding: 25px;
     position:absolute;
     font-family: digital;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 14px;
     margin-left: 20px !important;
-    background-image: url("toast.png");
-    height: 96px;
     border-radius: 5px;
     border: 1px solid #000;
     color: #ffffff;
