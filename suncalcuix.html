@@ -1,0 +1,224 @@
+<!--
+  
+  On Windows Shift + Alt + F
+  On Mac Shift + Option + F
+  On Ubuntu Ctrl + Shift + I
+  
+  Select the text you want to automatically indent. Click Format Selection in Edit, Advanced, or press CTRL+K, CTRL+F. Format Selection applies the smart indenting rules for the language in which you are programming to the selected text.-->
+
+
+<html>
+<head>
+<title>World Map and Clock</title>
+<script src="jquery.min.js"></script>
+<style>
+a{
+  box-sizing: content-box
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+/**  STYLE 6 */
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #F70;	
+}
+ @font-face {
+
+            font-family: 'digital';
+
+            src: url('fonts/Chainprinter W00 Regular.eot');
+
+            /* IE9 Compat Modes */
+
+            src: url('fonts/Chainprinter W00 Regular.eot?#iefix') format('embedded-opentype'),
+                /* IE6-IE8 */
+
+                url('fonts/Chainprinter W00 Regular.woff2') format('woff2'),
+                /* Super Modern Browsers */
+
+                url('fonts/Chainprinter W00 Regular.woff') format('woff'),
+                /* Pretty Modern Browsers */
+
+                url('fonts/Chainprinter W00 Regular.ttf') format('truetype');
+
+            /* Safari, Android, iOS */
+} 
+</style>
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="star.ico">
+    <style>
+   body {
+ 
+ background: #111;
+        width: 880px;
+        margin: 0 auto;
+   }
+   container {
+        width: 880px;
+        margin: 0 auto;
+   }
+   clock_disp {
+        width: 880px;
+        margin: 0 auto;
+   }
+   
+  
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}  
+    </style>
+</head>
+<body>
+<div class="container">
+
+<svg id="daylight-map"></svg>
+<style>
+#customtime {
+    width: 880px;
+    float: left;
+    height: 32px;
+    color: #fff;
+    font-family: digital;
+}
+</style>
+<div id="customtime">
+  Year: <input type="text" name="year" id="year" style="width:50px;">
+  Month: <input type="text" name="month" id="month" style="width:50px;">
+  Date: <input type="text" name="date" id="date" style="width:50px;">
+  Hour: <input type="text" name="date" id="hours" style="width:50px;">
+  Minute: <input type="text" name="date" id="minutes" style="width:50px;">
+  <button type="button" onclick="custom();">Go!</button>
+  <button type="button" onclick="reset();">Reset!</button>  
+</div>
+
+
+<div id="worldclock_">
+</div>
+
+</div>
+
+<script src="sinon.js"></script>
+<script src="suncalc.js"></script>
+<link rel="stylesheet" href="dist/style.css">
+<script src="dist/d3.min.js"></script>
+<script src="dist/topojson.min.js"></script>
+<script src="dist/d3.geo.projection.min.js"></script>
+<script src="dist/moment.min.js"></script>
+<script src="dist/moment-timezone.min.js"></script>
+<script src="daylight_map_script.js"></script>
+<script src="worldclock.js"></script>
+<div id="moonphase">
+<img id="phase" width="64" height="64" style="z-index: 55555 !important;margin-left; 40px;"></img>	
+</div>
+<div id="clock_disp"></div>
+<style>
+#moonphase {
+    float: left;
+    width: 64px;
+    margin-top: -140px;
+    z-index: 555555 !important;
+    padding: 20px;
+    position:absolute;
+    margin-left: 20px !important;
+    background: #999;
+    height: 64px;
+    border-radius: 5px;
+}
+</style>
+</body>
+<script>
+
+  var ispressed = 1;
+
+  function custom() {
+  if (ispressed == 1)
+  {
+  var year = document.getElementById("year").value;
+  var month = document.getElementById("month").value - 1;
+  var date = document.getElementById("date").value;
+  var hour = document.getElementById("hours").value;
+  var minutes = document.getElementById("minutes").value;
+  clock = sinon.useFakeTimers(new Date(year,month,date,hour,minutes).getTime());
+  new Date();
+  update_clock();
+  MySunCalc();
+
+  
+    var map, svg;
+    svg = document.getElementById('daylight-map');
+    map = new DaylightMap(svg, new Date());
+    map.init();
+    updateDateTime(map.currDate);
+    map.redrawAll();
+    ispressed = 0;
+   }
+  
+  }
+
+  function reset() {
+  ispressed = 1;
+  clock.restore();
+  new Date(); //=> will return the real time again (now)  
+  update_clock();
+  MySunCalc();
+
+    var map, svg;
+    svg = document.getElementById('daylight-map');
+    map = new DaylightMap(svg, new Date());
+    map.init();  
+  updateDateTime(map.currDate);
+  map.redrawAll();
+
+  }
+</script>
+</html>
