@@ -598,12 +598,12 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
   
 function myinterval2() {
    MySunCalc(); 
-   setInterval('myinterval2()', 60000*60);    
+   setTimeout('myinterval2()', 60000*60);    
 }
 
 function myinterval() {
   update_clock();  
-  setInterval('myinterval()', 60000);    
+  setTimeout('myinterval()', 60000);    
 }
 
 
