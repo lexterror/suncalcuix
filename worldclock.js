@@ -5,7 +5,9 @@ var LocationMoonsetStr = "";
 var k = "";
 var b = "";
 var myboolean = 0;
-
+var homeset = 0;
+var mychange = 0;
+var mychangenegative = 0;
 
 function addEvent(o,e,f) {
   if (o.addEventListener) {
@@ -110,7 +112,7 @@ function setup()
     document.getElementById("ampm" + cookie_array[0]).checked = true;
     document.getElementById("daylight" + cookie_array[1]).checked = true;
   }
-
+ 
   update_clock();
   MySunCalc();
   myinterval(); 
@@ -138,7 +140,7 @@ function setup_disp()
 
     
     
-  s = "<table width =\"880px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" bgcolor=#999999 style=\"color:#000000;font-family:digital;vertical-align: middle;color: #000000;border-collapse: collapse;padding:0;border:0;\">";
+  s = "<table width =\"880px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" bgcolor=\"#999999\" style=\"font-family:digital;vertical-align: middle;color: #000000;border-collapse: collapse;padding:0;border:0;\">";
   s += "<tr><td class=\"ccm\" colspan=\"2\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">";
   s += "<input id=\"ampm0\" type=\"radio\" name=\"ampm\" checked=\"checked\" onclick=\"updateall();\">24 Hour&nbsp;";
   s += "<input id=\"ampm1\" type=\"radio\" name=\"ampm\"  onclick=\"updateall();\" >AM/PM";
@@ -154,7 +156,6 @@ function setup_disp()
   s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Lat/Long</td></tr>";
   
   daylight = (cookie_array && cookie_array[1] == "1")?1:0;
-  isampm =  (cookie_array && cookie_array[0] == "1")?1:0;
   offset = (new Date().getTimezoneOffset()/60) + daylight;
   for(i = 0; i < 24;i++) {
     q = "tz" + i;
@@ -241,54 +242,111 @@ var sign;
 var homeutc;
 var mytime;
 
+
+function temp(e) {
+    
+  
+  
+
+  
+  
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        mychange--;
+    }
+    else if (e.keyCode == '39') {
+        mychange++;
+       
+    } 
+  
+  
+  update_clock();
+}
+
+
 function update_clock() {
+
   var d = new Date();
 
   offset = d.getTimezoneOffset()/60;
+
+
   // add daylight hour if specified
   daylight = (document.getElementById("daylight1").checked)?1:0;
   // set initial TZ to UTC-11
   offset += daylight;
+  
+  
+     
   d.setTime(d.getTime() - (11 * hour) + offset * hour); 
+  
+
+  
+   offset = offset + mychange;
   // create time zone outputs
   for(i = -11;i <= 12;i++) {
+      
+    
    var color;
     document.getElementById("v" + (i+11)).innerHTML = formatDate(d);
 
-    mod = (i == -offset)?"lawngreen":"white";
+  mod = (i == -offset)?"lawngreen":"white";
     
     if (mod == "lawngreen")
     {
             homeloc = locations[i + 11];
-      
-            j = i-11;
-            
-            sign = ((j < 0)?"-":"+");   
-      
-            homeutc = offset;
+            document.getElementById("mycity").innerHTML = homeloc;
+            document.getElementById("mytime").innerHTML = formatDate(d);
 
-            document.getElementById("home").innerHTML = homeloc + "&nbsp;(UTC" + sign + offset + ")<br>";
 
-            document.getElementById("localtime").innerHTML = formatDate(d); 
     }
-
+    
 
     
     if(old_offset != offset) {
+        
+        
       /*color=(i == -offset)?"white":"lawngreen";*/
       color=(i == -offset)?"white":"lawngreen";
       document.getElementById("row" + (i+11)).style.color = color;
-
       
+      
+      
+    
+      
+      if (i == -offset)
+      {
+          
+       var style = window.getComputedStyle(document.getElementById('casa'));
+        /*
+        var marginTop = parseInt(style.getPropertyValue('margin-top')); 
+        var marginLeft = parseInt(style.getPropertyValue('margin-left')); 
+        */
+       // document.getElementById("minime").innerHTML = marginTop + "&nbsp" + marginLeft;        
+        var marginT = -255;
+        var marginL = 440;
+        
+        var newMarginTop = (marginT - ((lo[i+11] * 2.444)));
+        var newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+        
+        document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop;   
+    
+  
     }
 
- 
+    }
     
     d.setTime(d.getTime() + hour);
 
-  
+
    
   }
+  
+  
+  
+  
   old_offset = offset;
 
 /*  setInterval('update_clock()', 1000); */
@@ -348,7 +406,7 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
     si = "" + Math.abs(j)
     if(si.length < 2) si = "0" + si;
     si = ((j < 0)?"-":"+") + si;
-    mod = (i-11 == -offset)?"style=\"color:lawngreen;\"":"white";
+    mod = (i-11 == -offset)?"style=\"color:lawngreen;\"":"";
         
     function checkTime(x) {
             if (x < 10) {
@@ -493,12 +551,28 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
             LocationMoonsetStr = location_moonsetStr;
             }          
             }
+         
             
-            
-         if (mod == "style=\"color:lawngreen;\"")
+         if (mod == "")
          {
-         document.getElementById("mysunrise").innerHTML = LocationSunriseStr;
-         document.getElementById("mysunset").innerHTML = LocationSunsetStr;             
+             
+             
+        /*
+        var style = window.getComputedStyle(document.getElementById('casa'));
+        
+        var marginTop = parseInt(style.getPropertyValue('margin-top')); 
+        var marginLeft = parseInt(style.getPropertyValue('margin-left'));       
+        
+        var newMarginTop = (marginTop - ((lo[i] * 2.444) / 2));
+        var newMarginLeft = (marginLeft + ((la[i] * 2.444) / 2)) - 15;
+        
+        document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop;
+        */
+        
+          
+
+        
          }            
             
             
@@ -531,4 +605,9 @@ function myinterval() {
   update_clock();  
   setInterval('myinterval()', 60000);    
 }
+
+
+document.onkeydown = temp;
+
+
 

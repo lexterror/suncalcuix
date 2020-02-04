@@ -108,8 +108,14 @@ table {
 </head>
 <body>
 <div class="container">
+<!--
 
+-->
+<div id="localstuff">
+<span id ="mycity"></span><span id="mytime"></span>
+</div>
 <svg id="daylight-map"></svg>
+<div id="location"><img src="home.gif" id="casa" width="32" height="32" style="margin-top:-255px;margin-left:440px;"></div>
 <style>
 #customtime {
     width: 880px;
@@ -117,9 +123,36 @@ table {
     height: 32px;
     color: #fff;
     font-family: digital;
+    z-index: 999999999999;
+    }
+#changeloc {
+ width: 48px;
+}
+#localstuff {
+    width: 880px;
+    height: 24px;
+    padding-top: 10px;
+    line-height: 24px;
+}   
+#mytime {
+    float: right;
+    font-family: digital;
+    font-size: 24px;
+ 
+
+    color: #aaaaaa; 
+}
+#mycity {
+    font-family: digital;
+    font-size: 24px;
+ 
+
+    color: #aaaaaa; 
 }
 </style>
 <div id="customtime">
+  <button type="button" id="changeloc" onclick="right();">&larr;</button>
+  <button type="button" id="changeloc" onclick="left();">&rarr;</button>  
   Year: <input type="text" name="year" id="year" style="width:50px;">
   Month: <input type="text" name="month" id="month" style="width:50px;">
   Date: <input type="text" name="date" id="date" style="width:50px;">
@@ -129,13 +162,24 @@ table {
   <button type="button" onclick="reset();">Reset!</button>  
 </div>
 
-
+<script>
+function left(){
+mychange--;
+update_clock();
+}
+function right(){
+mychange++;
+update_clock();
+}
+</script>
 <div id="worldclock_">
 </div>
 
 </div>
 
+
 <script src="sinon.js"></script>
+
 <script src="suncalc.js"></script>
 <link rel="stylesheet" href="dist/style.css">
 <script src="dist/d3.min.js"></script>
@@ -150,11 +194,6 @@ table {
 
 
 <table id="localtoast" style="float:right">
-<tr><td id="local"><span id="home"></span></td></tr>
-<tr><td id="local"><span id="localtime"></span></td></tr>
-<tr><td>Sunrise <span style="float:right">Sunset</span></td></tr>
-<tr><td id="local"><span id="mysunrise"></span><span id="mysunset" style="float:right;"></span></td></tr>
-<tr><td id="local">Moon Phase</td></tr>
 <tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;border:1px solid #aaa;background:#000;"></img></td></tr>
 </table>
 
@@ -165,15 +204,23 @@ table {
 
 
 <div id="clock_disp"></div>
+<div id="minime" style="color:#fff"></div>
 <style>
+
+#worldclock {
+    z-index: 999999999999;
+}
+
+#moonphasetext {
+    text-align: center;
+    margin: 0 auto;
+}
 #localtoast table {
     color: #ffffff;
-    border-radius: 5px;
 }
 #localtoast td {
     height: 14px;
     padding: 5px !important;
-    width: 180px;
 }
 #localtoast table, #localtoast td, #localtoast th {
   border: 1px solid #aaa;
@@ -183,20 +230,46 @@ table {
 
 #moonphase {
     float: left;
-    margin-top: -260px;
+    margin-top: -130px;
     z-index: 555555 !important;
     position:absolute;
     font-family: digital;
     font-size: 12px;
     line-height: 14px;
     margin-left: 20px !important;
-    border-radius: 5px;
     border: 1px solid #000;
     color: #ffffff;
 }
 
+#daylightmap {
+
+
+}
+
+#location {
+   
+}
+
+
 </style>
 </body>
+
+<!--
+<script>
+displayit();
+function displayit(){
+
+var style = window.getComputedStyle(document.getElementById('casa'));
+var marginTop = style.getPropertyValue('margin-top'); 
+var marginLeft = style.getPropertyValue('margin-left'); 
+document.getElementById("minime").innerHTML = marginTop + "&nbsp" + marginLeft;
+
+
+
+};
+
+</script>
+-->
 <script>
 
   var ispressed = 1;
