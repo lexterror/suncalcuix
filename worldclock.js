@@ -79,8 +79,8 @@ var locations=[
 "Noumea",
 "Wellington"];
 
-var la = ["-172","-155","-134","-122","-104","-87","-71","-66","-43","-35","-25","0.1","1.4"," 31"," 37"," 50"," 67"," 90","100","114","140"," 151"," 166"," 174"];
-var lo = [" -14","  19","  58","  38","  40"," 41"," 42"," 10","-22"," -8"," 37"," 51"," 39"," 30"," 55"," 40"," 25"," 24"," 13"," 22"," 35"," -34"," -22"," -41"];
+var la = ["-172.1","-155.5","-134.4","-122.4","-104.9","-87.62","-71.05","-66.90","-43.17","-34.92","-25.67","0.1278","1.4821","31.235","37.617","49.867","67.001","90.412","100.50","114.16","139.65","151.20","166.44","174.77"];
+var lo = ["13.759","19.896","58.301","37.774","39.739","41.878","42.360","10.480","-22.90","-8.052","37.741","51.507","39.020","30.044","55.755","40.409","24.860","23.810","13.756","22.319","35.676","-33.86","-22.27","-41.28"];
 
 
 
@@ -150,7 +150,8 @@ function setup_disp()
   s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Place</td>";
   s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Date/Time</td>";
   s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Sunrise/Sunset</td>";
-  s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Moonrise/Moonset</td></tr>";
+  s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Moonrise/Moonset</td>";
+  s += "<td class=\"ccb\" style=\"height:18px;font-size:12px !important; line-height: 18px;\">Lat/Long</td></tr>";
   
   daylight = (cookie_array && cookie_array[1] == "1")?1:0;
   isampm =  (cookie_array && cookie_array[0] == "1")?1:0;
@@ -171,10 +172,12 @@ function setup_disp()
     s += "<td class=\"cc\" valign=\"middle\" style=\"background: #222;height:18px;font-size:12px !important; line-height: 18px;   \">" + locations[i] + "</td>";
     s += "<td class=\"ccm\"valign=\"middle\"  id=\"v" + i + "\" style=\"background: #222;height:18px;font-size:12px !important;right:0; line-height: 18px; \"></td>";
   
-    
+      
 
     s += "<td class=\"ccm\"valign=\"middle\"  id=\"c" + i + "\" style=\"background: #222;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td>"; 
-    s += "<td class=\"ccm\"valign=\"middle\"  id=\"d" + i + "\" style=\"background: #222;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td></tr>"; 
+    s += "<td class=\"ccm\"valign=\"middle\"  id=\"d" + i + "\" style=\"background: #222;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td>";
+    
+    s += "<td class=\"ccm\"valign=\"middle\"  id=\"l" + i + "\" style=\"background: #222;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td></tr>";
  
         
     }
@@ -188,7 +191,10 @@ function setup_disp()
 
    
     s += "<td class=\"ccm\"valign=\"middle\"  id=\"c" + i + "\" style=\"background: #333;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td>";
-    s += "<td class=\"ccm\"valign=\"middle\"  id=\"d" + i + "\" style=\"background: #333;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td></tr>"; 
+    s += "<td class=\"ccm\"valign=\"middle\"  id=\"d" + i + "\" style=\"background: #333;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td>"; 
+    
+    
+    s += "<td class=\"ccm\"valign=\"middle\"  id=\"l" + i + "\" style=\"background: #333;height:18px;font-size:12px !important;right:0; line-height: 18px; \">---</td></tr>";
  
     }
     
@@ -499,11 +505,11 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
             
             
             
-         k = LocationSunriseStr + " / " + LocationSunsetStr;
-         b = LocationMoonriseStr + " / " + LocationMoonsetStr;
+         k = LocationSunriseStr + "&nbsp;" + LocationSunsetStr;
+         b = LocationMoonriseStr + "&nbsp;" + LocationMoonsetStr;
          document.getElementById("c" + i).innerHTML = k;
          document.getElementById("d" + i).innerHTML = b;
-        
+         document.getElementById("l" + i).innerHTML = lo[i] + "&nbsp;" + la[i];        
 
          
 
