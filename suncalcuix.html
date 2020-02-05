@@ -54,7 +54,27 @@ a{
         width: 880px;
         margin: 0 auto;
    }
-   
+   #mycustomclocks {
+       width:880px;
+       height:64px;
+       margin-bottom: 15px;
+
+   }
+   #mycustomclocks2 {
+       width:880px;
+       height:64px;
+
+   }
+   #newcustomclock button {
+       height:64px;
+       float:left;
+       background:#aaaaaa;
+       color:#000;
+       font-family:  digital;
+       border:1px solid #999999;
+       margin-left: 1px;
+       width: 175px;
+   }
   
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -104,19 +124,73 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }  
+#daylight-map {
+    padding: 0 !important;
+    border: 0 !important;
+}
     </style>
 </head>
 <body>
 <div class="container">
-<!--
+<div id="mycustomclockstop">
 
--->
-<div id="localstuff">
-<span id ="mycity"></span><span id="mytime"></span>
+<div id="newcustomclock">
+<button type="button" id="homeclock" onclick="gohome()" style="background:lawngreen !important;">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="quitofunc()" id="quito">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="parisfunc()" id="paris">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="madridfunc()" id="madrid">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="montrealfunc()" id="montreal">
+</button></div>
+
 </div>
+<span id="mycity"></span>
 <svg id="daylight-map"></svg>
-<div id="location"><img src="home.gif" id="casa" width="32" height="32" style="margin-top:-255px;margin-left:440px;"></div>
+<img src="home.gif" id="casa" width="32" height="32" style="margin-top:-255px;margin-left:440px;" title="">
+<!--
+<div id="location">
+<span id ="mycity"></span>
+</div> -->
+
+<script>
+
+</script>
 <style>
+
+#location {
+position: absolute;
+height: 440px;
+width:880px;
+top: 0;
+}
+#location span {
+ position: absolute;
+  top: 20;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 1;
+}
+
+#location:hover #mycity {
+
+    visibility: visible;
+    opacity: 1;
+}
+
 #customtime {
     width: 880px;
     float: left;
@@ -133,6 +207,11 @@ table {
     height: 24px;
     padding-top: 10px;
     line-height: 24px;
+    background: #aaa;
+    padding-bottom: 10px;
+    color: #000 !important;
+    margin:0 auto;
+    text-align: center;
 }   
 #mytime {
     float: right;
@@ -140,16 +219,173 @@ table {
     font-size: 24px;
  
 
-    color: #aaaaaa; 
+    color: #000; 
 }
 #mycity {
     font-family: digital;
-    font-size: 24px;
- 
-
-    color: #aaaaaa; 
+    font-size: 12px;
+    z-index: 5555555555555;
+    color: #000; 
+}
+img:focus::before {
+    content: attr(title);
 }
 </style>
+
+<div id="mycustomclocks">
+
+<div id="newcustomclock">
+<button type="button" onclick="ibizafunc()" id="ibiza">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="londonfunc()" id="london">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="sydneyfunc()" id="sydney">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="newyorkfunc()" id="newyork">
+</button></div>
+
+<div id="newcustomclock">
+<button type="button" onclick="sevillefunc()" id="seville">
+</button></div>
+
+</div>
+<script>
+$(document).ready(function(){
+ var title = $("#casa").attr("title");
+ $(title).show();
+});
+</script>
+<script>
+function gohome() {
+	quito=0;
+	paris=0;
+	madrid=0;
+	montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
+    mychange++;
+	update_clock();
+    mychange=0;
+	update_clock();
+}
+function quitofunc() { 
+	quito=1;
+	paris=0;
+	madrid=0;
+	montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+function parisfunc() { 
+	paris=1;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+function madridfunc() { 
+	paris=0;
+	quito=0;
+	madrid=1;
+	montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+function montrealfunc() { 
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=1;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+function ibizafunc() { 
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=1;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+function londonfunc() { 
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=1;
+    seville=0;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+function sydneyfunc() { 
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=1;
+	update_clock();
+	}
+function newyorkfunc() { 
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=1;
+    sydney=0;
+	update_clock();
+	}
+function sevillefunc() { 
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=0;
+    seville=1;
+    newyork=0;
+    sydney=0;
+	update_clock();
+	}
+</script>
 <div id="customtime">
   <button type="button" id="changeloc" onclick="right();">&larr;</button>
   <button type="button" id="changeloc" onclick="left();">&rarr;</button>  
@@ -164,10 +400,18 @@ table {
 
 <script>
 function left(){
+quito = 0;
+paris =0;
+madrid =0;
+montreal=0;
 mychange--;
 update_clock();
 }
 function right(){
+quito=0;
+paris=0;
+madrid =0;
+montreal=0;
 mychange++;
 update_clock();
 }
@@ -230,7 +474,7 @@ update_clock();
 
 #moonphase {
     float: left;
-    margin-top: -130px;
+    margin-top: -240px;
     z-index: 555555 !important;
     position:absolute;
     font-family: digital;

@@ -8,6 +8,19 @@ var myboolean = 0;
 var homeset = 0;
 var mychange = 0;
 var mychangenegative = 0;
+var newMarginTop=0;
+var newMargingLeft=0;
+//CUSTOM CITIES
+var quito=0;
+var paris=0;
+var madrid=0;
+var montreal=0;
+var ibiza=0;
+var seville=0;
+var newyork=0;
+var sydney=0;
+var london=0;
+var title ="";
 
 function addEvent(o,e,f) {
   if (o.addEventListener) {
@@ -211,6 +224,8 @@ function lz(v)
   return (v < 10)?"0" + v:v;
 }
 
+
+
 function formatDate(d)
 {
   s = lz((d.getMonth()+1))
@@ -235,6 +250,34 @@ function formatDate(d)
   }
   return s;
 }
+
+function formatDateSidekick(d)
+{
+  s = lz((d.getMonth()+1))
+  + "/" + lz(d.getDate())
+  + "/" + d.getFullYear() + "<br>";
+  h = d.getHours();
+  if (document.getElementById("ampm1").checked) {
+    myboolean = 1;
+    ap = (h >= 12)?"PM":"AM";
+    h = (h % 12);
+    if(h == 0) h = 12;
+    s += lz(h)
+    + ":" + lz(d.getMinutes())
+  /*  + ":" + lz(d.getSeconds()) */
+    + " " + ap;
+  }
+  else {
+    myboolean = 0;
+    s += lz(h)
+    + ":" + lz(d.getMinutes())
+  /*  + ":" + lz(d.getSeconds()); */
+  }
+  return s;
+}
+
+
+
 var old_offset = -1;
 var hour = 3600000; // one hour in milliseconds
 var homeloc;
@@ -281,23 +324,241 @@ function update_clock() {
      
   d.setTime(d.getTime() - (11 * hour) + offset * hour); 
   
-
   
-   offset = offset + mychange;
+  offset = offset + mychange;
+  if (quito == 1)
+  offset = 5;
+  if (paris == 1)
+  offset = -1;
+  if (madrid == 1) 
+  offset = -1;
+  if (montreal == 1)
+  offset = 5;
+  if (ibiza == 1)
+  offset = -1;
+  if (seville == 1)
+  offset = -1;
+  if (newyork == 1)
+  offset = 5;
+  if (sydney == 1)
+  offset = -10;
+  if (london == 1)
+  offset = 0;
   // create time zone outputs
   for(i = -11;i <= 12;i++) {
       
     
-   var color;
+    var color;
     document.getElementById("v" + (i+11)).innerHTML = formatDate(d);
 
+ 
+     if (i == -5)
+     { 
+       document.getElementById("quito").innerHTML = "Quito" + "<br>" + formatDateSidekick(d);
+     }
+     if (i == 1)
+     {
+     	document.getElementById("paris").innerHTML = "Paris" + "<br>" + formatDateSidekick(d);
+     }
+     if (i == 1)
+     { 
+       document.getElementById("madrid").innerHTML = "Madrid" + "<br>" + formatDateSidekick(d);
+     }
+     if (i == -5)
+     {
+     	document.getElementById("montreal").innerHTML = "Montreal" + "<br>" + formatDateSidekick(d);
+     }     
+     if (i == 1)
+     {
+        document.getElementById("ibiza").innerHTML = "Ibiza" + "<br>" + formatDateSidekick(d);  
+     }
+     if (i == 0)
+     {
+        document.getElementById("london").innerHTML = "London" + "<br>" + formatDateSidekick(d);  
+     }
+     
+     if (i == -5)
+     {
+          document.getElementById("newyork").innerHTML = "New York" + "<br>" + formatDateSidekick(d);
+     }
+  
+     if (i == 1)
+     {
+          document.getElementById("seville").innerHTML = "Seville" + "<br>" + formatDateSidekick(d);
+     } 
+     if (i == 10)
+     {
+          document.getElementById("sydney").innerHTML = "Sydney" + "<br>" + formatDateSidekick(d);
+     } 
+  
+  
+  
   mod = (i == -offset)?"lawngreen":"white";
+    
+    
+
+    
     
     if (mod == "lawngreen")
     {
             homeloc = locations[i + 11];
-            document.getElementById("mycity").innerHTML = homeloc;
-            document.getElementById("mytime").innerHTML = formatDate(d);
+            if (quito == 1)
+            homeloc = "Quito";
+            if (paris == 1)
+            homeloc = "Paris";
+            if (madrid == 1)
+            homeloc = "Madrid";
+            if (montreal == 1)
+            homeloc = "Montreal";
+            if (ibiza == 1)
+            homeloc = "Ibiza";
+            if (london == 1)
+            homeloc = "London";
+            if (newyork == 1)
+            homeloc = "New York";
+            if (seville == 1)
+            homeloc = "Seville";
+            if (sydney == 1)
+            homeloc = "Sydney";
+            
+            
+            title = homeloc;
+            $("#casa").prop("title", title);
+
+            document.getElementById("homeclock").innerHTML = "Home" + "<br>" + formatDateSidekick(d);
+
+
+         if (i== -5 && quito == 1)
+     {
+     	
+      	      var marginT = -255;
+        var marginL = 440;
+        	     	       var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - (( -0.1807 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((-78.467 * 2.444))) - 15;
+          
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop;    
+  
+        
+     
+     }
+  
+       if (i == 1 && paris == 1)
+     {
+     	
+      	      var marginT = -255;
+        var marginL = 440;
+        	     	       var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - (( 48.856 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((2.3522 * 2.444))) - 15;
+         // 48.8566° N, 2.3522° E
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop;      
+     
+     }
+    
+       if (i == 1 && madrid == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+                var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((40.416 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((-3.7038 * 2.444))) - 15;
+         // 40.4168° N, 3.7038° W
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop;      
+     
+     }    
+    
+        if (i == -5 && montreal == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+        	     	       var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((45.5017 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((-73.567 * 2.444))) - 15;
+         // 45.5017° N, 73.5673° W
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop; 
+     
+     
+     }      
+     
+         if (i == 1 && ibiza == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+                var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((39.020 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((1.4821 * 2.444))) - 15;
+         // 39.020 1.4821
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop; 
+     
+     
+     }         
+         if (i == 1 && seville == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+                var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((37.389 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((-5.9845 * 2.444))) - 15;
+       // 37.3891° N, 5.9845° W
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop; 
+     
+     
+     }      
+     
+         if (i == 0 && london == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+                var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((51.507 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((0.1278 * 2.444))) - 15;
+       // 	51.507 0.1278
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop; 
+     
+     
+     }     
+     
+     if (i == -5 && newyork == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+                var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((40.712 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((-74.00 * 2.444))) - 15;
+       // 40.7128° N, 74.0060° W
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop; 
+     
+     
+     }   
+     if (i == 10 && sydney == 1)
+     {
+     	
+      	      var marginT = -255;
+              var marginL = 440;
+                var style = window.getComputedStyle(document.getElementById('casa'));
+     	    	newMarginTop = (marginT - ((-33.86 * 2.444))) + 5;
+             newMarginLeft = (marginL + ((151.20 * 2.444))) - 15;
+       // 	-33.86 151.20
+           document.getElementById("casa").style.marginLeft = newMarginLeft;
+        document.getElementById("casa").style.marginTop = newMarginTop; 
+     
+     
+     } 
 
 
     }
@@ -313,7 +574,7 @@ function update_clock() {
       
       
       
-    
+   
       
       if (i == -offset)
       {
@@ -324,19 +585,23 @@ function update_clock() {
         var marginLeft = parseInt(style.getPropertyValue('margin-left')); 
         */
        // document.getElementById("minime").innerHTML = marginTop + "&nbsp" + marginLeft;        
+ 
+        if (!(quito == 1 || paris == 1 || madrid == 1 || montreal == 1 || ibiza == 1 || london == 1 || newyork == 1 || seville == 1 || sydney == 1))
+        {
         var marginT = -255;
         var marginL = 440;
-        
-        var newMarginTop = (marginT - ((lo[i+11] * 2.444)));
-        var newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
-        
+        newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+        newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
         document.getElementById("casa").style.marginLeft = newMarginLeft;
         document.getElementById("casa").style.marginTop = newMarginTop;   
+        }
     
   
     }
 
     }
+    
+    
     
     d.setTime(d.getTime() + hour);
 
@@ -598,7 +863,7 @@ daylight = (cookie_array && cookie_array[1] == "1")?1:0;
   
 function myinterval2() {
    MySunCalc(); 
-   setTimeout('myinterval2()', 60000*60);    
+   setTimeout('myinterval()', 60000*60);    
 }
 
 function myinterval() {
