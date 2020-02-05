@@ -1,6 +1,6 @@
 # SunCalcUIX
 
-<img src="https://i.imgur.com/HbKeNen.png">
+<img src="https://i.imgur.com/NPJjpVG.png">
 
 SunCalcUIX has the following features:
 
