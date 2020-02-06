@@ -662,35 +662,35 @@ function MySunCalc() {
     
             if (phase > 0 && phase < 0.12)
 			{
-                document.getElementById("phase").src = "moonphases/new_moon.svg";			
+                document.getElementById("phase").src = "moonphases/new_moon.png";			
 			}
 			if (phase > 0.12 && phase < 0.25)
 			{
-                document.getElementById("phase").src = "moonphases/waxing_crescent.svg";		
+                document.getElementById("phase").src = "moonphases/waxing_crescent.png";		
 			}
 			if (phase > 0.25 && phase < 0.37)
 			{
-                document.getElementById("phase").src = "moonphases/first_quarter.svg";		
+                document.getElementById("phase").src = "moonphases/first_quarter.png";		
 			}
 			if (phase > 0.37 && phase < 0.50)
 			{
-                document.getElementById("phase").src = "moonphases/waxing_gibbous.svg";		
+                document.getElementById("phase").src = "moonphases/waxing_gibbous.png";		
 			}
 			if (phase > 0.50 && phase < 0.62)
 			{
-                document.getElementById("phase").src = "moonphases/full_moon.svg";			
+                document.getElementById("phase").src = "moonphases/full_moon.png";			
 			}			
 			if (phase > 0.62 && phase < 0.75)
 			{
-                document.getElementById("phase").src = "moonphases/waning_gibbous.svg";
+                document.getElementById("phase").src = "moonphases/waning_gibbous.png";
 			}
 			if (phase > 0.75 && phase < 0.87)
 			{
-                document.getElementById("phase").src = "moonphases/third_quarter.svg";		
+                document.getElementById("phase").src = "moonphases/third_quarter.png";		
 			}
 			if (phase > 0.87 && phase < 1.0)
 			{
-                document.getElementById("phase").src = "moonphases/waning_crescent.svg";		
+                document.getElementById("phase").src = "moonphases/waning_crescent.png";		
 			} 
 
     daylight = (cookie_array && cookie_array[1] == "1")?1:0;

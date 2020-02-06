@@ -17,23 +17,22 @@
         box-sizing: content-box
     }
     @font-face {
-
             font-family: 'digital';
 
-            src: url('fonts/Chainprinter W00 Regular.eot');
+            src: url('fonts/Tabular-Medium.eot');
 
                 /* IE9 Compat Modes */
 
-            src: url('fonts/Chainprinter W00 Regular.eot?#iefix') format('embedded-opentype'),
+            src: url('fonts/Tabular-Regular.eot?#iefix') format('embedded-opentype'),
                 /* IE6-IE8 */
 
-                 url('fonts/Chainprinter W00 Regular.woff2') format('woff2'),
+                 url('fonts/Tabular-Regular.woff2') format('woff2'),
                 /* Super Modern Browsers */
 
-                 url('fonts/Chainprinter W00 Regular.woff') format('woff'),
+                 url('fonts/Tabular-Regular.woff') format('woff'),
                 /* Pretty Modern Browsers */
 
-                 url('fonts/Chainprinter W00 Regular.ttf') format('truetype');
+                 url('fonts/Tabular-Regular.ttf') format('truetype');
  
                 /* Safari, Android, iOS */
     } 
@@ -195,12 +194,17 @@ top: 0;
     float: left;
     height: 32px;
     color: #fff;
+    margin: 0 auto;
     padding-top: 10px;
     font-family: digital;
     z-index: 999999999999;
     background: #666;
     vertical-align: middle;
     }
+#customtimebar {
+    padding-left: 10px;
+    margin: 0 auto;
+}
 #changeloc {
  width: 48px;
 }
@@ -414,7 +418,7 @@ function sevillefunc() {
 	update_clock();
 	}
 </script>
-<div id="customtime">
+<div id="customtime"><div id="customtimebar">
   <button type="button" id="changeloc" onclick="right();">&larr;</button>
   <button type="button" id="changeloc" onclick="left();">&rarr;</button>  
   Year: <input type="text" name="year" id="year" style="width:50px;">
@@ -424,7 +428,7 @@ function sevillefunc() {
   Minute: <input type="text" name="date" id="minutes" style="width:50px;">
   <button type="button" onclick="custom();">Go!</button>
   <button type="button" onclick="reset();">Reset!</button>  
-</div>
+</div></div>
 
 <script>
 function left(){
