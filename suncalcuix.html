@@ -57,7 +57,6 @@
    #mycustomclocks {
        width:880px;
        height:64px;
-       margin-bottom: 15px;
    }
    #mycustomclocks2 {
        width:880px;
@@ -133,7 +132,7 @@ table {
 <div id="mycustomclockstop">
 
 <div id="newcustomclock">
-<button type="button" id="homeclock" onclick="gohome()" style="background:lawngreen !important;">
+<button type="button" onclick="ibizafunc()" id="ibiza">
 </button></div>
 
 <div id="newcustomclock">
@@ -153,10 +152,23 @@ table {
 </button></div>
 
 </div>
-<span id="mycity"></span>
-<svg id="daylight-map"></svg>
-<img src="home.gif" id="casa" width="32" height="32" style="margin-top:-255px;margin-left:440px;" title="">
 
+<svg id="daylight-map"></svg>
+<img src="bigcities.png" id="big2" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big1" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big3" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big4" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big5" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big6" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big7" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big8" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big9" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big10" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big11" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big12" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big13" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big14" width="16" height="16" title="" style="position: absolute;">
+<img src="home.gif" id="casa" width="32" height="32" title="">
 <style>
 #location {
 position: absolute;
@@ -183,8 +195,11 @@ top: 0;
     float: left;
     height: 32px;
     color: #fff;
+    padding-top: 10px;
     font-family: digital;
     z-index: 999999999999;
+    background: #666;
+    vertical-align: middle;
     }
 #changeloc {
  width: 48px;
@@ -220,7 +235,7 @@ img:focus::before {
 <div id="mycustomclocks">
 
 <div id="newcustomclock">
-<button type="button" onclick="ibizafunc()" id="ibiza">
+<button type="button" id="homeclock" onclick="gohome()" style="background:lawngreen !important;">
 </button></div>
 
 <div id="newcustomclock">
@@ -244,6 +259,34 @@ img:focus::before {
 $(document).ready(function(){
  var title = $("#casa").attr("title");
  $(title).show();
+ var bigcity1 = $("#big1").attr("title");
+ $(bigcity1).show();
+ var bigcity2 = $("#big2").attr("title");
+ $(bigcity2).show();
+ var bigcity2 = $("#big3").attr("title");
+ $(bigcity2).show();
+ var bigcity4 = $("#big4").attr("title");
+ $(bigcity4).show();
+ var bigcity5 = $("#big5").attr("title");
+ $(bigcity5).show();
+ var bigcity6 = $("#big6").attr("title");
+ $(bigcity6).show();
+ var bigcity7 = $("#big7").attr("title");
+ $(bigcity7).show();
+ var bigcity8 = $("#big8").attr("title");
+ $(bigcity8).show();
+  var bigcity9 = $("#big9").attr("title");
+ $(bigcity9).show();
+ var bigcity10 = $("#big10").attr("title");
+ $(bigcity10).show();
+  var bigcity11 = $("#big11").attr("title");
+ $(bigcity11).show();
+  var bigcity12 = $("#big12").attr("title");
+ $(bigcity12).show();
+  var bigcity13 = $("#big13").attr("title");
+ $(bigcity13).show();
+ var bigcity14 = $("#big14").attr("title");
+ $(bigcity14).show();
 });
 </script>
 <script>
@@ -385,18 +428,28 @@ function sevillefunc() {
 
 <script>
 function left(){
-quito = 0;
-paris =0;
-madrid =0;
-montreal=0;
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
 mychange--;
 update_clock();
 }
 function right(){
-quito=0;
-paris=0;
-madrid =0;
-montreal=0;
+	paris=0;
+	quito=0;
+    madrid=0;
+    montreal=0;
+    ibiza=0;
+    london=0;
+    seville=0;
+    newyork=0;
+    sydney=0;
 mychange++;
 update_clock();
 }
