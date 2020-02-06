@@ -439,7 +439,7 @@ function update_clock() {
      {
         var style = window.getComputedStyle(document.getElementById('big8'));
         newMarginTopCity = (marginTCity - ((22.319 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((144.16 * 2.444))) - 15;
+        newMarginLeftCity = (marginLCity + ((114.16 * 2.444))) - 15;
         document.getElementById("big8").style.marginLeft = newMarginLeftCity;
         document.getElementById("big8").style.marginTop = newMarginTopCity;   
         var string8 = "Hong Kong" + " " + formatDateSidekick(d);
