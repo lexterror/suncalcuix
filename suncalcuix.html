@@ -1,51 +1,51 @@
-<!--
-  
-  On Windows Shift + Alt + F
-  On Mac Shift + Option + F
-  On Ubuntu Ctrl + Shift + I
-  
-  Select the text you want to automatically indent. Click Format Selection in Edit, Advanced, or press CTRL+K, CTRL+F. Format Selection applies the smart indenting rules for the language in which you are programming to the selected text.-->
-
-
 <html>
 <head>
 <title>World Map and Clock</title>
 <script src="jquery.min.js"></script>
+<script src="sinon.js"></script>
+<script src="suncalc.js"></script>
+<link rel="stylesheet" href="dist/style.css">
+<script src="dist/d3.min.js"></script>
+<script src="dist/topojson.min.js"></script>
+<script src="dist/d3.geo.projection.min.js"></script>
+<script src="dist/moment.min.js"></script>
+<script src="dist/moment-timezone.min.js"></script>
+<script src="daylight_map_script.js"></script>
+<script src="worldclock.js"></script>
 <style>
-a{
-  box-sizing: content-box
-}
- @font-face {
+    a{
+        box-sizing: content-box
+    }
+    @font-face {
 
             font-family: 'digital';
 
             src: url('fonts/Chainprinter W00 Regular.eot');
 
-            /* IE9 Compat Modes */
+                /* IE9 Compat Modes */
 
             src: url('fonts/Chainprinter W00 Regular.eot?#iefix') format('embedded-opentype'),
                 /* IE6-IE8 */
 
-                url('fonts/Chainprinter W00 Regular.woff2') format('woff2'),
+                 url('fonts/Chainprinter W00 Regular.woff2') format('woff2'),
                 /* Super Modern Browsers */
 
-                url('fonts/Chainprinter W00 Regular.woff') format('woff'),
+                 url('fonts/Chainprinter W00 Regular.woff') format('woff'),
                 /* Pretty Modern Browsers */
 
-                url('fonts/Chainprinter W00 Regular.ttf') format('truetype');
-
-            /* Safari, Android, iOS */
-} 
+                 url('fonts/Chainprinter W00 Regular.ttf') format('truetype');
+ 
+                /* Safari, Android, iOS */
+    } 
 </style>
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="star.ico">
     <style>
-   body {
- 
- background: #111;
+    body {
+        background: #333;
         width: 880px;
         margin: 0 auto;
-   }
+        }
    container {
         width: 880px;
         margin: 0 auto;
@@ -58,7 +58,6 @@ a{
        width:880px;
        height:64px;
        margin-bottom: 15px;
-
    }
    #mycustomclocks2 {
        width:880px;
@@ -75,7 +74,6 @@ a{
        margin-left: 1px;
        width: 175px;
    }
-  
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -158,16 +156,8 @@ table {
 <span id="mycity"></span>
 <svg id="daylight-map"></svg>
 <img src="home.gif" id="casa" width="32" height="32" style="margin-top:-255px;margin-left:440px;" title="">
-<!--
-<div id="location">
-<span id ="mycity"></span>
-</div> -->
 
-<script>
-
-</script>
 <style>
-
 #location {
 position: absolute;
 height: 440px;
@@ -175,7 +165,7 @@ width:880px;
 top: 0;
 }
 #location span {
- position: absolute;
+  position: absolute;
   top: 20;
   bottom: 0;
   left: 0;
@@ -184,13 +174,10 @@ top: 0;
   visibility: hidden;
   opacity: 1;
 }
-
 #location:hover #mycity {
-
     visibility: visible;
     opacity: 1;
 }
-
 #customtime {
     width: 880px;
     float: left;
@@ -217,8 +204,6 @@ top: 0;
     float: right;
     font-family: digital;
     font-size: 24px;
- 
-
     color: #000; 
 }
 #mycity {
@@ -418,43 +403,18 @@ update_clock();
 </script>
 <div id="worldclock_">
 </div>
-
 </div>
-
-
-<script src="sinon.js"></script>
-
-<script src="suncalc.js"></script>
-<link rel="stylesheet" href="dist/style.css">
-<script src="dist/d3.min.js"></script>
-<script src="dist/topojson.min.js"></script>
-<script src="dist/d3.geo.projection.min.js"></script>
-<script src="dist/moment.min.js"></script>
-<script src="dist/moment-timezone.min.js"></script>
-<script src="daylight_map_script.js"></script>
-<script src="worldclock.js"></script>
 <div id="moonphase">
-
-
-
 <table id="localtoast" style="float:right">
-<tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;border:1px solid #aaa;background:#000;"></img></td></tr>
+<tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;"></img></td></tr>
 </table>
-
-
-
-
 </div>
-
-
 <div id="clock_disp"></div>
 <div id="minime" style="color:#fff"></div>
 <style>
-
 #worldclock {
     z-index: 999999999999;
 }
-
 #moonphasetext {
     text-align: center;
     margin: 0 auto;
@@ -471,7 +431,6 @@ update_clock();
   color: #fff;
   background-image: url("toast.png");background-repeat: repeat;
 }
-
 #moonphase {
     float: left;
     margin-top: -240px;
@@ -484,36 +443,8 @@ update_clock();
     border: 1px solid #000;
     color: #ffffff;
 }
-
-#daylightmap {
-
-
-}
-
-#location {
-   
-}
-
-
 </style>
 </body>
-
-<!--
-<script>
-displayit();
-function displayit(){
-
-var style = window.getComputedStyle(document.getElementById('casa'));
-var marginTop = style.getPropertyValue('margin-top'); 
-var marginLeft = style.getPropertyValue('margin-left'); 
-document.getElementById("minime").innerHTML = marginTop + "&nbsp" + marginLeft;
-
-
-
-};
-
-</script>
--->
 <script>
 
   var ispressed = 1;
@@ -530,13 +461,12 @@ document.getElementById("minime").innerHTML = marginTop + "&nbsp" + marginLeft;
   new Date();
   update_clock();
   MySunCalc();
-    
-    map.currDate = new Date();
-    map.init();
-
-    ispressed = 0;
-   }
   
+  map.currDate = new Date();
+  map.init();
+
+  ispressed = 0;
+  }
   }
 
   function reset() {
@@ -545,12 +475,9 @@ document.getElementById("minime").innerHTML = marginTop + "&nbsp" + marginLeft;
   new Date(); //=> will return the real time again (now)  
   update_clock();
   MySunCalc();
-
-    map.currDate = new Date();
-    map.init();  
-  
-
-
+   
+  map.currDate = new Date();
+  map.init();  
   }
 </script>
 </html>
