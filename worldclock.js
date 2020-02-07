@@ -543,7 +543,7 @@ function update_clock() {
             var stringmodcity = stringanycity.replace(/(<br ?\/?>)*/g,"");
             $("#casa").prop("title", stringmodcity);
 
-            document.getElementById("homeclock").innerHTML = "Home" + "<br>" + formatDateSidekick(d);
+            document.getElementById("homeclock").innerHTML = homeloc + "<br>" + formatDateSidekick(d);
 
 
      // SET UP LOCATION ON WORLD MAP FOR DIFFERENT CITY LOCATIONS WHEN ANY BUTTON IS ACTIVATED      
