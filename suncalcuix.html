@@ -128,6 +128,7 @@ table {
 </head>
 <body>
 <div class="container">
+<div id="topinfo"><span style="margin-left: 20px;">suncalcuix v1.0</span></div>
 <div id="mycustomclockstop">
 
 <div id="newcustomclock">
@@ -418,6 +419,21 @@ function sevillefunc() {
 	update_clock();
 	}
 </script>
+<div id="moonphase">
+<table id="localtoast" style="float:right">
+<tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;"></img></td></tr>
+</table>
+</div>
+<button type="button" id="show">Display All</button>
+<script>
+$(document).ready(function(){
+    $('#show').click(function() {
+      $('.timezones').toggle("slide");
+    });
+});
+</script>
+
+<div class="timezones" style="display: none;">
 <div id="customtime"><div id="customtimebar">
   <button type="button" id="changeloc" onclick="right();">&larr;</button>
   <button type="button" id="changeloc" onclick="left();">&rarr;</button>  
@@ -428,7 +444,7 @@ function sevillefunc() {
   Minute: <input type="text" name="date" id="minutes" style="width:50px;">
   <button type="button" onclick="custom();">Go!</button>
   <button type="button" onclick="reset();">Reset!</button>  
-</div></div>
+</div>
 
 <script>
 function left(){
@@ -458,17 +474,37 @@ mychange++;
 update_clock();
 }
 </script>
-<div id="worldclock_">
-</div>
-</div>
-<div id="moonphase">
-<table id="localtoast" style="float:right">
-<tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;"></img></td></tr>
-</table>
-</div>
 <div id="clock_disp"></div>
-<div id="minime" style="color:#fff"></div>
+</div>
 <style>
+#clock_disp {
+
+    margin-top: 10px;
+}
+#topinfo {
+    font-family: digital;
+    background: #999;
+    color: #000;
+    width: 880px;
+    height: 32px;
+    font-size: 12px;
+    line-height: 32px;
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 1px;
+    
+}
+#show {
+    font-family: digital;
+    background: #999;
+    color: #000;
+    width: 880px;
+    height: 32px;
+    font-size: 12px;
+    line-height: 12px;
+    margin: 0 auto;
+    text-align: center;
+}
 #worldclock {
     z-index: 999999999999;
 }
