@@ -128,7 +128,9 @@ table {
 </head>
 <body>
 <div class="container">
-<div id="topinfo"><span style="margin-left: 20px;">suncalcuix v1.0</span></div>
+<div id="topinfo"><span style="margin-left: 20px;">World Map and Clock&nbsp;-&nbsp;</span><button type="button" id="show">Display All</button>
+<div id="moonphase" style="float:right;"><img id="phase" width="48" height="48" style="z-index: 55555 !important;margin-right: 0px;"></img></div>
+</div>
 <div id="mycustomclockstop">
 
 <div id="newcustomclock">
@@ -419,12 +421,6 @@ function sevillefunc() {
 	update_clock();
 	}
 </script>
-<div id="moonphase">
-<table id="localtoast" style="float:right">
-<tr><td id="local"><img id="phase" width="64" height="64" style="z-index: 55555 !important;float:left;padding:14px;"></img></td></tr>
-</table>
-</div>
-<button type="button" id="show">Display All</button>
 <script>
 $(document).ready(function(){
     $('#show').click(function() {
@@ -486,31 +482,30 @@ update_clock();
     background: #999;
     color: #000;
     width: 880px;
-    height: 32px;
-    font-size: 12px;
-    line-height: 32px;
+    height: 64px;
+    font-size: 16px;
+    line-height: 64px;
     margin: 0 auto;
     text-align: left;
     margin-bottom: 1px;
     
 }
 #show {
-    font-family: digital;
-    background: #999;
-    color: #000;
-    width: 880px;
-    height: 32px;
-    font-size: 12px;
-    line-height: 12px;
-    margin: 0 auto;
-    text-align: center;
+    background: #666;
+    color: #aaa;
+    border-radius: 5px;
+    padding: 5px;
+    border: 0;
+    
+    
 }
 #worldclock {
     z-index: 999999999999;
 }
 #moonphasetext {
-    text-align: center;
-    margin: 0 auto;
+    font-size: 12px;
+    line-height: 24px;
+    vertical-align: middle;
 }
 #localtoast table {
     color: #ffffff;
@@ -525,16 +520,18 @@ update_clock();
   background-image: url("toast.png");background-repeat: repeat;
 }
 #moonphase {
-    float: left;
-    margin-top: -240px;
     z-index: 555555 !important;
-    position:absolute;
     font-family: digital;
+    background: #666;
     font-size: 12px;
-    line-height: 14px;
-    margin-left: 20px !important;
+    line-height: 24px;
+    margin-right: 20px !important;
     border: 1px solid #000;
     color: #ffffff;
+    vertical-align: middle;
+    margin-top: 6px;
+    border-radius: 5px;
+    height: 48px;
 }
 </style>
 </body>
