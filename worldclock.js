@@ -660,39 +660,135 @@ function MySunCalc() {
             var phase = SunCalc.getMoonIllumination(new Date()).phase;
     
     
-            if (phase > 0 && phase < 0.12)
+            if (phase > 0 && phase < 0.032)
 			{
-                document.getElementById("phase").src = "moonphases/new_moon.png";			
+                document.getElementById("phase").src = "moonphases/0.png";			
 			}
-			if (phase > 0.12 && phase < 0.25)
+			if (phase > 0.032 && phase < 0.064)
 			{
-                document.getElementById("phase").src = "moonphases/waxing_crescent.png";		
+                document.getElementById("phase").src = "moonphases/1.png";		
 			}
-			if (phase > 0.25 && phase < 0.37)
+			if (phase > 0.064 && phase < 0.096)
 			{
-                document.getElementById("phase").src = "moonphases/first_quarter.png";		
+                document.getElementById("phase").src = "moonphases/2.png";		
 			}
-			if (phase > 0.37 && phase < 0.50)
+			if (phase > 0.096 && phase < 0.128)
 			{
-                document.getElementById("phase").src = "moonphases/waxing_gibbous.png";		
+                document.getElementById("phase").src = "moonphases/3.png";		
 			}
-			if (phase > 0.50 && phase < 0.62)
+			if (phase > 0.128 && phase < 0.160)
 			{
-                document.getElementById("phase").src = "moonphases/full_moon.png";			
+                document.getElementById("phase").src = "moonphases/4.png";			
 			}			
-			if (phase > 0.62 && phase < 0.75)
+			if (phase > 0.160 && phase < 0.192)
 			{
-                document.getElementById("phase").src = "moonphases/waning_gibbous.png";
+                document.getElementById("phase").src = "moonphases/5.png";
 			}
-			if (phase > 0.75 && phase < 0.87)
+			if (phase > 0.192 && phase < 0.224)
 			{
-                document.getElementById("phase").src = "moonphases/third_quarter.png";		
+                document.getElementById("phase").src = "moonphases/6.png";		
 			}
-			if (phase > 0.87 && phase < 1.0)
+			if (phase > 0.224 && phase < 0.256)
 			{
-                document.getElementById("phase").src = "moonphases/waning_crescent.png";		
+                document.getElementById("phase").src = "moonphases/7.png";		
 			} 
-
+			if (phase > 0.256 && phase < 0.288)
+			{
+                document.getElementById("phase").src = "moonphases/8.png";		
+			} 
+			if (phase > 0.288 && phase < 0.320)
+			{
+                document.getElementById("phase").src = "moonphases/9.png";		
+			} 
+			if (phase > 0.320 && phase < 0.352)
+			{
+                document.getElementById("phase").src = "moonphases/10.png";		
+			} 
+			if (phase > 0.352 && phase < 0.384)
+			{
+                document.getElementById("phase").src = "moonphases/11.png";		
+			} 
+			if (phase > 0.384 && phase < 0.416)
+			{
+                document.getElementById("phase").src = "moonphases/12.png";		
+			} 
+			if (phase > 0.416 && phase < 0.448)
+			{
+                document.getElementById("phase").src = "moonphases/13.png";		
+			} 
+			if (phase > 0.448 && phase < 0.480)
+			{
+                document.getElementById("phase").src = "moonphases/14.png";		
+			} 
+			if (phase > 0.480 && phase < 0.5)
+			{
+                document.getElementById("phase").src = "moonphases/15.png";		
+			} 
+			if (phase > 0.5 && phase < 0.532)
+			{
+                document.getElementById("phase").src = "moonphases/16.png";		
+			} 
+			if (phase > 0.532 && phase < 0.564)
+			{
+                document.getElementById("phase").src = "moonphases/17.png";		
+			} 
+			if (phase > 0.564 && phase < 0.596)
+			{
+                document.getElementById("phase").src = "moonphases/18.png";		
+			} 
+			if (phase > 0.596 && phase < 0.628)
+			{
+                document.getElementById("phase").src = "moonphases/19.png";		
+			}
+			if (phase > 0.628 && phase < 0.660)
+			{
+                document.getElementById("phase").src = "moonphases/20.png";		
+			} 
+			if (phase > 0.660 && phase < 0.692)
+			{
+                document.getElementById("phase").src = "moonphases/21.png";		
+			} 
+            if (phase > 0.692 && phase < 0.724)
+			{
+                document.getElementById("phase").src = "moonphases/22.png";		
+			} 
+			if (phase > 0.724 && phase < 0.756)
+			{
+                document.getElementById("phase").src = "moonphases/23.png";		
+			} 			
+			if (phase > 0.756 && phase < 0.788)
+			{
+                document.getElementById("phase").src = "moonphases/24.png";		
+			}
+            if (phase > 0.788 && phase < 0.810)
+			{
+                document.getElementById("phase").src = "moonphases/25.png";		
+			} 
+			if (phase > 0.810 && phase < 0.842)
+			{
+                document.getElementById("phase").src = "moonphases/26.png";		
+			} 			
+			if (phase > 0.842 && phase < 0.876)
+			{
+                document.getElementById("phase").src = "moonphases/27.png";		
+			} 
+			if (phase > 0.876 && phase < 0.908)
+			{
+                document.getElementById("phase").src = "moonphases/28.png";		
+			} 
+			if (phase > 0.908 && phase < 0.940)
+			{
+                document.getElementById("phase").src = "moonphases/29.png";		
+			} 			
+			if (phase > 0.940 && phase < 0.972)
+			{
+                document.getElementById("phase").src = "moonphases/30.png";		
+			} 
+            if (phase > 0.972 && phase < 1)
+			{
+                document.getElementById("phase").src = "moonphases/31.png";		
+			} 
+			
     daylight = (cookie_array && cookie_array[1] == "1")?1:0;
     isampm =  (cookie_array && cookie_array[0] == "1")?1:0;
     offset = (new Date().getTimezoneOffset()/60) + daylight;
