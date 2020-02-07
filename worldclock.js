@@ -347,10 +347,6 @@ function update_clock() {
      {
           document.getElementById("newyork").innerHTML = "New York" + "<br>" + formatDateSidekick(d);
      }
-     if (i == 1)
-     {
-          document.getElementById("seville").innerHTML = "Seville" + "<br>" + formatDateSidekick(d);
-     } 
      if (i == 10)
      {
         document.getElementById("sydney").innerHTML = "Sydney" + "<br>" + formatDateSidekick(d); 

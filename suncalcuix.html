@@ -45,9 +45,10 @@
         width: 880px;
         margin: 0 auto;
         }
-   container {
-        width: 880px;
+   .container {
+        width: 890px;
         margin: 0 auto;
+        border: 5px solid #111;
    }
    clock_disp {
         width: 880px;
@@ -55,17 +56,20 @@
    }
    #mycustomclocks {
        width:880px;
-       height:64px;
+       height:32px;
+       padding-bottom: 8px;
    }
    #mycustomclocks2 {
        width:880px;
-       height:64px;
-
+       height:32px;
+       padding-bottom: 8px;
    }
    #newcustomclock button {
-       height:64px;
+       height:40px;
        float:left;
        background:#aaaaaa;
+       font-size: 12px;
+       line-height: 12px;
        color:#000;
        font-family:  digital;
        border:1px solid #999999;
@@ -128,9 +132,6 @@ table {
 </head>
 <body>
 <div class="container">
-<div id="topinfo"><span style="margin-left: 20px;">World Map and Clock&nbsp;-&nbsp;</span><button type="button" id="show">Display All</button>
-<div id="moonphase" style="float:right;"><img id="phase" width="48" height="48" style="z-index: 55555 !important;margin-right: 0px;"></img></div>
-</div>
 <div id="mycustomclockstop">
 
 <div id="newcustomclock">
@@ -239,6 +240,8 @@ img:focus::before {
 }
 </style>
 
+
+
 <div id="mycustomclocks">
 
 <div id="newcustomclock">
@@ -258,8 +261,10 @@ img:focus::before {
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="sevillefunc()" id="seville">
-</button></div>
+<button type="button" style="width:87px !important;">
+<img id="phase" width="32" height="32" style="z-index: 55555 !important;"></img>
+</button>
+<button type="button" id="show" style="width:87px !important;">Display All</button></div>
 
 </div>
 <script>
@@ -441,6 +446,7 @@ $(document).ready(function(){
   <button type="button" onclick="custom();">Go!</button>
   <button type="button" onclick="reset();">Reset!</button>  
 </div>
+</div>
 
 <script>
 function left(){
@@ -472,6 +478,7 @@ update_clock();
 </script>
 <div id="clock_disp"></div>
 </div>
+</div>
 <style>
 #clock_disp {
 
@@ -482,18 +489,16 @@ update_clock();
     background: #999;
     color: #000;
     width: 880px;
-    height: 64px;
+    height: 24px;
     font-size: 16px;
-    line-height: 64px;
+    line-height: 24px;
     margin: 0 auto;
     text-align: left;
     margin-bottom: 1px;
     
 }
 #show {
-    background: #666;
-    color: #aaa;
-    border-radius: 5px;
+
     padding: 5px;
     border: 0;
     
@@ -523,15 +528,10 @@ update_clock();
     z-index: 555555 !important;
     font-family: digital;
     background: #666;
-    font-size: 12px;
-    line-height: 24px;
-    margin-right: 20px !important;
     border: 1px solid #000;
     color: #ffffff;
     vertical-align: middle;
-    margin-top: 7px;
-    border-radius: 5px;
-    height: 48px;
+    height: 32px;
 }
 </style>
 </body>
