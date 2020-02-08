@@ -135,30 +135,30 @@ table {
 <div id="mycustomclockstop">
 
 <div id="newcustomclock">
-<button type="button" onclick="ibizafunc()" id="ibiza">
+<button type="button" onclick="button1func()" id="buttoncity1">
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="quitofunc()" id="quito">
+<button type="button" onclick="button2func()" id="buttoncity2">
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="parisfunc()" id="paris">
+<button type="button" onclick="button3func()" id="buttoncity3">
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="madridfunc()" id="madrid">
+<button type="button" onclick="button4func()" id="buttoncity4">
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="montrealfunc()" id="montreal">
+<button type="button" onclick="button5func()" id="buttoncity5">
 </button></div>
 
 </div>
 
 <svg id="daylight-map"></svg>
-<img src="bigcities.png" id="big2" width="16" height="16" title="" style="position: absolute;">
 <img src="bigcities.png" id="big1" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big2" width="16" height="16" title="" style="position: absolute;">
 <img src="bigcities.png" id="big3" width="16" height="16" title="" style="position: absolute;">
 <img src="bigcities.png" id="big4" width="16" height="16" title="" style="position: absolute;">
 <img src="bigcities.png" id="big5" width="16" height="16" title="" style="position: absolute;">
@@ -171,6 +171,16 @@ table {
 <img src="bigcities.png" id="big12" width="16" height="16" title="" style="position: absolute;">
 <img src="bigcities.png" id="big13" width="16" height="16" title="" style="position: absolute;">
 <img src="bigcities.png" id="big14" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big15" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big16" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big17" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big18" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big19" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big20" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big21" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big22" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big23" width="16" height="16" title="" style="position: absolute;">
+<img src="bigcities.png" id="big24" width="16" height="16" title="" style="position: absolute;">
 <img src="home.gif" id="casa" width="32" height="32" title="">
 <style>
 #location {
@@ -249,15 +259,15 @@ img:focus::before {
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="londonfunc()" id="london">
+<button type="button" onclick="button6func()"  id="buttoncity6">
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="sydneyfunc()" id="sydney">
+<button type="button" onclick="button7func()"  id="buttoncity7">
 </button></div>
 
 <div id="newcustomclock">
-<button type="button" onclick="newyorkfunc()" id="newyork">
+<button type="button" onclick="button8func()" id="buttoncity8">
 </button></div>
 
 <div id="newcustomclock">
@@ -303,126 +313,129 @@ $(document).ready(function(){
 </script>
 <script>
 function gohome() {
-	quito=0;
-	paris=0;
-	madrid=0;
-	montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
+    button1 = 0;
+    button2 = 0;
+    button3 = 0;
+    button4 = 0;
+    button5 = 0;
+    button6 = 0;
+    button7 = 0;
+    button8 = 0;
     mychange++;
 	update_clock();
-    mychange=0;
+    mychange--;
 	update_clock();
 }
-function quitofunc() { 
-	quito=1;
-	paris=0;
-	madrid=0;
-	montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
+function button1func() { 
+    button1 = 1;
+    button2 = 0;
+    button3 = 0;
+    button4 = 0;
+    button5 = 0;
+    button6 = 0;
+    button7 = 0;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function parisfunc() { 
-	paris=1;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
+function button2func() { 
+    button1 = 0;
+    button2 = 1;
+    button3 = 0;
+    button4 = 0;
+    button5 = 0;
+    button6 = 0;
+    button7 = 0;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function madridfunc() { 
-	paris=0;
-	quito=0;
-	madrid=1;
-	montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
+function button3func() { 
+    button1 = 0;
+    button2 = 0;
+    button3 = 1;
+    button4 = 0;
+    button5 = 0;
+    button6 = 0;
+    button7 = 0;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function montrealfunc() { 
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=1;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
+function button4func() { 
+    button1 = 0;
+    button2 = 0;
+    button3 = 0;
+    button4 = 1;
+    button5 = 0;
+    button6 = 0;
+    button7 = 0;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function ibizafunc() { 
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=1;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
+function button5func() { 
+    button1 = 0;
+    button2 = 0;
+    button3 = 0;
+    button4 = 0;
+    button5 = 1;
+    button6 = 0;
+    button7 = 0;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function londonfunc() { 
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=1;
-    seville=0;
-    newyork=0;
-    sydney=0;
+function button6func() { 
+    button1 = 0;
+    button2 = 0;
+    button3 = 0;
+    button4 = 0;
+    button5 = 0;
+    button6 = 1;
+    button7 = 0;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function sydneyfunc() { 
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=1;
+function button7func() { 
+    button1 = 0;
+    button2 = 0;
+    button3 = 0;
+    button4 = 0;
+    button5 = 0;
+    button6 = 0;
+    button7 = 1;
+    button8 = 0;
+    mychange++;
+	update_clock();
+    mychange--;
 	update_clock();
 	}
-function newyorkfunc() { 
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=1;
-    sydney=0;
+function button8func() { 
+    button1 = 0;
+    button2 = 0;
+    button3 = 0;
+    button4 = 0;
+    button5 = 0;
+    button6 = 0;
+    button7 = 0;
+    button8 = 1;
+    mychange++;
 	update_clock();
-	}
-function sevillefunc() { 
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=0;
-    seville=1;
-    newyork=0;
-    sydney=0;
+    mychange--;
 	update_clock();
 	}
 </script>
@@ -437,7 +450,7 @@ $(document).ready(function(){
 <div class="timezones" style="display: none;">
 <div id="customtime"><div id="customtimebar">
   <button type="button" id="changeloc" onclick="right();">&larr;</button>
-  <button type="button" id="changeloc" onclick="left();">&rarr;</button>  
+  <button type="button" id="changeloc" onclick="left();">&rarr;</button> 
   Year: <input type="text" name="year" id="year" style="width:50px;">
   Month: <input type="text" name="month" id="month" style="width:50px;">
   Date: <input type="text" name="date" id="date" style="width:50px;">
@@ -450,28 +463,10 @@ $(document).ready(function(){
 
 <script>
 function left(){
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
 mychange--;
 update_clock();
 }
 function right(){
-	paris=0;
-	quito=0;
-    madrid=0;
-    montreal=0;
-    ibiza=0;
-    london=0;
-    seville=0;
-    newyork=0;
-    sydney=0;
 mychange++;
 update_clock();
 }

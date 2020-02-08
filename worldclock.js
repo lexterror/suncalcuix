@@ -18,6 +18,16 @@ var newMargingLeft=0;
 var marginT = -245;
 var marginL = 440;
 
+// RANDOM CITIES 
+var randomcity1 = 0;
+var randomcity2 = 0;
+var randomcity3 = 0;
+var randomcity4 = 0;
+var randomcity5 = 0;
+var randomcity6 = 0;
+var randomcity7 = 0;
+var randomcity8 = 0;
+
 var newMarginTopCity = 0;
 var newMarginLeftCity = 0;
 var marginTCity = -242;
@@ -25,16 +35,54 @@ var marginLCity = 448;
 
 // CUSTOM CITY BUTTONS (GLOBAL VARIABLES)
 
-var quito=0;
-var paris=0;
-var madrid=0;
-var montreal=0;
-var ibiza=0;
-var seville=0;
-var newyork=0;
-var sydney=0;
-var london=0;
+var button1 = 0;
+var button2 = 0;
+var button3 = 0;
+var button4 = 0;
+var button5 = 0;
+var button6 = 0;
+var button7 = 0;
+var button8 = 0;
 var title ="";
+
+var min = -11;
+var max = 12;
+
+function getRandomInt(min, max) {
+         return Math.floor(Math.random() * (max - min + 1) + min);
+}
+var shuffle = function (array) {
+
+	var currentIndex = array.length;
+	var temporaryValue, randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+
+};
+var nums = [-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12];
+
+shuffle(nums);
+
+randomcity1 = nums[0];
+randomcity2 = nums[1];
+randomcity3 = nums[2];
+randomcity4 = nums[3];
+randomcity5 = nums[4];
+randomcity6 = nums[5];
+randomcity7 = nums[6];
+randomcity8 = nums[7];
 
 function addEvent(o,e,f) {
   if (o.addEventListener) {
@@ -92,12 +140,12 @@ var locations=[
 "San Francisco"
 ,"Denver",
 "Chicago",
-"Boston",
+"New York",
 "Caracas"
 ,"Rio De Janeiro",
 "Recife","Azores"
 ,"London"
-,"Ibiza",
+,"Paris",
 "Cairo",
 "Moscow",
 "Baku"
@@ -112,8 +160,8 @@ var locations=[
 
 // LONGITUDE / LATITUDE FOR TIME ZONES ONLY
 
-var la = ["-172.1","-155.5","-134.4","-122.4","-104.9","-87.62","-71.05","-66.90","-43.17","-34.92","-25.67","0.1278","1.4821","31.235","37.617","49.867","67.001","90.412","100.50","114.16","139.65","151.20","166.44","174.77"];
-var lo = ["13.759","19.896","58.301","37.774","39.739","41.878","42.360","10.480","-22.90","-8.052","37.741","51.507","39.020","30.044","55.755","40.409","24.860","23.810","13.756","22.319","35.676","-33.86","-22.27","-41.28"];
+var la = ["-172.1","-155.5","-134.4","-122.4","-104.9","-87.62","-74.00","-66.90","-43.17","-34.92","-25.67","0.1278","2.3522","31.235","37.617","49.867","67.001","90.412","100.50","114.16","139.65","151.20","166.44","174.77"];
+var lo = ["13.759","19.896","58.301","37.774","39.739","41.878","40.712","10.480","-22.90","-8.052","37.741","51.507","48.856","30.044","55.755","40.409","24.860","23.810","13.756","22.319","35.676","-33.86","-22.27","-41.28"];
 
 function setup()
 {
@@ -293,24 +341,7 @@ function update_clock() {
   // SET TIME "OFFSET" FOR ANY BUTTON ACTIVATED
   
   offset = offset + mychange;
-  if (quito == 1)
-  offset = 5;
-  if (paris == 1)
-  offset = -1;
-  if (madrid == 1) 
-  offset = -1;
-  if (montreal == 1)
-  offset = 5;
-  if (ibiza == 1)
-  offset = -1;
-  if (seville == 1)
-  offset = -1;
-  if (newyork == 1)
-  offset = 5;
-  if (sydney == 1)
-  offset = -10;
-  if (london == 1)
-  offset = 0;
+  
   // create time zone outputs
   for(i = -11;i <= 12;i++) {
       
@@ -318,322 +349,463 @@ function update_clock() {
     document.getElementById("v" + (i+11)).innerHTML = formatDate(d);
 
     // SET UP TIME FOR EACH BUTTON WITH CLOCK
-    
-     if (i == -5)
+
+   var min = -11;
+   var max = 12;
+   
+   // RANDOM ALGORITHMS
+   
+    function getRandomInt(min, max) {
+         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+
+
+// Shuffle lunch
+ 
+
+// Create a new, shuffled array from lunch
+//var shuffledLunch = shuffle(lunch.slice());
+   
+
+ 
+   
+     if (i == randomcity1)
      { 
-       document.getElementById("quito").innerHTML = "Quito" + "<br>" + formatDateSidekick(d);
+       document.getElementById("buttoncity1").innerHTML = locations[i+11] + "<br>" + formatDateSidekick(d);
      }
-     if (i == 1)
+     if (i == randomcity2)
      {
-     	document.getElementById("paris").innerHTML = "Paris" + "<br>" + formatDateSidekick(d);           
+     	document.getElementById("buttoncity2").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d);           
      }
-     if (i == 1)
+     if (i == randomcity3)
      { 
-       document.getElementById("madrid").innerHTML = "Madrid" + "<br>" + formatDateSidekick(d);
+       document.getElementById("buttoncity3").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d);
      }
-     if (i == -5)
+     if (i == randomcity4)
      {
-     	document.getElementById("montreal").innerHTML = "Montreal" + "<br>" + formatDateSidekick(d);
+     	document.getElementById("buttoncity4").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d);
      }     
-     if (i == 1)
+     if (i == randomcity5)
      {
-        document.getElementById("ibiza").innerHTML = "Ibiza" + "<br>" + formatDateSidekick(d);  
+        document.getElementById("buttoncity5").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d);  
      }
-     if (i == 0)
+     if (i == randomcity6)
      {
-        document.getElementById("london").innerHTML = "London" + "<br>" + formatDateSidekick(d);         
+        document.getElementById("buttoncity6").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d);         
      }
-     if (i == -5)
+     if (i == randomcity7)
      {
-          document.getElementById("newyork").innerHTML = "New York" + "<br>" + formatDateSidekick(d);
+          document.getElementById("buttoncity7").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d);
      }
-     if (i == 10)
+     if (i == randomcity8)
      {
-        document.getElementById("sydney").innerHTML = "Sydney" + "<br>" + formatDateSidekick(d); 
+        document.getElementById("buttoncity8").innerHTML = locations[i+11]  + "<br>" + formatDateSidekick(d); 
      } 
 
      //  CITIES ON THE WORLD MAP
      
-     if (i == -5)
+     if (i == -11)
      {
-       var style = window.getComputedStyle(document.getElementById('big1'));
-       newMarginTopCity = (marginTCity - (( -0.1807 * 2.444))) + 5;
-       newMarginLeftCity = (marginLCity + ((-78.467 * 2.444))) - 15;
-       document.getElementById("big1").style.marginLeft = newMarginLeftCity;
-       document.getElementById("big1").style.marginTop = newMarginTopCity; 
-       var string = "Quito" + " " + formatDateSidekick(d);
-       var stringmod = string.replace(/(<br ?\/?>)*/g,"");
-        $("#big1").prop("title", stringmod);         
+         var style = window.getComputedStyle(document.getElementById('big1'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big1").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big1").style.marginTop = newMarginTopCity;
+         var string = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod = string.replace(/(<br ?\/?>)*/g,"");
+         $("#big1").prop("title", stringmod);         
      }
-     if (i == 1)
-     {
-       var style = window.getComputedStyle(document.getElementById('big3'));
-       newMarginTopCity = (marginTCity - ((40.416 * 2.444))) + 5;
-       newMarginLeftCity = (marginLCity + ((-3.7038 * 2.444))) - 15;
-        document.getElementById("big3").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big3").style.marginTop = newMarginTopCity; 
-        var string3 = "Madrid" + " " + formatDateSidekick(d);
-        var stringmod3 = string3.replace(/(<br ?\/?>)*/g,"");
-        $("#big3").prop("title", stringmod3);          
-     }
-     if (i == 0)
-     {
-        var style = window.getComputedStyle(document.getElementById('big2'));
-        newMarginTopCity = (marginTCity - ((51.507 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((0.1278 * 2.444))) - 15;
-        document.getElementById("big2").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big2").style.marginTop = newMarginTopCity;   
-        var string2 = "London" + " " + formatDateSidekick(d);
-        var stringmod2 = string2.replace(/(<br ?\/?>)*/g,"");
-        $("#big2").prop("title", stringmod2);          
-     }
-     if (i == -5)
-     {
-        var style = window.getComputedStyle(document.getElementById('big4'));
-        newMarginTopCity = (marginTCity - ((38.907 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((-77.036 * 2.444))) - 15;
-        document.getElementById("big4").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big4").style.marginTop = newMarginTopCity;   
-        var string4 = "Washington" + " " + formatDateSidekick(d);
-        var stringmod4 = string4.replace(/(<br ?\/?>)*/g,"");
-        $("#big4").prop("title", stringmod4);             
-     }
-     if (i == 10)
-     {
-        var style = window.getComputedStyle(document.getElementById('big5'));
-        newMarginTopCity = (marginTCity - ((-33.86 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((151.20 * 2.444))) - 15;
-        document.getElementById("big5").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big5").style.marginTop = newMarginTopCity;   
-        var string5 = "Sydney" + " " + formatDateSidekick(d);
-        var stringmod5 = string5.replace(/(<br ?\/?>)*/g,"");
-        $("#big5").prop("title", stringmod5);         
-     }
-     if (i == 3)
-     {
-        var style = window.getComputedStyle(document.getElementById('big6'));
-        newMarginTopCity = (marginTCity - ((55.755 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((37.617 * 2.444))) - 15;
-        document.getElementById("big6").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big6").style.marginTop = newMarginTopCity;   
-        var string6 = "Moscow" + " " + formatDateSidekick(d);
-        var stringmod6 = string6.replace(/(<br ?\/?>)*/g,"");
-        $("#big6").prop("title", stringmod6); 
-     }           
      if (i == -10)
      {
-        var style = window.getComputedStyle(document.getElementById('big7'));
-        newMarginTopCity = (marginTCity - ((19.896 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((-155.5 * 2.444))) - 15;
-        document.getElementById("big7").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big7").style.marginTop = newMarginTopCity;   
-        var string7 = "Hawaii" + " " + formatDateSidekick(d);
-        var stringmod7 = string7.replace(/(<br ?\/?>)*/g,"");
-        $("#big7").prop("title", stringmod7); 
-     }   
-     if (i == 8)
+         var style = window.getComputedStyle(document.getElementById('big2'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big2").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big2").style.marginTop = newMarginTopCity;
+         var string2 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod2 = string2.replace(/(<br ?\/?>)*/g,"");
+         $("#big2").prop("title", stringmod2);           
+     }
+     if (i == -9)
      {
-        var style = window.getComputedStyle(document.getElementById('big8'));
-        newMarginTopCity = (marginTCity - ((22.319 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((114.16 * 2.444))) - 15;
-        document.getElementById("big8").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big8").style.marginTop = newMarginTopCity;   
-        var string8 = "Hong Kong" + " " + formatDateSidekick(d);
-        var stringmod8 = string8.replace(/(<br ?\/?>)*/g,"");
-        $("#big8").prop("title", stringmod8); 
-     }   
-     if (i == 0)
-     {
-        var style = window.getComputedStyle(document.getElementById('big9'));
-        newMarginTopCity = (marginTCity - ((7.5400 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((-5.547 * 2.444))) - 15;
-        document.getElementById("big9").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big9").style.marginTop = newMarginTopCity;   
-        var string9 = "Ivory Coast" + " " + formatDateSidekick(d);
-        var stringmod9 = string9.replace(/(<br ?\/?>)*/g,"");
-        $("#big9").prop("title", stringmod9); 
-     } 
-     if (i == 7)
-     {
-        var style = window.getComputedStyle(document.getElementById('big10'));
-        newMarginTopCity = (marginTCity - ((13.756 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((100.50 * 2.444))) - 15;
-        document.getElementById("big10").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big10").style.marginTop = newMarginTopCity;   
-        var string10 = "Bangkok" + " " + formatDateSidekick(d);
-        var stringmod10 = string10.replace(/(<br ?\/?>)*/g,"");
-        $("#big10").prop("title", stringmod10); 
-     } 
-     if (i == -3)
-     {
-        var style = window.getComputedStyle(document.getElementById('big11'));
-        newMarginTopCity = (marginTCity - ((-22.90 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((-43.17 * 2.444))) - 15;
-        document.getElementById("big11").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big11").style.marginTop = newMarginTopCity;   
-        var string11 = "Rio de Janeiro" + " " + formatDateSidekick(d);
-        var stringmod11 = string11.replace(/(<br ?\/?>)*/g,"");
-        $("#big11").prop("title", stringmod11); 
-     }     
+         var style = window.getComputedStyle(document.getElementById('big3'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big3").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big3").style.marginTop = newMarginTopCity;
+         var string3 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod3 = string3.replace(/(<br ?\/?>)*/g,"");
+         $("#big3").prop("title", stringmod3);           
+     }
      if (i == -8)
      {
-        var style = window.getComputedStyle(document.getElementById('big12'));
-        newMarginTopCity = (marginTCity - ((34.052 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((-118.2 * 2.444))) - 15;
-        document.getElementById("big12").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big12").style.marginTop = newMarginTopCity;   
-        var string12 = "Los Angeles" + " " + formatDateSidekick(d);
-        var stringmod12 = string12.replace(/(<br ?\/?>)*/g,"");
-        $("#big12").prop("title", stringmod12); 
-     }      
-     if (i == 9)
+         var style = window.getComputedStyle(document.getElementById('big4'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big4").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big4").style.marginTop = newMarginTopCity;
+         var string4 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod4 = string4.replace(/(<br ?\/?>)*/g,"");
+         $("#big4").prop("title", stringmod4);             
+     }
+     if (i == -7)
      {
-        var style = window.getComputedStyle(document.getElementById('big13'));
-        newMarginTopCity = (marginTCity - ((35.676 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((139.65 * 2.444))) - 15;
-        document.getElementById("big13").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big13").style.marginTop = newMarginTopCity;   
-        var string13 = "Tokyo" + " " + formatDateSidekick(d);
-        var stringmod13 = string13.replace(/(<br ?\/?>)*/g,"");
-        $("#big13").prop("title", stringmod13); 
+         var style = window.getComputedStyle(document.getElementById('big5'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big5").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big5").style.marginTop = newMarginTopCity;
+         var string5 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod5 = string5.replace(/(<br ?\/?>)*/g,"");
+         $("#big5").prop("title", stringmod5);          
+     }
+     if (i == -6)
+     {
+         var style = window.getComputedStyle(document.getElementById('big6'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big6").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big6").style.marginTop = newMarginTopCity;
+         var string6 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod6 = string6.replace(/(<br ?\/?>)*/g,"");
+         $("#big6").prop("title", stringmod6);    
+     }           
+     if (i == -5)
+     {
+         var style = window.getComputedStyle(document.getElementById('big7'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big7").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big7").style.marginTop = newMarginTopCity;
+         var string7 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod7 = string7.replace(/(<br ?\/?>)*/g,"");
+         $("#big7").prop("title", stringmod7);   
+     }   
+     if (i == -4)
+     {
+         var style = window.getComputedStyle(document.getElementById('big8'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big8").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big8").style.marginTop = newMarginTopCity;
+         var string8 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod8 = string8.replace(/(<br ?\/?>)*/g,"");
+         $("#big8").prop("title", stringmod8);   
+     }   
+     if (i == -3)
+     {
+         var style = window.getComputedStyle(document.getElementById('big9'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big9").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big9").style.marginTop = newMarginTopCity;
+         var string9 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod9 = string9.replace(/(<br ?\/?>)*/g,"");
+         $("#big9").prop("title", stringmod9);   
+     } 
+     if (i == -2)
+     {
+         var style = window.getComputedStyle(document.getElementById('big10'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big10").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big10").style.marginTop = newMarginTopCity;
+         var string10 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod10 = string10.replace(/(<br ?\/?>)*/g,"");
+         $("#big10").prop("title", stringmod10);  
+     } 
+     if (i == -1)
+     {
+         var style = window.getComputedStyle(document.getElementById('big11'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big11").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big11").style.marginTop = newMarginTopCity;
+         var string11 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod11 = string11.replace(/(<br ?\/?>)*/g,"");
+         $("#big11").prop("title", stringmod11);  
+     }     
+     if (i == 0)
+     {
+         var style = window.getComputedStyle(document.getElementById('big12'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big12").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big12").style.marginTop = newMarginTopCity;
+         var string12 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod12 = string12.replace(/(<br ?\/?>)*/g,"");
+         $("#big12").prop("title", stringmod12);  
      }      
+     if (i == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('big13'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big13").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big13").style.marginTop = newMarginTopCity;
+         var string13 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod13 = string13.replace(/(<br ?\/?>)*/g,"");
+         $("#big13").prop("title", stringmod13);   
+     }      
+     if (i == 2)
+     {
+         var style = window.getComputedStyle(document.getElementById('big14'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big14").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big14").style.marginTop = newMarginTopCity;
+         var string14 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod14 = string14.replace(/(<br ?\/?>)*/g,"");
+         $("#big14").prop("title", stringmod14);   
+     }    
      if (i == 3)
      {
-        var style = window.getComputedStyle(document.getElementById('big14'));
-        newMarginTopCity = (marginTCity - ((8.9806 * 2.444))) + 5;
-        newMarginLeftCity = (marginLCity + ((38.757 * 2.444))) - 15;
-        document.getElementById("big14").style.marginLeft = newMarginLeftCity;
-        document.getElementById("big14").style.marginTop = newMarginTopCity;   
-        var string14 = "Addis Ababa" + " " + formatDateSidekick(d);
-        var stringmod14 = string14.replace(/(<br ?\/?>)*/g,"");
-        $("#big14").prop("title", stringmod14); 
-     }       
+         var style = window.getComputedStyle(document.getElementById('big15'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big15").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big15").style.marginTop = newMarginTopCity;
+         var string15 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod15 = string15.replace(/(<br ?\/?>)*/g,"");
+         $("#big15").prop("title", stringmod15);   
+     }  
+     if (i == 4)
+     {
+         var style = window.getComputedStyle(document.getElementById('big16'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big16").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big16").style.marginTop = newMarginTopCity;
+         var string16 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod16 = string16.replace(/(<br ?\/?>)*/g,"");
+         $("#big16").prop("title", stringmod16);   
+     }  
+     if (i == 5)
+     {
+         var style = window.getComputedStyle(document.getElementById('big17'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big17").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big17").style.marginTop = newMarginTopCity;
+         var string17 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod17 = string17.replace(/(<br ?\/?>)*/g,"");
+         $("#big17").prop("title", stringmod17);   
+     }  
+     if (i == 6)
+     {
+         var style = window.getComputedStyle(document.getElementById('big18'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big18").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big18").style.marginTop = newMarginTopCity;
+         var string18 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod18 = string18.replace(/(<br ?\/?>)*/g,"");
+         $("#big18").prop("title", stringmod18);   
+     }  
+     if (i == 7)
+     {
+         var style = window.getComputedStyle(document.getElementById('big19'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big19").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big19").style.marginTop = newMarginTopCity;
+         var string19 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod19 = string19.replace(/(<br ?\/?>)*/g,"");
+         $("#big19").prop("title", stringmod19);   
+     }  
+      if (i == 8)
+     {
+         var style = window.getComputedStyle(document.getElementById('big20'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big20").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big20").style.marginTop = newMarginTopCity;
+         var string20 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod20 = string20.replace(/(<br ?\/?>)*/g,"");
+         $("#big20").prop("title", stringmod20);   
+     }                            
+      if (i == 9)
+     {
+         var style = window.getComputedStyle(document.getElementById('big21'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big21").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big21").style.marginTop = newMarginTopCity;
+         var string21 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod21 = string21.replace(/(<br ?\/?>)*/g,"");
+         $("#big21").prop("title", stringmod21);   
+     }    
+      if (i == 10)
+     {
+         var style = window.getComputedStyle(document.getElementById('big22'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big22").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big22").style.marginTop = newMarginTopCity;
+         var string22 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod22 = string22.replace(/(<br ?\/?>)*/g,"");
+         $("#big22").prop("title", stringmod22);   
+     }   
+      if (i == 11)
+     {
+         var style = window.getComputedStyle(document.getElementById('big23'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big23").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big23").style.marginTop = newMarginTopCity;
+         var string23 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod23 = string23.replace(/(<br ?\/?>)*/g,"");
+         $("#big23").prop("title", stringmod23);   
+     }   
+      if (i == 12)
+     {
+         var style = window.getComputedStyle(document.getElementById('big24'));
+         newMarginTopCity = (marginTCity - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeftCity = (marginLCity + ((la[i+11] * 2.444))) - 15; 
+         document.getElementById("big24").style.marginLeft = newMarginLeftCity;
+         document.getElementById("big24").style.marginTop = newMarginTopCity;
+         var string24 = locations[i+11] + " " + formatDateSidekick(d);
+         var stringmod24 = string24.replace(/(<br ?\/?>)*/g,"");
+         $("#big24").prop("title", stringmod24);   
+     } 
+// RANDOM CITIES ON MAP
+     
+     
+     if (i == randomcity1 && button1 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     
+     if (i == randomcity2 && button2 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     
+     if (i == randomcity3 && button3 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     if (i == randomcity4 && button4 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     if (i == randomcity5 && button5 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     if (i == randomcity6 && button6 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     if (i == randomcity7 && button7 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }
+     if (i == randomcity8 && button8 == 1)
+     {
+         var style = window.getComputedStyle(document.getElementById('casa'));
+         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
+         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
+         document.getElementById("casa").style.marginLeft = newMarginLeft;
+         document.getElementById("casa").style.marginTop = newMarginTop;   
+       //  document.getElementById("casa").style.marginLeft = newMarginLeft;
+      //   document.getElementById("casa").style.marginTop = newMarginTop;  
+         
+     }         
+     
      
      mod = (i == -offset)?"lawngreen":"white";
-    
+     
      if (mod == "lawngreen")
+     if (button1 == 0 & button2 == 0 & button3 == 0 & button4 == 0 & button5 == 0 & button6 == 0 & button7 == 0 & button8 == 0)
      {
-         // CHANGE HOME BUTTON CLOCK TIME AND TOOLTIP WORLD LOCATION
          
-            homeloc = locations[i + 11];
-            if (quito == 1)
-            homeloc = "Quito";
-            if (paris == 1)
-            homeloc = "Paris";
-            if (madrid == 1)
-            homeloc = "Madrid";
-            if (montreal == 1)
-            homeloc = "Montreal";
-            if (ibiza == 1)
-            homeloc = "Ibiza";
-            if (london == 1)
-            homeloc = "London";
-            if (newyork == 1)
-            homeloc = "New York";
-            if (seville == 1)
-            homeloc = "Seville";
-            if (sydney == 1)
-            homeloc = "Sydney";
+             homeloc = locations[i + 11];
             title = homeloc;
             var stringanycity = title + " " + formatDateSidekick(d);
             var stringmodcity = stringanycity.replace(/(<br ?\/?>)*/g,"");
             $("#casa").prop("title", stringmodcity);
 
-            document.getElementById("homeclock").innerHTML = homeloc + "<br>" + formatDateSidekick(d);
-
-
+            document.getElementById("homeclock").innerHTML = homeloc + "<br>" + formatDateSidekick(d);    
      // SET UP LOCATION ON WORLD MAP FOR DIFFERENT CITY LOCATIONS WHEN ANY BUTTON IS ACTIVATED      
             
-     if (i== -5 && quito == 1)
-     {
-         var style = window.getComputedStyle(document.getElementById('casa'));
-     	 newMarginTop = (marginT - (( -0.1807 * 2.444))) + 5;
-         newMarginLeft = (marginL + ((-78.467 * 2.444))) - 15;
-         document.getElementById("casa").style.marginLeft = newMarginLeft;
-         document.getElementById("casa").style.marginTop = newMarginTop;  
-         
-     }
-     if (i == 1 && paris == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-     	newMarginTop = (marginT - (( 48.856 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((2.3522 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop;      
+            
+            
+ 
      
-     }
-     if (i == 1 && madrid == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-        newMarginTop = (marginT - ((40.416 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((-3.7038 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop;      
-     
-     }    
-     if (i == -5 && montreal == 1)
-     {
-         var style = window.getComputedStyle(document.getElementById('casa'));
-         newMarginTop = (marginT - ((45.5017 * 2.444))) + 5;
-         newMarginLeft = (marginL + ((-73.567 * 2.444))) - 15;
-         document.getElementById("casa").style.marginLeft = newMarginLeft;
-         document.getElementById("casa").style.marginTop = newMarginTop; 
-     }      
-     if (i == 1 && ibiza == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-     	newMarginTop = (marginT - ((39.020 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((1.4821 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop; 
-     }         
-     if (i == 1 && seville == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-        newMarginTop = (marginT - ((37.389 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((-5.9845 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop; 
-     }      
-     if (i == 0 && london == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-        newMarginTop = (marginT - ((51.507 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((0.1278 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop; 
-     }     
-     if (i == -5 && newyork == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-        newMarginTop = (marginT - ((40.712 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((-74.00 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop; 
-     }   
-     if (i == 10 && sydney == 1)
-     {
-        var style = window.getComputedStyle(document.getElementById('casa'));
-        newMarginTop = (marginT - ((-33.86 * 2.444))) + 5;
-        newMarginLeft = (marginL + ((151.20 * 2.444))) - 15;
-        document.getElementById("casa").style.marginLeft = newMarginLeft;
-        document.getElementById("casa").style.marginTop = newMarginTop;
-     } 
     }
-
-    if(old_offset != offset) {
+    
+    if(old_offset != offset) 
+    if (button1 == 0 & button2 == 0 & button3 == 0 & button4 == 0 & button5 == 0 & button6 == 0 & button7 == 0 & button8 == 0)
+   // if (buttoncity1 == 0 && buttoncity2 == 0 && buttoncity3 == 0 && buttoncity4 == 0 && buttoncity5 == 0 && buttoncity6 == 0 && buttoncity7 == 0 && buttoncity8 == 0)
+    {
+        
 
       color=(i == -offset)?"#f0f0ff":"#999999";
-      document.getElementById("row" + (i+11)).style.background = color;
-      
+
+      document.getElementById("row" + (i+11)).style.background = color;  
+    
       if (i == -offset)
       {
+          
+ 
+  
         var style = window.getComputedStyle(document.getElementById('casa'));
         /*
         var marginTop = parseInt(style.getPropertyValue('margin-top')); 
         var marginLeft = parseInt(style.getPropertyValue('margin-left')); 
         */   
-        if (!(quito == 1 || paris == 1 || madrid == 1 || montreal == 1 || ibiza == 1 || london == 1 || newyork == 1 || seville == 1 || sydney == 1))
+        if (!(buttoncity1 == 1 || buttoncity2 == 1 || buttoncity3 == 1 || buttoncity4 == 1 || buttoncity5 == 1 || buttoncity6 == 1 || buttoncity7 == 1 || buttoncity8 == 1))
         {
         newMarginTop = (marginT - ((lo[i+11] * 2.444))) + 5;
         newMarginLeft = (marginL + ((la[i+11] * 2.444))) - 15;
