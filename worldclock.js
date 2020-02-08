@@ -12,6 +12,8 @@ var mychange = 0;
 var mychangenegative = 0;
 var newMarginTop=0;
 var newMargingLeft=0;
+var offset_exact=0;
+var offset_exact_sign=0;
 
 // CENTER OF MY WORLD MAP
 
@@ -798,8 +800,14 @@ function update_clock() {
       if (i == -offset)
       {
           
- 
-  
+        // EXACT LOCATION DATA
+          
+        
+            
+        
+    
+        
+        // END OF EXACT LOCATION DATA
         var style = window.getComputedStyle(document.getElementById('casa'));
         /*
         var marginTop = parseInt(style.getPropertyValue('margin-top')); 
