@@ -2,7 +2,6 @@
 <head>
 <title>World Map and Clock</title>
 <script src="jquery.min.js"></script>
-<script src="sinon.js"></script>
 <script src="suncalc.js"></script>
 <link rel="stylesheet" href="dist/style.css">
 <script src="dist/d3.min.js"></script>
@@ -210,6 +209,7 @@ top: 0;
     color: #fff;
     margin: 0 auto;
     padding-top: 10px;
+    padding-bottom: 10px;
     font-family: digital;
     z-index: 999999999999;
     background: #666;
@@ -280,7 +280,7 @@ img:focus::before {
     <div id="result">
         <!--Position information will be inserted here-->
     </div>
-    <button type="button" onclick="showPosition();" style="width:880px;height:32px;">Show Accurate Position Data</button>
+    <button type="button" onclick="showPosition();" style="width:880px;height:32px;">Show Accurate Location Data (Online)</button>
 <script>
 $(document).ready(function(){
  var title = $("#casa").attr("title");
@@ -453,18 +453,31 @@ $(document).ready(function(){
 
 <div class="timezones" style="display: none;">
 <div id="customtime"><div id="customtimebar">
-  <button type="button" id="changeloc" onclick="right();">&larr;</button>
-  <button type="button" id="changeloc" onclick="left();">&rarr;</button> 
-  Year: <input type="text" name="year" id="year" style="width:50px;">
-  Month: <input type="text" name="month" id="month" style="width:50px;">
-  Date: <input type="text" name="date" id="date" style="width:50px;">
-  Hour: <input type="text" name="date" id="hours" style="width:50px;">
-  Minute: <input type="text" name="date" id="minutes" style="width:50px;">
-  <button type="button" onclick="custom();">Go!</button>
-  <button type="button" onclick="reset();">Reset!</button>  
+ Lat: <select name="Lat" id="Lat" style="width:50px;height:32px;"></select><select name="Latdec" id="Latdec" style="width:70px;height:32px;"></select>
+ Long: <select name="Long" id="Long" style="width:50px;height:32px;"></select><select name="Longdec" id="Longdec" style="width:70px;height:32px;"></select>
+  <button type="button" onclick="showPositionOffline();" style="height:32px;width:500px;float:right">Show Accurate Location Data (Offline)</button>
 </div>
 </div>
-
+<script>
+$(function(){
+    var $select = $("#Lat");
+    for (i=-90;i<=90;i++){
+        $select.append($('<option></option>').val(i).html(i))
+    }
+    var $select2 = $("#Long");
+    for (i=-180;i<=180;i++){
+        $select2.append($('<option></option>').val(i).html(i))
+    }
+    var $select = $("#Latdec");
+    for (i=0;i<=10000;i++){
+        $select.append($('<option></option>').val(i).html(i))
+    }
+    var $select2 = $("#Longdec");
+    for (i=-0;i<=10000;i++){
+        $select2.append($('<option></option>').val(i).html(i))
+    }
+});
+</script>
 <script>
 function left(){
 mychange--;
@@ -716,15 +729,164 @@ update_clock();
                     document.getElementById("casa").style.marginLeft = newMarginLeft;
                     document.getElementById("casa").style.marginTop = newMarginTop;     
                 
+                
+                String.prototype.trunc = String.prototype.trunc ||
+                    function(n){
+                    return (this.length > n) ? this.substr(0, n-1) + '&hellip;' : this;
+                };
                 ///////////////////////
                 var positionInfo = "Your current position is (" + "<font color='black'>Latitude:</font> " + position.coords.latitude + ", " + "<font color='black'>Longitude:</font> " + position.coords.longitude + ")<br>" +
                 "<font color='black'>UTC:</font> " + newoffset + " <font color='black'>Sunrise:</font> " + LocationSunriseStr + " <font color='black'>Sunset:</font> " + LocationSunsetStr + " <font color='black'>Moonrise:</font> " + LocationMoonriseStr + " <font color='black'>Moonset:</font> " + LocationMoonsetStr;
-                
+                $("#casa").prop("title", position.coords.latitude + " " + position.coords.longitude);
                 document.getElementById("result").innerHTML = positionInfo;
             });
         } else {
             alert("Sorry, your browser does not support HTML5 geolocation.");
         }
+    }
+</script>
+<script>
+    function showPositionOffline() {
+                var lat = document.getElementById("Lat").value;
+                var long =  document.getElementById("Long").value;
+                var latdec = document.getElementById("Latdec").value; 
+                var longdec = document.getElementById("Longdec").value;
+                var latitude = lat + "." + latdec;
+                var longitude = long + "." + longdec;
+                ///////////////////////
+    
+    var x = new Date();
+    var currentTimeZoneOffsetInHours = x.getTimezoneOffset() / 60;  
+    function pad(value) {
+        return value < 10 ? '0' + value : value;
+    }
+    function createOffset(date) {
+        var sign = (date.getTimezoneOffset() > 0) ? "-" : "+";
+        var offset = Math.abs(date.getTimezoneOffset());
+        var hours = pad(Math.floor(offset / 60));
+        var minutes = pad(offset % 60);
+      //  return sign + hours + ":" + minutes;
+        return sign + hours;
+    }
+    var newoffset = createOffset(x);
+    
+    
+    
+    
+            function checkTime(x) {
+            if (x < 10) {
+            x = "0" + x;
+            };
+            return x;
+            }   
+            var Location_off = newoffset;
+            var location = SunCalc.getTimes(new Date(),latitude,longitude);
+            var Location_Sunrise_minutes = checkTime(location.sunrise.getMinutes());
+            var location_utc_sunrise = location.sunrise.getTime()+(location.sunrise.getTimezoneOffset() * 60000);
+            var location_nd_sunrise = new Date(location_utc_sunrise+(3600000*Location_off));
+            var location_sunriseStr = checkTime(location_nd_sunrise.getHours()) + ':' + Location_Sunrise_minutes;
+            var h = checkTime(location_nd_sunrise.getHours());            
+            
+            if (isampm == 1)
+            {
+                var ap = (h >= 12)?"PM":"AM";
+                h = (h % 12);
+                if(h == 0) h = 12;
+                LocationSunriseStr = checkTime(h) + ":" + Location_Sunrise_minutes + " " + ap;
+            }
+            
+            else{
+            LocationSunriseStr = location_sunriseStr;
+            }            
+            
+            var Location_Sunset_minutes = checkTime(location.sunset.getMinutes());
+            var location_utc_sunset = location.sunset.getTime()+(location.sunset.getTimezoneOffset() * 60000);
+            var location_nd_sunset = new Date(location_utc_sunset+(3600000*Location_off));
+            var location_sunsetStr = checkTime(location_nd_sunset.getHours()) + ':' + Location_Sunset_minutes;
+            var h = checkTime(location_nd_sunset.getHours());
+
+            if (isampm == 1)
+            {
+                var ap = (h >= 12)?"PM":"AM";
+                h = (h % 12);
+                if(h == 0) h = 12;
+                LocationSunsetStr = checkTime(h) + ":" + Location_Sunset_minutes + " " + ap;
+            }
+            else {
+            LocationSunsetStr = location_sunsetStr;
+            }
+	
+            var moonLocation_off = newoffset;
+            var moonlocation = SunCalc.getMoonTimes(new Date(), latitude,longitude);
+            var checkundef1 = moonlocation.rise;
+            var checkundef2 = moonlocation.set;
+			if (checkundef1 === undefined)
+			{
+            if (isampm == 1 || myboolean == 1)					
+			LocationMoonriseStr = "--------";
+            else
+			LocationMoonriseStr = "-----";			
+			}
+			if (checkundef1 !== undefined)
+            {
+            var Location_Moonrise_minutes = checkTime(moonlocation.rise.getMinutes());
+            var location_utc_moonrise = moonlocation.rise.getTime()+(moonlocation.rise.getTimezoneOffset() * 60000);
+            var location_nd_moonrise = new Date(location_utc_moonrise+(3600000*Location_off));
+            var location_moonriseStr = checkTime(location_nd_moonrise.getHours()) + ':' + Location_Moonrise_minutes;
+            var h = checkTime(location_nd_moonrise.getHours());            
+            
+            if (isampm == 1 || myboolean == 1)
+            {
+                var ap = (h >= 12)?"PM":"AM";
+                h = (h % 12);
+                if(h == 0) h = 12;
+                LocationMoonriseStr = checkTime(h) + ":" + Location_Moonrise_minutes + " " + ap;
+            }
+                     
+            else {
+            LocationMoonriseStr = location_moonriseStr;
+            }               
+            }
+            
+			if (checkundef2 === undefined)
+			{      
+            if (isampm == 1)	
+ 			LocationMoonsetStr = "--------";
+            else
+ 			LocationMoonsetStr = "-----";			
+			}     
+			if (checkundef2 !== undefined)
+            {
+            var Location_Moonset_minutes = checkTime(moonlocation.set.getMinutes());
+            var location_utc_moonset = moonlocation.set.getTime()+(moonlocation.set.getTimezoneOffset() * 60000);
+            var location_nd_moonset = new Date(location_utc_moonset+(3600000*Location_off));
+            var location_moonsetStr = checkTime(location_nd_moonset.getHours()) + ':' + Location_Moonset_minutes;
+            var h = checkTime(location_nd_moonset.getHours());
+        
+            if (isampm == 1)
+            {
+                var ap = (h >= 12)?"PM":"AM";
+                h = (h % 12);
+                if(h == 0) h = 12;
+            LocationMoonsetStr = checkTime(h) + ":" + Location_Moonset_minutes + " " + ap;
+            }
+                     
+            else {
+            LocationMoonsetStr = location_moonsetStr;
+            }          
+            }
+                           
+                    newMarginTop = (marginT - ((latitude * 2.444))) + 5;
+                    newMarginLeft = (marginL + ((longitude * 2.444))) - 15;
+                    document.getElementById("casa").style.marginLeft = newMarginLeft;
+                    document.getElementById("casa").style.marginTop = newMarginTop;     
+                
+                ///////////////////////
+                var positionInfo = "Your current position is (" + "<font color='black'>Latitude:</font> " + latitude + ", " + "<font color='black'>Longitude:</font> " + longitude + ")<br>" +
+                "<font color='black'>UTC:</font> " + newoffset + " <font color='black'>Sunrise:</font> " + LocationSunriseStr + " <font color='black'>Sunset:</font> " + LocationSunsetStr + " <font color='black'>Moonrise:</font> " + LocationMoonriseStr + " <font color='black'>Moonset:</font> " + LocationMoonsetStr;
+                $("#casa").prop("title", latitude + " " + longitude);
+                document.getElementById("result").innerHTML = positionInfo;
+           
     }
 </script>
 </html>
