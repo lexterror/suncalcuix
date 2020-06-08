@@ -453,9 +453,9 @@ $(document).ready(function(){
 
 <div class="timezones" style="display: none;">
 <div id="customtime"><div id="customtimebar">
- Lat: <select name="Lat" id="Lat" style="width:50px;height:32px;"></select><select name="Latdec" id="Latdec" style="width:70px;height:32px;"></select>
- Long: <select name="Long" id="Long" style="width:50px;height:32px;"></select><select name="Longdec" id="Longdec" style="width:70px;height:32px;"></select>
-  <button type="button" onclick="showPositionOffline();" style="height:32px;width:500px;float:right">Show Accurate Location Data (Offline)</button>
+ Lat: <select name="Lat" id="Lat" style="width:100px;height:32px;"></select><select name="Latdec" id="Latdec" style="width:100px;height:32px;"></select>
+ Long: <select name="Long" id="Long" style="width:100px;height:32px;"></select><select name="Longdec" id="Longdec" style="width:100px;height:32px;"></select>
+  <button type="button" onclick="showPositionOffline();" style="height:32px;width:320px;float:right">Show Accurate Location Data (Offline)</button>
 </div>
 </div>
 <script>
@@ -596,11 +596,24 @@ update_clock();
 }
 </style>
 <script>
+
+            var latitude;
+            var longitude;
+$( document ).ready(function() {
+
+        $.getJSON("http://ipinfo.io", function (data) {
+
+            latitude = parseFloat(data.loc.split(',')[0]); 
+            longitude = parseFloat(data.loc.split(',')[1]); 
+        })
+        
+});            
     function showPosition() {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
+
+
+  
+
+
                 ///////////////////////
     
     var x = new Date();
@@ -735,14 +748,10 @@ update_clock();
                     return (this.length > n) ? this.substr(0, n-1) + '&hellip;' : this;
                 };
                 ///////////////////////
-                var positionInfo = "Your current position is (" + "<font color='black'>Latitude:</font> " + position.coords.latitude + ", " + "<font color='black'>Longitude:</font> " + position.coords.longitude + ")<br>" +
+                var positionInfo = "Your current position is (" + "<font color='black'>Latitude:</font> " + latitude + ", " + "<font color='black'>Longitude:</font> " + longitude + ")<br>" +
                 "<font color='black'>UTC:</font> " + newoffset + " <font color='black'>Sunrise:</font> " + LocationSunriseStr + " <font color='black'>Sunset:</font> " + LocationSunsetStr + " <font color='black'>Moonrise:</font> " + LocationMoonriseStr + " <font color='black'>Moonset:</font> " + LocationMoonsetStr;
-                $("#casa").prop("title", position.coords.latitude + " " + position.coords.longitude);
+                $("#casa").prop("title", latitude + " " +  longitude);
                 document.getElementById("result").innerHTML = positionInfo;
-            });
-        } else {
-            alert("Sorry, your browser does not support HTML5 geolocation.");
-        }
     }
 </script>
 <script>
